@@ -79,4 +79,4 @@ SUBROUTINE ENERG(UTOT)
             END IF
     4 CONTINUE
       RETURN
-      END
+    END
