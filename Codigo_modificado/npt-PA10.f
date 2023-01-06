@@ -36,8 +36,8 @@
       SUBROUTINE START !Todo bien
 
        !Lee variables de sistema y estado (rho,temp) de pozos.in
-       !al inicio y pozos.old si es continuaci"n
-       !Genera la configuraci"n inicial de fcc.
+       !al inicio y pozos.old si es continuacion
+       !Genera la configuracion inicial de fcc.
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
@@ -158,7 +158,7 @@
                   X=RX(J)-RX(I)
                   Y=RY(J)-RY(I)
 
-                ! convenci"n de imagen m!nima
+                ! convencion de imagen m!nima
                   IF (X.GT.0.5D00) THEN
                      X=X-1.0D00
                   ELSE IF (X.LT.-0.5D00) THEN
@@ -228,7 +228,7 @@
             READ(3,*)G(I)
    33    CONTINUE
 
-         ! escribe acumulador y configuraci"n de inicio o re-inicio
+         ! escribe acumulador y configuracion de inicio o re-inicio
          WRITE(6,111) ACC(1)
          WRITE(6,112)
    2  END IF
@@ -341,7 +341,7 @@
       !angular
       ANEW=RA(I)+DISPLAng*(RAN2(ISEED)-0.5D0)
 
-      !condici"n peri"dica de frontera
+      !condicion periodica de frontera
       IF(XNEW.GT.1.0D00) THEN
          XNEW=XNEW-1.0D00
       ELSE IF (XNEW.LT.0.0D00) THEN
@@ -368,7 +368,7 @@
          IF (J.EQ.I) GOTO 2                  !!!!!!CHECAR
          X=RX(J)-XNEW
          Y=RY(J)-YNEW
-         ! convenci"n de imagen m!nima
+         ! convencion de imagen m!nima
          IF (X.GT.0.5D00) THEN
             X=X-1.0D00
          ELSE IF (X.LT.-0.5D00) THEN
@@ -461,7 +461,7 @@
          X=RX(J)-RX(I)
          Y=RY(J)-RY(I)
       
-         ! convenci"n de imagen m!nima
+         ! convencion de imagen m!nima
          IF (X.GT.0.5D00) THEN
             X=X-1.0D00
          ELSE IF (X.LT.-0.5D00) THEN
@@ -545,7 +545,7 @@
       RND=RAN2(ISEED)
       IF (RND.GT.EXP(-DENERG/TEMP)) GOTO 3
 
-      ! actualiza posici"n de la part!cula I
+      ! actualiza posicion de la part!cula I
     5 RX(I)=XNEW
       RY(I)=YNEW
       RA(I)=ANEW
@@ -602,7 +602,7 @@
                X=RX(I)-RX(J)
                Y=RY(I)-RY(J)
 
-               ! convenci"n de imagen m!nima
+               ! convencion de imagen m!nima
                IF (X.GT.0.5D00) THEN
                   X=X-1.0D00
                ELSE IF (X.LT.-0.5D00) THEN
@@ -729,7 +729,7 @@
          if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then
             XNEW1(J)=XNEW1(J)+DX
             YNEW1(J)=YNEW1(J)+DY
-            ! condici"n peri"dica de frontera
+            ! condicion periodica de frontera
             IF(XNEW1(J).GT.1.0D00) THEN
                XNEW1(J)=XNEW1(J)-1.0D00
             End if
@@ -757,7 +757,7 @@
             X=XNEW1(J)-XNEW1(I)
             Y=YNEW1(J)-YNEW1(I)
 
-            ! convenci"n de imagen m!nima
+            ! convencion de imagen m!nima
             IF (X.GT.0.5D00) THEN
                X=X-1.0D00
             ELSE IF (X.LT.-0.5D00) THEN
@@ -795,7 +795,7 @@
                   X=XNEW1(M)-XNEW1(J)
                   Y=YNEW1(M)-YNEW1(J)
 
-                  ! convenci"n de imagen m!nima
+                  ! convencion de imagen m!nima
                   IF (X.GT.0.5D00) THEN
                      X=X-1.0D00
                   end if
@@ -830,7 +830,7 @@
          end if
       end do
 
-   ! actualiza posici"n de la part!cula I
+   ! actualiza posicion de la part!cula I
    11 RX(1:N)=XNEW1(1:N)
       RY(1:N)=YNEW1(1:N)
       RA(1:N)=ANEW1(1:N)
@@ -845,7 +845,7 @@
                X=RX(I)-RX(J)
                Y=RY(I)-RY(J)
 
-               ! convenci"n de imagen m!nima
+               ! convencion de imagen m!nima
                IF (X.GT.0.5D00) THEN
                   X=X-1.0D00
                ELSE IF (X.LT.-0.5D00) THEN
@@ -1023,7 +1023,7 @@ C     C lculo de energ!a potencial
          IF (J.EQ.I) GOTO 4
          X=RX(J)-RX(I)
          Y=RY(J)-RY(I)
-         ! Convenci"n de imagen m!nima
+         ! Convencion de imagen m!nima
          IF (X.GT.0.5D00) THEN
             X=X-1.0D00
          ELSE IF (X.LT.-0.5D00) THEN
