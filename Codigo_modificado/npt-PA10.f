@@ -1056,13 +1056,13 @@ C     C lculo de energ!a potencial
             ANGLE2=ACOS(pppp) !segundo angulo con el contador j 
             ANGLE2=ANGLE2*180/PI
             if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1*RA1*SS)then ! si el angulo en i esta entre 90 - anchopozo/2 y 90+anchopozo/2 y (el valor al cuadrado es menor al primer limite al cuadrado del pozo ang  por sigma cuadrada
-               if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2)) then
-                     UTOT=UTOT+EA1
+               if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2)) then ! para el angulo dos 
+                     UTOT=UTOT+EA1 ! le agrega a a energia el valor de 90 grados lado-lado 
                end if
             end if
             if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.RR>RA2*RA2*SS) then
-               if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2)then
-                  UTOT=UTOT+EA2
+               if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2)then 
+                  UTOT=UTOT+EA2   ! le agrega la energia de 180 punta punta
                end if
             end if
          end if
