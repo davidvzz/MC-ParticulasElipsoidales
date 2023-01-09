@@ -1024,13 +1024,13 @@ C     C lculo de energ!a potencial
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-      UTOT=0.0D00
+      UTOT=0.0D00 !inicializa energia total en cero 
 
       !!!!CAMBIAR
       DO 4 I=1,N-1
-      DO 4 J=I+1,N
-         IF (J.EQ.I) GOTO 4
-         X=RX(J)-RX(I)
+      DO 4 J=I+1,N ! contador que abarca todas los espacios de nuestra contenedor
+         IF (J.EQ.I) GOTO 4 
+         X=RX(J)-RX(I)    !diferencia en posicion x de la latiz
          Y=RY(J)-RY(I)
          ! Convencion de imagen m!nima
          IF (X.GT.0.5D00) THEN
@@ -1046,16 +1046,16 @@ C     C lculo de energ!a potencial
          RR=X*X+Y*Y
 
          !!Energia pozos angulares
-         if (RR.lt.RA3*RA3*SS )then
-            pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180)
-            pppp=pppp/sqrt(RR)
-            ANGLE=ACOS(pppp)
-            ANGLE=ANGLE*180/PI
-            pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
-            pppp=pppp/sqrt(RR)
-            ANGLE2=ACOS(pppp)
+         if (RR.lt.RA3*RA3*SS )then   ! si r2 es menor a la parte final del pozo al cuadrado por sigma cuadrado
+            pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180) !varibale pppp es dado por el valor angular con sigma y convertido, para x y y   
+            pppp=pppp/sqrt(RR) !lo normaliza 
+            ANGLE=ACOS(pppp) !saca el angulo 
+            ANGLE=ANGLE*180/PI !lo convierte a grados  
+            pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180) !hace lo anterior con el valor j 
+            pppp=pppp/sqrt(RR) 
+            ANGLE2=ACOS(pppp) !segundo angulo con el contador j 
             ANGLE2=ANGLE2*180/PI
-            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1*RA1*SS)then
+            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1*RA1*SS)then ! si el angulo en i esta entre 90 - anchopozo/2 y 90+anchopozo/2 y (el valor al cuadrado es menor al primer limite al cuadrado del pozo ang  por sigma cuadrada
                if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2)) then
                      UTOT=UTOT+EA1
                end if
