@@ -626,7 +626,7 @@
                END IF
                RR=X*X+Y*Y
 
-               if (RR.lt.(RA3+3)*(RA3+3)*SS) then
+               if (RR.lt.(RA3+3)*(RA3+3)*SS) then ! checa el rango espacial para formar clusters
                   CLU(I,J)=1.0D0
                else
                   CLU(I,J)=0.0D0
@@ -639,7 +639,7 @@
       !!!!!CHECAR
       I=1
       DO while (I.NE.0)
-         CALL CLUSTERS(I)
+         CALL CLUSTERS(I) 
       end do
 
       OPEN(UNIT=15,FILE='antes.dat',STATUS='unknown')
@@ -883,12 +883,12 @@
       DO while (I.NE.0)
          CALL CLUSTERS(I)
       end do
-      NACCPT=NACCPT+1.0D00
+      NACCPT=NACCPT+1.0D00 ! acumulador de pasos 
 
       ! acumula promedios
     9 ACC(1)=ACC(1)+1.0D00   !!!GOTO 9
       ACC(2)=ACC(2)+UTOT
-      USUBAV=USUBAV+UTOT
+      USUBAV=USUBAV+UTOT ! lo utiliza para calcular el promedio 
       XNTEST=DFLOAT(NCOUNT)
 
       !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
@@ -899,22 +899,22 @@
       END IF
       !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
-      IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR
+      IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR 
       IF (NCOUNT.GE.NMOVE+NMOVE2) GOTO 12
 
       IF (NCOUNT.LT.NSUB) GOTO 7
       ! escribe resultados
 
-      UAV=USUBAV/(XN*NCOUNT)
+      UAV=USUBAV/(XN*NCOUNT) ! aqui calcula el prom (mencionado en linea 891
 
       !      WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),RTEST/XNTEST,
       !     + UAV,VACCPT
       WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),TAU,
      + UAV,VACCPT,RTEST/XNTEST
       WRITE(8,*)TAU
-      NSUB=NSUB+NSUB0
-      XXMOV = DFLOAT(NMOVE)
-      XXX = XNTEST/XXMOV
+      NSUB=NSUB+NSUB0 ! le agrega la parte inicial del contador 
+      XXMOV = DFLOAT(NMOVE)  ! movimiento de en x 
+      XXX = XNTEST/XXMOV ! razon entre los pasos en x contra el movimiento 
       ! verifica si es necesario cambiar desplazamiento maximo
       !IF (DFLOAT(NACCPT)/DFLOAT(NCOUNT).GT.0.45) DISPL=DISPL*1.05
       !IF (DFLOAT(NACCPT)/DFLOAT(NCOUNT).LT.0.35) DISPL=DISPL*0.95
@@ -931,7 +931,7 @@
       UAVRUN=ACC(2)/(XN*ACC(1))
       OPEN(UNIT=17,FILE='despues.dat',STATUS='unknown')
       DO I=1,N
-         WRITE(17,*) RX(I),RY(I),S*AR,S,RA(I)
+         WRITE(17,*) RX(I),RY(I),S*AR,S,RA(I) ! escribe datos 
       END DO
 
       !WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),RTEST/XNTEST,
@@ -991,15 +991,15 @@ C     Identifica los clusters en la matriz
        COUNT=0
        DO I=1, N
           DO J=1,N
-             IF (I.NE.J.AND.CLU(I,J).NE.0.0D0) then
+             IF (I.NE.J.AND.CLU(I,J).NE.0.0D0) then ! si existe clusters 
                 IF(CLU(J,I)==0.0D0) then
-                    CLU(J,I)=1.0D0
-                    COUNT=COUNT+1
+                    CLU(J,I)=1.0D0 ! cambia el valor 
+                    COUNT=COUNT+1 ! y cuenta las iteraciones
                 END IF
                 DO M=1,N
-        IF (CLU(J,M).NE.0.0D0.AND.CLU(I,M)==0.0D0.AND.M.NE.J) then
+        IF (CLU(J,M).NE.0.0D0.AND.CLU(I,M)==0.0D0.AND.M.NE.J) then  ! SOLAMENTE para valores del clu(IM) hacer 1 
                        CLU(I,M)=1.0D0
-                       COUNT=COUNT+1
+                       COUNT=COUNT+1 ! y contar 
                     END IF
                 END DO
              END IF
@@ -1179,7 +1179,7 @@ C     Calcula g(r)
       !     *****************************************************************
       !     Limpia para terminar
 
-      SUBROUTINE FINISH   !!todo bien
+      SUBROUTINE FINISH   !!todo bien    NADAMAS ESCRIBE
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
