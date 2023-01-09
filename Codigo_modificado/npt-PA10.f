@@ -33,7 +33,7 @@
       STOP
       END
       !****************************************************************
-      SUBROUTINE START !Todo bien
+      SUBROUTINE START !CAMBIAR, lectura de variables respecto al potencial
 
        !Lee variables de sistema y estado (rho,temp) de pozos.in
        !al inicio y pozos.old si es continuacion
@@ -69,6 +69,7 @@
       READ(1,*) RHO                      !2
       READ(1,*) TEMP                     !3
       READ(1,*) PHI                      !4
+
       READ(1,*) XLAMBDA                  !5
       READ(1,*) XLAM2                    !6
       READ(1,*) XLAM3                    !7
@@ -83,6 +84,7 @@
       READ(1,*) E6                      !16
       READ(1,*) EA1  !pozo en 90�, lado con lado
       READ(1,*) EA2  !pozo en 180�, punta con punta
+
       READ(1,*) NRUN,NMOVE,NMOVE2,NSUB  !19 20 21 22
       READ(1,*) DISPL                   !23
       READ(1,*) DISPLAng                !24
@@ -126,13 +128,16 @@
       IF (IAV.EQ.0.0D00)  WRITE(6,104)
       IF (IAV.NE.0.0D00)  WRITE(6,105)
       IF (LGOFR)     WRITE(6,106) XHISTG
+      
       ! CONVERSION A UNIDADES DE PROGRAMA (Lx = 1)
       PRESS=1.1547005384D0*PHI
       XN=DFLOAT(N)
-      ! SE CALCULA EL TAMA~NO DE LA MUESTRA PARA BARRAS DE ERROR EN SIGMA
+
+      ! SE CALCULA EL TAMANO DE LA MUESTRA PARA BARRAS DE ERROR EN SIGMA
       XNMOVE=DFLOAT(NMOVE)
       XSET=XNMOVE/100D0
       NSET=NINT(XSET)
+
       ! CADA NSET MOVIMIENTOS SE MUESTREA SIGMA
       XNCX=DFLOAT(NCX)
       XNCY=DFLOAT(NCY)
@@ -140,6 +145,7 @@
       YC=(XNCY*QY)/(XNCX*QX)
       Y2=YC/2.0D00
       YCINV=2.0D00/YC
+
       IF (NRUN.EQ.0) THEN
          ! CALCULA SIGMA EN UNIDADES DE CAJA
          ETA=RHO*PI/4.0D00
@@ -150,9 +156,11 @@
          ISEED=-123456789
 
          DO I=1,N
+            !Genera una posicion y orientacion para npart (se podría usar allocate para no tener 2 variables distintas)(npart>N)
     9       RX(I)=RAN2(ISEED)
             RY(I)=YC*RAN2(ISEED)
             RA(I)=180*RAN2(ISEED)
+
             DO J=1,I
                IF (J.NE.I)then
                   X=RX(J)-RX(I)
@@ -235,6 +243,7 @@
 
 
       !CONTINUA CONVIRTIENDO A UNIDADES DE PROGRAMA
+      !!!CHECAR variables
       SS=S*S
       SL=S*XLAMBDA
       SSLL=SL*SL
@@ -1088,6 +1097,8 @@ C     ************************************************************
 C     Calcula g(r)
 
       SUBROUTINE GOFR !!todo bien
+      !!!CHECAR que hace la subrutina
+
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
@@ -1108,12 +1119,13 @@ C     Calcula g(r)
       DO 1 J=I+1,N
          X=RX(I)-RX(J)
          Y=RY(I)-RY(J)
-         ! Convenci�n de imagen m�nima
+         ! Convencion de imagen minima
          IF (X.GT.0.5D00) THEN
             X=X-1.0D00
          ELSE IF (X.LT.-0.5D00) THEN
             X=X+1.0D00
          END IF
+
          IF (Y.GT.Y2) THEN
             Y=Y-YC
          ELSE IF (Y.LT.-Y2) THEN
@@ -1194,27 +1206,29 @@ C     Calcula g(r)
       DO 77 I=1,NG
          WRITE(4,*) G(I)
    77 CONTINUE
-C      OPEN(UNIT=15,FILE='npt5.pot',STATUS='NEW')
-C      WRITE(15,*) 1.0D0, E1
-C      WRITE(15,*) XLAMBDA, E1
-C      WRITE(15,*) XLAMBDA, E2
-C      WRITE(15,*) XLAM2, E2
-C      WRITE(15,*) XLAM2, E3
-C      WRITE(15,*) XLAM3, E3
-C      WRITE(15,*) XLAM3, E4
-C      WRITE(15,*) XLAM4, E4
-C      WRITE(15,*) XLAM4, E5
-C      WRITE(15,*) XLAM5, E5
-C      WRITE(15,*) XLAM5, E6
-C      WRITE(15,*) XLAM6, E6
-C      WRITE(15,*) XLAM6, 0.0D0
+      !OPEN(UNIT=15,FILE='npt5.pot',STATUS='NEW')
+      !WRITE(15,*) 1.0D0, E1
+      !WRITE(15,*) XLAMBDA, E1
+      !WRITE(15,*) XLAMBDA, E2
+      !WRITE(15,*) XLAM2, E2
+      !WRITE(15,*) XLAM2, E3
+      !WRITE(15,*) XLAM3, E3
+      !WRITE(15,*) XLAM3, E4
+      !WRITE(15,*) XLAM4, E4
+      !WRITE(15,*) XLAM4, E5
+      !WRITE(15,*) XLAM5, E5
+      !WRITE(15,*) XLAM5, E6
+      !WRITE(15,*) XLAM6, E6
+      !WRITE(15,*) XLAM6, 0.0D0
       RETURN
       END
 
-C     *****************************************************************
-C     Calcula el perfil
-
+      !*****************************************************************
+      !Calcula el perfil
+      
       SUBROUTINE RADIAL  !!todo bien
+      !!!CHECAR que hace la subrutina
+
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
