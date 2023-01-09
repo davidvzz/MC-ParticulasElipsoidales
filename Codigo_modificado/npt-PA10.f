@@ -315,16 +315,16 @@
       LOGICAL LGOFR
       DOUBLE PRECISION XNEW1(N), YNEW1(N), ANEW1(N)
       ! inicializa secuencia al azar
-      ISEED=-123456789
+      ISEED=-123456789  ! ????
       
-      CALL ENERG(UTOT)
+      CALL ENERG(UTOT) ! subrutina energia para calcular la primer parte de la energía 
 
-      UPERP=UTOT/XN
+      UPERP=UTOT/XN ! energia ...
       ! NTEST=0
       USUBAV=0.0D00
       NCOUNT=0
 
-      NERCONT=0
+      NERCONT=0 ! contadores y posiciones en cero 
       NACCPT=0
       RTEST=0.0D00
       NSUB0=NSUB
