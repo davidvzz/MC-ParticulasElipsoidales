@@ -736,18 +736,18 @@
 
       !!!!CHECAR
       do J=1,N
-         if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then
-            XNEW1(J)=XNEW1(J)+DX
-            YNEW1(J)=YNEW1(J)+DY
+         if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then ! si los valores diferentes de cero (clu es un valor de 0 o 1, como un boleano)
+            XNEW1(J)=XNEW1(J)+DX ! actualiza el valor de la nueva x sumandole un desplazamiento
+            YNEW1(J)=YNEW1(J)+DY ! actualiza con desplazamiento de y 
             ! condicion periodica de frontera
-            IF(XNEW1(J).GT.1.0D00) THEN
-               XNEW1(J)=XNEW1(J)-1.0D00
+            IF(XNEW1(J).GT.1.0D00) THEN 
+               XNEW1(J)=XNEW1(J)-1.0D00 ! disminuye su valor si se excede 
             End if
             IF (XNEW1(J).LT.0.0D00) THEN
-               XNEW1(J)=XNEW1(J)+1.0D00
+               XNEW1(J)=XNEW1(J)+1.0D00 ! aumenta el valor si le falta
             END IF
             IF (YNEW1(J).GT.YC) THEN
-            YNEW1(J)=YNEW1(J)-YC
+            YNEW1(J)=YNEW1(J)-YC 
             END IF
             IF (YNEW1(J).LT.0.0D00) THEN
             YNEW1(J)=YNEW1(J)+YC
