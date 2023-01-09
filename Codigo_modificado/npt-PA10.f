@@ -163,11 +163,11 @@
 
             DO J=1,I
                IF (J.NE.I)then !No hacemos nada si i=j (es la misma partícula)
-                  !Calculamos distan
+                  !Calculamos distancias entre particulas
                   X=RX(J)-RX(I)
                   Y=RY(J)-RY(I)
 
-                ! convencion de imagen m!nima
+                  ! convencion de imagen m!nima
                   IF (X.GT.0.5D00) THEN
                      X=X-1.0D00
                   ELSE IF (X.LT.-0.5D00) THEN
@@ -195,12 +195,12 @@
                   F2=F2-((Y*cos(RA(J)*PI/180)- X*sin(RA(J)*PI/180))**2)/(S*S/4)
                   FI=4*(F1**2-3*F2)*(F2**2-3*F1)-(9-F1*F2)**2
 
-                  if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.S*S) GOTO 9
+                  if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.S*S) GOTO 9 !True si se translapan, en ese caso se vuelve a elegir una nueva posición
                end if
             end do
          end do
 
-
+      !! CHECAR si se ocupa else (nrun es cero y no se modifica)
       ELSE
          OPEN(UNIT=3,FILE='npt6.old',STATUS='OLD')
          IF (LRHO.EQ.1) THEN
@@ -244,7 +244,7 @@
 
 
       !CONTINUA CONVIRTIENDO A UNIDADES DE PROGRAMA
-      !!!CHECAR variables
+      !!!CHECAR que son las variables
       SS=S*S
       SL=S*XLAMBDA
       SSLL=SL*SL
@@ -268,7 +268,7 @@
       WRITE(6,110) S
 
       DO 44 I=1,20
-      WRITE(6,115) RX(I),RY(I), RA(I)
+         WRITE(6,115) RX(I),RY(I), RA(I)
    44 CONTINUE
 
       ! formatos de escritura de START
