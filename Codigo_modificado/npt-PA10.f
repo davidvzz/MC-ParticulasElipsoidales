@@ -128,7 +128,7 @@
       IF (IAV.EQ.0.0D00)  WRITE(6,104)
       IF (IAV.NE.0.0D00)  WRITE(6,105)
       IF (LGOFR)     WRITE(6,106) XHISTG
-      
+
       ! CONVERSION A UNIDADES DE PROGRAMA (Lx = 1)
       PRESS=1.1547005384D0*PHI
       XN=DFLOAT(N)
@@ -162,7 +162,8 @@
             RA(I)=180*RAN2(ISEED)
 
             DO J=1,I
-               IF (J.NE.I)then
+               IF (J.NE.I)then !No hacemos nada si i=j (es la misma partícula)
+                  !Calculamos distan
                   X=RX(J)-RX(I)
                   Y=RY(J)-RY(I)
 
