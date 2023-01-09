@@ -1068,22 +1068,22 @@ C     C lculo de energ!a potencial
             end if
          end if
 
-         IF (RR.LT.SSLL) THEN
-            UTOT=UTOT+E1+(sqrt(RR)-S)*(E2-E1)/(SL-S)
+         IF (RR.LT.SSLL) THEN ! si el valo de la dist es menor que sigmxlambda que es sigma en unidad de caja
+            UTOT=UTOT+E1+(sqrt(RR)-S)*(E2-E1)/(SL-S) ! sumamos energia de lado-lado + la magnitud de la dist - sigma) todo eso por el cambio de la energia en el primer segmento, dividido por el cambio del sigma
          ELSE
-            IF(RR.LT.SQL2) THEN
-               UTOT=UTOT+E2+(sqrt(RR)-SL)*(E3-E2)/(SL2-SL)
+            IF(RR.LT.SQL2) THEN ! para el otro valor de sigma unidad de caja al cuadrado 
+               UTOT=UTOT+E2+(sqrt(RR)-SL)*(E3-E2)/(SL2-SL) ! hace lo mismo para el segmento 2 con energias y sigmas 
             ELSE
-               IF (RR.LT.SQL3) THEN
-                  UTOT=UTOT+E3
+               IF (RR.LT.SQL3) THEN ! otro valor de la xlambda con sigma y elevado al cuadrdo
+                  UTOT=UTOT+E3 ! suma energia 3 
                ELSE
-                  IF (RR.LT.SQL4) THEN
-                     UTOT=UTOT+E4
+                  IF (RR.LT.SQL4) THEN ! para el valor de xlambda4 con sigma y elevado al cuadrado
+                     UTOT=UTOT+E4 ! suma energia 4
                   ELSE
-                     IF (RR.LT.SQL5) THEN
-                        UTOT=UTOT+E5
+                     IF (RR.LT.SQL5) THEN !para el valor de xlambda 5 
+                        UTOT=UTOT+E5 ! suma energia 5 
                      ELSE
-                           IF (RR.LT.SQL6) UTOT=UTOT+E6
+                           IF (RR.LT.SQL6) UTOT=UTOT+E6  ! suma energia 6
                      END IF
                   END IF
                END IF
@@ -1114,10 +1114,10 @@ C     Calcula g(r)
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-      ACC(3)=ACC(3)+1.0D00
-      RMAX=0.5D00*0.5D00
+      ACC(3)=ACC(3)+1.0D00 ! agrega una unidad al acumulador de promedio 
+      RMAX=0.5D00*0.5D00 
       DO 1 I=1,N-1
-      DO 1 J=I+1,N
+      DO 1 J=I+1,N    ! un ciclo para hacer la CIM
          X=RX(I)-RX(J)
          Y=RY(I)-RY(J)
          ! Convencion de imagen minima
@@ -1132,12 +1132,12 @@ C     Calcula g(r)
          ELSE IF (Y.LT.-Y2) THEN
             Y=Y+YC
          END IF
-         RR=X*X+Y*Y
+         RR=X*X+Y*Y !termina CIM
 
-         IF (RR.GT.RMAX) GOTO 1
+         IF (RR.GT.RMAX) GOTO 1     ! si la distancia es mayor a la maxima se va 
 
-         R=SQRT(RR)
-         DR1=(SL-S)/XHISTG
+         R=SQRT(RR) !calcula la norma de r 
+         DR1=(SL-S)/XHISTG  
          DR2=(SL2-SL)/XHISTG
          DR3=(SL3-SL2)/XHISTG
          DR4=(SL4-SL3)/XHISTG
