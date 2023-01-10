@@ -240,7 +240,7 @@
          ! escribe acumulador y configuracion de inicio o re-inicio
          WRITE(6,111) ACC(1)
          WRITE(6,112)
-   2  END IF
+   2  END IF  !!GOTO 2
 
 
       !CONTINUA CONVIRTIENDO A UNIDADES DE PROGRAMA
@@ -336,8 +336,8 @@
       OPEN(UNIT=2,FILE='unpt6.dat',STATUS='NEW')
       !OPEN(UNIT=93,FILE='angulos.dat',STATUS='NEW')
 
-      ! escoge part!cula al azar
-    1 I=INT(RAN2(ISEED)*N)+1
+      ! escoge particula al azar
+    1 I=INT(RAN2(ISEED)*N)+1   !!!GOTO 1
       NCOUNT=NCOUNT+1
 
       ! NERCONT ES EL CONTADOR QUE AL LLEGAR A NSET INDICA MUESTREAR SIGMA
@@ -370,12 +370,12 @@
          ANEW=ANEW+180
       end if
 
-      ! elimina part!culas traslapadas
-      ! y calcula la nueva energ!a (provisional)
+      ! elimina particulas traslapadas
+      ! y calcula la nueva energia (provisional)
       UNEW=0.0D00
 
       DO 2 J=1,N
-         IF (J.EQ.I) GOTO 2                  !!!!!!CHECAR
+         IF (J.EQ.I) GOTO 2   !Si es la misma partícula continua con el siguiente numero
          X=RX(J)-XNEW
          Y=RY(J)-YNEW
          ! convencion de imagen m!nima
@@ -462,9 +462,9 @@
                END IF
             END IF
          END IF
-    2 CONTINUE
+    2 CONTINUE   !!!GOTO 2
 
-
+      !!!Revisar como funciona
       UOLD=0.0D00
       DO 4 J=1,N
          IF (J.EQ.I) GOTO 4
@@ -544,8 +544,8 @@
                END IF
             END IF
          END IF
-
     4 CONTINUE
+
       DENERG=UNEW-UOLD
       
       !!!!CHECAR
@@ -563,7 +563,7 @@
       NACCPT=NACCPT+1.0D00
 
       ! acumula promedios
-    3 ACC(1)=ACC(1)+1.0D00
+    3 ACC(1)=ACC(1)+1.0D00    !GOTO 3
       ACC(2)=ACC(2)+UTOT
       USUBAV=USUBAV+UTOT
       XNTEST=DFLOAT(NCOUNT)
@@ -1025,13 +1025,13 @@ C     C lculo de energ!a potencial
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-      UTOT=0.0D00 !inicializa energia total en cero 
+      UTOT=0.0D00
 
       !!!!CAMBIAR
       DO 4 I=1,N-1
-      DO 4 J=I+1,N ! contador que abarca todas los espacios de nuestra contenedor
-         IF (J.EQ.I) GOTO 4 
-         X=RX(J)-RX(I)    !diferencia en posicion x de la latiz
+      DO 4 J=I+1,N
+         IF (J.EQ.I) GOTO 4
+         X=RX(J)-RX(I)
          Y=RY(J)-RY(I)
          ! Convencion de imagen m!nima
          IF (X.GT.0.5D00) THEN
@@ -1047,23 +1047,23 @@ C     C lculo de energ!a potencial
          RR=X*X+Y*Y
 
          !!Energia pozos angulares
-         if (RR.lt.RA3*RA3*SS )then   ! si r2 es menor a la parte final del pozo al cuadrado por sigma cuadrado
-            pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180) !varibale pppp es dado por el valor angular con sigma y convertido, para x y y   
-            pppp=pppp/sqrt(RR) !lo normaliza 
-            ANGLE=ACOS(pppp) !saca el angulo 
-            ANGLE=ANGLE*180/PI !lo convierte a grados  
-            pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180) !hace lo anterior con el valor j 
-            pppp=pppp/sqrt(RR) 
-            ANGLE2=ACOS(pppp) !segundo angulo con el contador j 
+         if (RR.lt.RA3*RA3*SS )then
+            pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180)
+            pppp=pppp/sqrt(RR)
+            ANGLE=ACOS(pppp)
+            ANGLE=ANGLE*180/PI
+            pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
+            pppp=pppp/sqrt(RR)
+            ANGLE2=ACOS(pppp)
             ANGLE2=ANGLE2*180/PI
-            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1*RA1*SS)then ! si el angulo en i esta entre 90 - anchopozo/2 y 90+anchopozo/2 y (el valor al cuadrado es menor al primer limite al cuadrado del pozo ang  por sigma cuadrada
-               if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2)) then ! para el angulo dos 
-                     UTOT=UTOT+EA1 ! le agrega a a energia el valor de 90 grados lado-lado 
+            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1*RA1*SS)then
+               if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2)) then
+                     UTOT=UTOT+EA1
                end if
             end if
             if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.RR>RA2*RA2*SS) then
-               if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2)then 
-                  UTOT=UTOT+EA2   ! le agrega la energia de 180 punta punta
+               if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2)then
+                  UTOT=UTOT+EA2
                end if
             end if
          end if
