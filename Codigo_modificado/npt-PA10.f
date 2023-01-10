@@ -737,7 +737,7 @@
 
       !!!!CHECAR
       do J=1,N
-         if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then ! si los valores diferentes de cero (clu es un valor de 0 o 1, como un boleano)
+         if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then ! si los valores diferentes de cero (clu es un valor de 0 o 1)
             XNEW1(J)=XNEW1(J)+DX ! actualiza el valor de la nueva x sumandole un desplazamiento
             YNEW1(J)=YNEW1(J)+DY ! actualiza con desplazamiento de y 
             ! condicion periodica de frontera
