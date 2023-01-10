@@ -626,7 +626,7 @@
                END IF
                RR=X*X+Y*Y
 
-               if (RR.lt.(RA3+3)*(RA3+3)*SS) then
+               if (RR.lt.(RA3+3)*(RA3+3)*SS) then ! checa el rango espacial para formar clusters
                   CLU(I,J)=1.0D0
                else
                   CLU(I,J)=0.0D0
@@ -639,7 +639,7 @@
       !!!!!CHECAR
       I=1
       DO while (I.NE.0)
-         CALL CLUSTERS(I)
+         CALL CLUSTERS(I) 
       end do
 
       OPEN(UNIT=15,FILE='antes.dat',STATUS='unknown')
@@ -736,18 +736,18 @@
 
       !!!!CHECAR
       do J=1,N
-         if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then
-            XNEW1(J)=XNEW1(J)+DX
-            YNEW1(J)=YNEW1(J)+DY
+         if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then ! si los valores diferentes de cero (clu es un valor de 0 o 1, como un boleano)
+            XNEW1(J)=XNEW1(J)+DX ! actualiza el valor de la nueva x sumandole un desplazamiento
+            YNEW1(J)=YNEW1(J)+DY ! actualiza con desplazamiento de y 
             ! condicion periodica de frontera
-            IF(XNEW1(J).GT.1.0D00) THEN
-               XNEW1(J)=XNEW1(J)-1.0D00
+            IF(XNEW1(J).GT.1.0D00) THEN 
+               XNEW1(J)=XNEW1(J)-1.0D00 ! disminuye su valor si se excede 
             End if
             IF (XNEW1(J).LT.0.0D00) THEN
-               XNEW1(J)=XNEW1(J)+1.0D00
+               XNEW1(J)=XNEW1(J)+1.0D00 ! aumenta el valor si le falta
             END IF
             IF (YNEW1(J).GT.YC) THEN
-            YNEW1(J)=YNEW1(J)-YC
+            YNEW1(J)=YNEW1(J)-YC 
             END IF
             IF (YNEW1(J).LT.0.0D00) THEN
             YNEW1(J)=YNEW1(J)+YC
@@ -883,12 +883,12 @@
       DO while (I.NE.0)
          CALL CLUSTERS(I)
       end do
-      NACCPT=NACCPT+1.0D00
+      NACCPT=NACCPT+1.0D00 ! acumulador de pasos 
 
       ! acumula promedios
     9 ACC(1)=ACC(1)+1.0D00   !!!GOTO 9
       ACC(2)=ACC(2)+UTOT
-      USUBAV=USUBAV+UTOT
+      USUBAV=USUBAV+UTOT ! lo utiliza para calcular el promedio 
       XNTEST=DFLOAT(NCOUNT)
 
       !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
@@ -899,22 +899,22 @@
       END IF
       !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
-      IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR
+      IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR 
       IF (NCOUNT.GE.NMOVE+NMOVE2) GOTO 12
 
       IF (NCOUNT.LT.NSUB) GOTO 7
       ! escribe resultados
 
-      UAV=USUBAV/(XN*NCOUNT)
+      UAV=USUBAV/(XN*NCOUNT) ! aqui calcula el prom (mencionado en linea 891
 
       !      WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),RTEST/XNTEST,
       !     + UAV,VACCPT
       WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),TAU,
      + UAV,VACCPT,RTEST/XNTEST
       WRITE(8,*)TAU
-      NSUB=NSUB+NSUB0
-      XXMOV = DFLOAT(NMOVE)
-      XXX = XNTEST/XXMOV
+      NSUB=NSUB+NSUB0 ! le agrega la parte inicial del contador 
+      XXMOV = DFLOAT(NMOVE)  ! movimiento de en x 
+      XXX = XNTEST/XXMOV ! razon entre los pasos en x contra el movimiento 
       ! verifica si es necesario cambiar desplazamiento maximo
       !IF (DFLOAT(NACCPT)/DFLOAT(NCOUNT).GT.0.45) DISPL=DISPL*1.05
       !IF (DFLOAT(NACCPT)/DFLOAT(NCOUNT).LT.0.35) DISPL=DISPL*0.95
@@ -931,7 +931,7 @@
       UAVRUN=ACC(2)/(XN*ACC(1))
       OPEN(UNIT=17,FILE='despues.dat',STATUS='unknown')
       DO I=1,N
-         WRITE(17,*) RX(I),RY(I),S*AR,S,RA(I)
+         WRITE(17,*) RX(I),RY(I),S*AR,S,RA(I) ! escribe datos 
       END DO
 
       !WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),RTEST/XNTEST,
@@ -991,15 +991,15 @@ C     Identifica los clusters en la matriz
        COUNT=0
        DO I=1, N
           DO J=1,N
-             IF (I.NE.J.AND.CLU(I,J).NE.0.0D0) then
+             IF (I.NE.J.AND.CLU(I,J).NE.0.0D0) then ! si existe clusters 
                 IF(CLU(J,I)==0.0D0) then
-                    CLU(J,I)=1.0D0
-                    COUNT=COUNT+1
+                    CLU(J,I)=1.0D0 ! cambia el valor 
+                    COUNT=COUNT+1 ! y cuenta las iteraciones
                 END IF
                 DO M=1,N
-        IF (CLU(J,M).NE.0.0D0.AND.CLU(I,M)==0.0D0.AND.M.NE.J) then
+        IF (CLU(J,M).NE.0.0D0.AND.CLU(I,M)==0.0D0.AND.M.NE.J) then  ! SOLAMENTE para valores del clu(IM) hacer 1 
                        CLU(I,M)=1.0D0
-                       COUNT=COUNT+1
+                       COUNT=COUNT+1 ! y contar 
                     END IF
                 END DO
              END IF
@@ -1068,22 +1068,22 @@ C     C lculo de energ!a potencial
             end if
          end if
 
-         IF (RR.LT.SSLL) THEN
-            UTOT=UTOT+E1+(sqrt(RR)-S)*(E2-E1)/(SL-S)
+         IF (RR.LT.SSLL) THEN ! si el valo de la dist es menor que sigmxlambda que es sigma en unidad de caja
+            UTOT=UTOT+E1+(sqrt(RR)-S)*(E2-E1)/(SL-S) ! sumamos energia de lado-lado + la magnitud de la dist - sigma) todo eso por el cambio de la energia en el primer segmento, dividido por el cambio del sigma
          ELSE
-            IF(RR.LT.SQL2) THEN
-               UTOT=UTOT+E2+(sqrt(RR)-SL)*(E3-E2)/(SL2-SL)
+            IF(RR.LT.SQL2) THEN ! para el otro valor de sigma unidad de caja al cuadrado 
+               UTOT=UTOT+E2+(sqrt(RR)-SL)*(E3-E2)/(SL2-SL) ! hace lo mismo para el segmento 2 con energias y sigmas 
             ELSE
-               IF (RR.LT.SQL3) THEN
-                  UTOT=UTOT+E3
+               IF (RR.LT.SQL3) THEN ! otro valor de la xlambda con sigma y elevado al cuadrdo
+                  UTOT=UTOT+E3 ! suma energia 3 
                ELSE
-                  IF (RR.LT.SQL4) THEN
-                     UTOT=UTOT+E4
+                  IF (RR.LT.SQL4) THEN ! para el valor de xlambda4 con sigma y elevado al cuadrado
+                     UTOT=UTOT+E4 ! suma energia 4
                   ELSE
-                     IF (RR.LT.SQL5) THEN
-                        UTOT=UTOT+E5
+                     IF (RR.LT.SQL5) THEN !para el valor de xlambda 5 
+                        UTOT=UTOT+E5 ! suma energia 5 
                      ELSE
-                           IF (RR.LT.SQL6) UTOT=UTOT+E6
+                           IF (RR.LT.SQL6) UTOT=UTOT+E6  ! suma energia 6
                      END IF
                   END IF
                END IF
@@ -1114,10 +1114,10 @@ C     Calcula g(r)
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-      ACC(3)=ACC(3)+1.0D00
-      RMAX=0.5D00*0.5D00
+      ACC(3)=ACC(3)+1.0D00 ! agrega una unidad al acumulador de promedio 
+      RMAX=0.5D00*0.5D00 
       DO 1 I=1,N-1
-      DO 1 J=I+1,N
+      DO 1 J=I+1,N    ! un ciclo para hacer la CIM
          X=RX(I)-RX(J)
          Y=RY(I)-RY(J)
          ! Convencion de imagen minima
@@ -1132,12 +1132,12 @@ C     Calcula g(r)
          ELSE IF (Y.LT.-Y2) THEN
             Y=Y+YC
          END IF
-         RR=X*X+Y*Y
+         RR=X*X+Y*Y !termina CIM
 
-         IF (RR.GT.RMAX) GOTO 1
+         IF (RR.GT.RMAX) GOTO 1     ! si la distancia es mayor a la maxima se va 
 
-         R=SQRT(RR)
-         DR1=(SL-S)/XHISTG
+         R=SQRT(RR) !calcula la norma de r 
+         DR1=(SL-S)/XHISTG  
          DR2=(SL2-SL)/XHISTG
          DR3=(SL3-SL2)/XHISTG
          DR4=(SL4-SL3)/XHISTG
@@ -1179,7 +1179,7 @@ C     Calcula g(r)
       !     *****************************************************************
       !     Limpia para terminar
 
-      SUBROUTINE FINISH   !!todo bien
+      SUBROUTINE FINISH   !!todo bien    NADAMAS ESCRIBE
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
