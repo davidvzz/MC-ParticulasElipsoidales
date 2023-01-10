@@ -710,16 +710,16 @@
       ! desplazamiento  X, Y
     8 DX=DISPLClu*(RAN2(ISEED)-0.5D00)
       DY=DISPLClu*(RAN2(ISEED)-0.5D00)
-      XNEW1(I)=XNEW1(I)+DX
+      XNEW1(I)=XNEW1(I)+DX ! agrega desplazamientos a las componentes
       YNEW1(I)=YNEW1(I)+DY
+     
       IF(XNEW1(I).GT.1.0D00) THEN
-         XNEW1(I)=XNEW1(I)-1.0D00
+         XNEW1(I)=XNEW1(I)-1.0D00 
       ELSE
-         IF (XNEW1(I).LT.0.0D00) THEN
-             XNEW1(I)=XNEW1(I)+1.0D00
+         IF (XNEW1(I).LT.0.0D00) THEN 
+             XNEW1(I)=XNEW1(I)+1.0D00   
          END IF
       End if
-
       IF (YNEW1(I).GT.YC) THEN
          YNEW1(I)=YNEW1(I)-YC
       ELSE
@@ -727,7 +727,6 @@
            YNEW1(I)=YNEW1(I)+YC
          END IF
       End if
-
       if (ANEW1(I).gt.180) then
          ANEW1(I)=ANEW1(I)-180
       end if
@@ -737,9 +736,10 @@
 
       !!!!CHECAR
       do J=1,N
-         if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then ! si los valores diferentes de cero (clu es un valor de 0 o 1)
+         if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then ! si los valores diferentes de cero, (clu es un valor de 0 o 1)
             XNEW1(J)=XNEW1(J)+DX ! actualiza el valor de la nueva x sumandole un desplazamiento
             YNEW1(J)=YNEW1(J)+DY ! actualiza con desplazamiento de y 
+            
             ! condicion periodica de frontera
             IF(XNEW1(J).GT.1.0D00) THEN 
                XNEW1(J)=XNEW1(J)-1.0D00 ! disminuye su valor si se excede 
@@ -798,7 +798,7 @@
          end if
       end do
       
-      !!!!CHECAR
+      !!!!CHECAR (revisar traslapes con una variable diferente para corroboracion)
       do J=1,N
          IF(I.NE.J.AND.CLU(I,J).NE.0.0D0) then
             do M=1,N
@@ -1115,10 +1115,10 @@ C     Calcula g(r)
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-      ACC(3)=ACC(3)+1.0D00 ! agrega una unidad al acumulador de promedio 
+      ACC(3)=ACC(3)+1.0D00 ! agrega una unidad al acumulador pero en su posicion 3 (nunca antes utilizada)
       RMAX=0.5D00*0.5D00 
       DO 1 I=1,N-1
-      DO 1 J=I+1,N    ! un ciclo para hacer la CIM
+      DO 1 J=I+1,N   
          X=RX(I)-RX(J)
          Y=RY(I)-RY(J)
          ! Convencion de imagen minima
