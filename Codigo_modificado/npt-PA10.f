@@ -1,4 +1,4 @@
-      PROGRAM NPT6
+      PROGRAM NPT6 
       !                                 FEBRERO 1999
                                       !Noviembre 2017
       !
@@ -38,6 +38,7 @@
        !Lee variables de sistema y estado (rho,temp) de pozos.in
        !al inicio y pozos.old si es continuacion
        !Genera la configuracion inicial de fcc.
+
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
@@ -318,7 +319,7 @@
       ! inicializa secuencia al azar
       ISEED=-123456789  ! ????
       
-      CALL ENERG(UTOT) ! subrutina energia para calcular la primer parte de la energía 
+      CALL ENERG(UTOT) ! subrutina energia para calcular la energía inicial
 
       UPERP=UTOT/XN ! energia ...
       ! NTEST=0
