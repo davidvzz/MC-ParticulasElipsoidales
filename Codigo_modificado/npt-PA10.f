@@ -946,7 +946,7 @@
       WRITE(6,103) ACC(1),ACC(3)
       WRITE(6,104) UAVRUN
 
-      RETURN !!!!!CHECAR ????
+      RETURN 
 
 
       ! part!culas traslapadas
