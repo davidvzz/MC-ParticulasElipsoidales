@@ -183,20 +183,24 @@
 
                   RR=X*X+Y*Y
                   !!!!CONDICIONES DE TRASLAPE
-                  GGG = 2.00 +(AR-(1/AR))**2*(sin((RA(J)-RA(I))*PI/180))**2
+                  GGG = 2.00 +(AR-(1/AR))**2*
+     +             (sin((RA(J)-RA(I))*PI/180))**2
                   F1=-((X*cos(RA(I)*PI/180)+ Y*sin(RA(I)*PI/180))**2)
                   F1=F1/(AR*S/2)**2
                   F1=F1+1.00 + GGG
 
-                  F1=F1-((Y*cos(RA(I)*PI/180)- X*sin(RA(I)*PI/180))**2)/(S*S/4)
+                  F1=F1-((Y*cos(RA(I)*PI/180)- X*sin(RA(I)*PI/180))**2)
+     +             /(S*S/4)
 
                   F2=-((X*cos(RA(J)*PI/180)+ Y*sin(RA(J)*PI/180))**2)
                   F2=F2/(AR*S/2)**2
                   F2=F2+1.00 +GGG
-                  F2=F2-((Y*cos(RA(J)*PI/180)- X*sin(RA(J)*PI/180))**2)/(S*S/4)
+                  F2=F2-((Y*cos(RA(J)*PI/180)- X*sin(RA(J)*PI/180))**2)
+     +             /(S*S/4)
                   FI=4*(F1**2-3*F2)*(F2**2-3*F1)-(9-F1*F2)**2
 
-                  if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.S*S) GOTO 9 !True si se translapan, en ese caso se vuelve a elegir una nueva posición
+                  if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0)
+     +             .or.RR.lt.S*S) GOTO 9     !True si se translapan, en ese caso se vuelve a elegir una nueva posición
                end if
             end do
          end do
@@ -317,7 +321,7 @@
       LOGICAL LGOFR
       DOUBLE PRECISION XNEW1(N), YNEW1(N), ANEW1(N)
       ! inicializa secuencia al azar
-      ISEED=-123456789  ! ????
+      ISEED=-123456789  ! 
       
       CALL ENERG(UTOT) ! subrutina energia para calcular la energía inicial
 
@@ -400,14 +404,16 @@
          F1=F1-((X*cos(ANEW*PI/180)+ Y*sin(ANEW*PI/180))**2)/(AR*S/2)**2
          F1=F1-((Y*cos(ANEW*PI/180)- X*sin(ANEW*PI/180))**2)/(SS/4)
          F2=1.00 +GGG
-         F2=F2-((X*cos(RA(J)*PI/180)+ Y*sin(RA(J)*PI/180))**2)/(AR*S/2)**2
+         F2=F2-((X*cos(RA(J)*PI/180)+ Y*sin(RA(J)*PI/180))**2)
+     +    /(AR*S/2)**2
          F2=F2-((Y*cos(RA(J)*PI/180)- X*sin(RA(J)*PI/180))**2)/(SS/4)
          FI=4*(F1**2-3*F2)*(F2**2-3*F1)-(9-F1*F2)**2
 
          !FI=0 es tangencia
          !no puntos en com�n es FI positiva y al menos uno de f1, f2 negativos
       
-         if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) GOTO 3
+         if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) 
+     +    GOTO 3
 
          !!!!!!CAMBIAR
          !!Energia pozos angulares
@@ -425,16 +431,22 @@
             ANGLE2=ACOS(pppp)
             ANGLE2=ANGLE2*180/PI
 
-            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1*RA1*SS)then
+            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2)
+     +       .and.RR<RA1*RA1*SS)then
+
                if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2) )then
                   UNEW=UNEW+EA1
                end if
             end if
-            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.RR>RA2*RA2*SS)then
+
+            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2
+     +       .and.RR>RA2*RA2*SS)then
+
                if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2) then
                   UNEW=UNEW+EA2
                end if
             end if
+
          end if
       
 
@@ -488,14 +500,17 @@
          !!!!CONDICIONES DE TRASLAPE
          GGG = 2.00 +(AR-(1/AR))**2*(sin((RA(J)-RA(I))*PI/180))**2
          F1=1.00 + GGG
-         F1=F1-((X*cos(RA(I)*PI/180)+ Y*sin(RA(I)*PI/180))**2)/(AR*S/2)**2
+         F1=F1-((X*cos(RA(I)*PI/180)+ Y*sin(RA(I)*PI/180))**2)
+     +    /(AR*S/2)**2
          F1=F1-((Y*cos(RA(I)*PI/180)- X*sin(RA(I)*PI/180))**2)/(SS/4)
          F2=1.00 +GGG
-         F2=F2-((X*cos(RA(J)*PI/180)+ Y*sin(RA(J)*PI/180))**2)/(AR*S/2)**2
+         F2=F2-((X*cos(RA(J)*PI/180)+ Y*sin(RA(J)*PI/180))**2)
+     +    /(AR*S/2)**2
          F2=F2-((Y*cos(RA(J)*PI/180)- X*sin(RA(J)*PI/180))**2)/(SS/4)
          FI=4*(F1**2-3*F2)*(F2**2-3*F1)-(9-F1*F2)**2
 
-         if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) GOTO 42
+         if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) 
+     +    GOTO 42
 
 
          !!!!!!! CAMBIAR
@@ -510,13 +525,16 @@
             ANGLE2=ACOS(pppp)
             ANGLE2=ANGLE2*180/PI
 
-            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1*RA1*SS)then
+            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2)
+     +       .and.RR<RA1*RA1*SS)then
+      
                if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2) )then
                   UOLD=UOLD+EA1
                end if
             end if
 
-            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.RR>RA2*RA2*SS )then
+            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.
+     +       RR>RA2*RA2*SS )then
                if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2 )then
                   UOLD=UOLD+EA2
                end if
@@ -781,20 +799,24 @@
             END IF
             RR=X*X+Y*Y
             !!!!CONDICIONES DE TRASLAPE
-            GGG = 2.00 +(AR-(1/AR))**2*(sin((ANEW1(J)-ANEW1(I))*PI/180))**2
+            GGG = 2.00 +(AR-(1/AR))**2*(sin((ANEW1(J)-ANEW1(I))
+     +       *PI/180))**2
             F1=-((X*cos(ANEW1(I)*PI/180)+ Y*sin(ANEW1(I)*PI/180))**2)
             F1=F1/(AR*S/2)**2
             F1=F1+1.00 + GGG
 
-            F1=F1-((Y*cos(ANEW1(I)*PI/180)- X*sin(ANEW1(I)*PI/180))**2)/(SS/4)
+            F1=F1-((Y*cos(ANEW1(I)*PI/180)- X*sin(ANEW1(I)*PI/180))**2)
+     +       /(SS/4)
 
             F2=-((X*cos(ANEW1(J)*PI/180)+ Y*sin(ANEW1(J)*PI/180))**2)
             F2=F2/(AR*S/2)**2
             F2=F2+1.00 +GGG
-            F2=F2-((Y*cos(ANEW1(J)*PI/180)- X*sin(ANEW1(J)*PI/180))**2)/(SS/4)
+            F2=F2-((Y*cos(ANEW1(J)*PI/180)- X*sin(ANEW1(J)*PI/180))**2)
+     +       /(SS/4)
             FI=4*(F1**2-3*F2)*(F2**2-3*F1)-(9-F1*F2)**2
 
-            if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) GOTO 9
+            if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) 
+     +       GOTO 9
          end if
       end do
       
@@ -822,20 +844,26 @@
                   RR=X*X+Y*Y
 
                   !!!!CONDICIONES DE TRASLAPE
-                  GGG = 2.00 +(AR-(1/AR))**2*(sin((ANEW1(M)-ANEW1(J))*PI/180))**2
-                  F1=-((X*cos(ANEW1(J)*PI/180)+ Y*sin(ANEW1(J)*PI/180))**2)
+                  GGG = 2.00 +(AR-(1/AR))**2*(sin((ANEW1(M)-ANEW1(J))
+     +             *PI/180))**2
+                  F1=-((X*cos(ANEW1(J)*PI/180)+ Y*sin(ANEW1(J)*PI/180))
+     +             **2)
                   F1=F1/(AR*S/2)**2
                   F1=F1+1.00 + GGG
                         
-                  F1=F1-((Y*cos(ANEW1(J)*PI/180)- X*sin(ANEW1(J)*PI/180))**2)/(SS/4)
+                  F1=F1-((Y*cos(ANEW1(J)*PI/180)- X*sin(ANEW1(J)
+     +             *PI/180))**2)/(SS/4)
 
-                  F2=-((X*cos(ANEW1(M)*PI/180)+ Y*sin(ANEW1(M)*PI/180))**2)
+                  F2=-((X*cos(ANEW1(M)*PI/180)+ Y*sin(ANEW1(M)*PI/180))
+     +             **2)
                   F2=F2/(AR*S/2)**2
                   F2=F2+1.00 +GGG
-                  F2=F2-((Y*cos(ANEW1(M)*PI/180)- X*sin(ANEW1(M)*PI/180))**2)/(SS/4)
+                  F2=F2-((Y*cos(ANEW1(M)*PI/180)- X*sin(ANEW1(M)*PI
+     +             /180))**2)/(SS/4)
                   FI=4*(F1**2-3*F2)*(F2**2-3*F1)-(9-F1*F2)**2
 
-                  if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) GOTO 9
+                  if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0)
+     +             .or.RR.lt.SS) GOTO 9
                end if
             end do
          end if
@@ -1057,12 +1085,16 @@ C     C lculo de energ!a potencial
             pppp=pppp/sqrt(RR)
             ANGLE2=ACOS(pppp)
             ANGLE2=ANGLE2*180/PI
-            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1*RA1*SS)then
+            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1
+     +       *RA1*SS)then
+
                if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2)) then
                      UTOT=UTOT+EA1
                end if
             end if
-            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.RR>RA2*RA2*SS) then
+            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.RR>RA2*RA2*SS) 
+     +       then
+
                if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2)then
                   UTOT=UTOT+EA2
                end if
@@ -1117,8 +1149,8 @@ C     Calcula g(r)
       LOGICAL LGOFR
       ACC(3)=ACC(3)+1.0D00 ! agrega una unidad al acumulador pero en su posicion 3 (nunca antes utilizada)
       RMAX=0.5D00*0.5D00 
-      DO 1 I=1,N-1
-      DO 1 J=I+1,N   
+      DO 20 I=1,N-1
+      DO 20 J=I+1,N   
          X=RX(I)-RX(J)
          Y=RY(I)-RY(J)
          ! Convencion de imagen minima
@@ -1135,7 +1167,7 @@ C     Calcula g(r)
          END IF
          RR=X*X+Y*Y !termina CIM
 
-         IF (RR.GT.RMAX) GOTO 1     ! si la distancia es mayor a la maxima se va 
+         IF (RR.GT.RMAX) GOTO 20     ! si la distancia es mayor a la maxima se va 
 
          R=SQRT(RR) !calcula la norma de r 
          DR1=(SL-S)/XHISTG  
@@ -1172,7 +1204,7 @@ C     Calcula g(r)
          end if
          G(L)=G(L)+1.0D00
 
-    1 CONTINUE
+   20 CONTINUE
       NGOFR=NGOFR+NGOFR0
       RETURN
       END
