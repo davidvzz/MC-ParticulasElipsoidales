@@ -16,16 +16,16 @@
       cy=int(cy*5)
       theta=int(theta*180)
 
-      write(*,*) cx
-      write(*,*) cy   
-      write(*,*) theta
+      write(*,*) 'x',cx
+      write(*,*) 'y',cy   
+      write(*,*) 'ángulo',theta
 
       !Calculamos el ángulo entre cada elipse
       do i=2, N
          theta1=atan( (cy(i)-cy(1)) / (cx(i)-cx(1)) )
          theta1=theta1*180/pi
       end do
-      write(*,*) theta1
+      write(*,*) 'ángulo entre elipses',theta1
       
       open(unit=10, file='datos.dat')
       write(10,*) a, b, theta(1), theta(2), theta1

@@ -5,7 +5,9 @@
          open(unit=10, file='datos.dat')
          read(10,*) a,b,ang1, ang2, ang3
          write(*,*) a,b, ang1, ang2, ang3
-
+         ang1=ang1*pi/180
+         ang2=ang2*pi/180
+         ang3=ang3*pi/180
          call ellipses(a, b, a, b, ang1, ang2, ang3, dist )
          write(*,*) dist      
       End
