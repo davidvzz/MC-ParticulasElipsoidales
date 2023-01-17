@@ -26,4 +26,8 @@
          theta1=theta1*180/pi
       end do
       write(*,*) theta1
+      
+      open(unit=10, file='datos.dat')
+      write(10,*) a, b, theta(1), theta(2), theta1
+
       end 

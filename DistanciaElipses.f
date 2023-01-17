@@ -2,14 +2,9 @@
          Implicit None
          real*8  :: a,b,dist=0.0, ang1, ang2, ang3 
          real*8,parameter :: pi=3.141592654D0
-
-         a=0.75d0
-         b=0.2d0
-
-         ang1=97*pi/180d0
-         ang2=159*pi/180d0
-         ang3=-47.123*pi/180d0
-         
+         open(unit=10, file='datos.dat')
+         read(10,*) a,b,ang1, ang2, ang3
+         write(*,*) a,b, ang1, ang2, ang3
 
          call ellipses(a, b, a, b, ang1, ang2, ang3, dist )
          write(*,*) dist      
