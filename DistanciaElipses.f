@@ -1,7 +1,7 @@
       Program distancia
          Implicit None
          real*8  :: a,b,dist=0.0, ang1, ang2, ang3 
-         real*8,parameter :: pi=3.141592654D0
+         real*8,parameter :: pi=4.D0*DATAN(1.D0)
          open(unit=10, file='datos.dat')
          read(10,*) a,b,ang1, ang2, ang3
          write(*,*) a,b, ang1, ang2, ang3
