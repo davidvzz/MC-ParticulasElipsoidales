@@ -3,12 +3,12 @@
          real*8  :: a,b,dist=0.0, ang1, ang2, ang3 
          real*8,parameter :: pi=3.141592654D0
 
-         a=2d0
-         b=0.5d0
+         a=0.75d0
+         b=0.2d0
 
-         ang1=148d0*pi/180d0
-         ang2=23d0*pi/180d0
-         ang3=212.2078863273441d0*pi/180d0
+         ang1=97*pi/180d0
+         ang2=159*pi/180d0
+         ang3=-47.123*pi/180d0
          
 
          call ellipses(a, b, a, b, ang1, ang2, ang3, dist )
