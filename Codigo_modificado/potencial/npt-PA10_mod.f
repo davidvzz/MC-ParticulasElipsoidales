@@ -65,12 +65,11 @@
     
       CLU(:,:)=0.0D0
       ! LEE PARAMETROS DE ENTRADA: N,TEMP E.T.C.
-      OPEN (UNIT=1,FILE='npt6.in',STATUS='unknown')
+      OPEN (UNIT=1,FILE='npt6.in',STATUS='old')
       READ(1,*) N                        !1
       READ(1,*) RHO                      !2
       READ(1,*) TEMP                     !3
       READ(1,*) PHI                      !4
-
       READ(1,*) XLAMBDA                  !5
       READ(1,*) XLAM2                    !6
       READ(1,*) XLAM3                    !7
@@ -423,58 +422,25 @@
             pppp=pppp/sqrt(RR)
 
             ANGLE=ACOS(pppp)
-            ANGLE=ANGLE*180/PI
+
 
             pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
             pppp=pppp/sqrt(RR)
 
             ANGLE2=ACOS(pppp)
-            ANGLE2=ANGLE2*180/PI
 
-            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2)
-     +       .and.RR<RA1*RA1*SS)then
+            !Definir A1, A2, A3, A4, a, b, dist
+            dist=0
+            
+            !Angulo entre elipses
+            ANGLE3=datan( Y/X )
+            call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
 
-               if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2) )then
-                  UNEW=UNEW+EA1
-               end if
-            end if
-
-            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2
-     +       .and.RR>RA2*RA2*SS)then
-
-               if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2) then
-                  UNEW=UNEW+EA2
-               end if
-            end if
-
+            UTOT= - A1*cos(2*ANGLE2+2*ANGLE)*( b /
+     +                                  ( sqrt(RR) - A2*dist+A3 ) )**A4
+  
          end if
       
-
-         IF (RR.LT.SSLL) THEN
-
-            UNEW=UNEW+ E1+(sqrt(RR)-S)*(E2-E1)/(SL-S)
-
-         ELSE
-            IF(RR.LT.SQL2) THEN
-            
-               UNEW=UNEW+ E2+(sqrt(RR)-SL)*(E3-E2)/(SL2-SL)
-               
-               ELSE
-               IF (RR.LT.SQL3) THEN
-                  UNEW=UNEW+E3
-                  ELSE
-                  IF (RR.LT.SQL4) THEN
-                     UNEW=UNEW+E4
-                     ELSE
-                     IF (RR.LT.SQL5) THEN
-                        UNEW=UNEW+E5
-                        ELSE
-                           IF (RR.LT.SQL6) UNEW=UNEW+E6
-                     END IF
-                  END IF
-               END IF
-            END IF
-         END IF
     2 CONTINUE   !!!GOTO 2
 
       !!!Revisar como funciona
@@ -567,15 +533,17 @@
 
       DENERG=UNEW-UOLD
       
-      !!!!CHECAR
+      !Si la energía de la nueva configuración es menor que la energía de laconfiguracioń
+      !inicial, entonces aceptamos la nueva configuración
       IF (DENERG.LE.0.0D00) GOTO 5
-
+      
+      
       ! compara el factor de BOLTZMANN con n#mero al azar
       RND=RAN2(ISEED)
       IF (RND.GT.EXP(-DENERG/TEMP)) GOTO 3
 
       ! actualiza posicion de la part!cula I
-    5 RX(I)=XNEW
+    5 RX(I)=XNEW        !GOTO 5
       RY(I)=YNEW
       RA(I)=ANEW
       call ENERG(UTOT)
@@ -1080,48 +1048,24 @@ C     C lculo de energ!a potencial
             pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180)
             pppp=pppp/sqrt(RR)
             ANGLE=ACOS(pppp)
-            ANGLE=ANGLE*180/PI
+
+
             pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
             pppp=pppp/sqrt(RR)
             ANGLE2=ACOS(pppp)
-            ANGLE2=ANGLE2*180/PI
-            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2).and.RR<RA1
-     +       *RA1*SS)then
 
-               if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2)) then
-                     UTOT=UTOT+EA1
-               end if
-            end if
-            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.RR>RA2*RA2*SS) 
-     +       then
+            !Definir A1, A2, A3, A4, a, b, dist
+            dist=0
+            
+            !Angulo entre elipses
+            ANGLE3=datan( Y/X )
+            call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
 
-               if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2)then
-                  UTOT=UTOT+EA2
-               end if
-            end if
+            UTOT= - A1*cos(2*ANGLE2+2*ANGLE)*( b /
+     +                                  ( sqrt(RR) - A2*dist+A3 ) )**A4
+
          end if
 
-         IF (RR.LT.SSLL) THEN ! si el valo de la dist es menor que sigmxlambda que es sigma en unidad de caja
-            UTOT=UTOT+E1+(sqrt(RR)-S)*(E2-E1)/(SL-S) ! sumamos energia de lado-lado + la magnitud de la dist - sigma) todo eso por el cambio de la energia en el primer segmento, dividido por el cambio del sigma
-         ELSE
-            IF(RR.LT.SQL2) THEN ! para el otro valor de sigma unidad de caja al cuadrado 
-               UTOT=UTOT+E2+(sqrt(RR)-SL)*(E3-E2)/(SL2-SL) ! hace lo mismo para el segmento 2 con energias y sigmas 
-            ELSE
-               IF (RR.LT.SQL3) THEN ! otro valor de la xlambda con sigma y elevado al cuadrdo
-                  UTOT=UTOT+E3 ! suma energia 3 
-               ELSE
-                  IF (RR.LT.SQL4) THEN ! para el valor de xlambda4 con sigma y elevado al cuadrado
-                     UTOT=UTOT+E4 ! suma energia 4
-                  ELSE
-                     IF (RR.LT.SQL5) THEN !para el valor de xlambda 5 
-                        UTOT=UTOT+E5 ! suma energia 5 
-                     ELSE
-                           IF (RR.LT.SQL6) UTOT=UTOT+E6  ! suma energia 6
-                     END IF
-                  END IF
-               END IF
-            END IF
-         END IF
     4 CONTINUE
       RETURN
       END
@@ -1374,3 +1318,128 @@ C        WRITE(6,*)'INIT.',IDUM
         RAN2=MIN(AM*IY,RNMX)
         RETURN
         END
+
+
+      !****************************************************************
+      !Calcula la distancia de máximo acercamiento entre elipses
+      !codigo obtenido de: http://www.math.kent.edu/~zheng/ellipse.html
+        Subroutine ellipses(a1,b1,a2,b2,theta1,theta2,theta3,dist)
+         Implicit None
+         Double Complex,parameter::in=(1.d0,0.d0)
+         Double Precision,Intent(in)::a1,b1,a2,b2,theta1,theta2,theta3
+         Double Precision,Intent(out)::dist
+         Double Precision::k1k2,k1d,k2d 
+         Double Precision::e1,e2,eta,a11,a12,a22
+         Double Precision::lambda1,lambda2,a2p,b2p
+         Double Precision::kpmp,kpmps,t,deltap,A,B,C,D,E,alpha,beta,
+     +    gamma,P,Q,Rc
+         Double Precision::sn1,sn2,cs1,cs2,cs3,sn3
+         Double Complex::U,y,qq
+         Double Complex, External::ccbrt
+     
+         cs1=dcos(theta1);sn1=dsin(theta1)    ! components of the unit vector along the major axis of the first ellipse, k1
+         cs2=dcos(theta2);sn2=dsin(theta2)    ! components of the unit vector along the major axis of the second ellipse, k2
+         cs3=dcos(theta3);sn3=dsin(theta3)    ! components of the unit vector joining the centers, d
+         k1d=dcos(theta3-theta1)              ! inner product of k1 and d
+         k2d=dcos(theta3-theta2)              ! inner product of k2 and d
+         k1k2=dcos(theta2-theta1)             ! inner product of k1 and k2
+         !eccentricity of ellipses
+         e1=1.d0-b1**2/a1**2
+         e2=1.d0-b2**2/a2**2
+         !component of A', matrix associated with the ellipse E2'
+         eta=a1/b1-1.d0
+         a11=b1**2/b2**2*(1.d0+0.5d0*(1.d0+k1k2)*(eta*(2.d0+eta)-e2*
+     +    (1.d0+eta*k1k2)**2))
+         a12=b1**2/b2**2*0.5d0*dsqrt(1.d0-k1k2**2)*(eta*(2.d0+eta)
+     +    +e2*(1.d0-eta**2*k1k2**2))
+         a22=b1**2/b2**2*(1.d0+0.5d0*(1.d0-k1k2)*(eta*(2.d0+eta)-e2*
+     +    (1.d0-eta*k1k2)**2))
+       
+         !eigenvalues of A'
+         lambda1=0.5d0*(a11+a22)+0.5d0*dsqrt((a11-a22)**2+4.d0*a12**2)  ! bigger one
+         lambda2=0.5d0*(a11+a22)-0.5d0*dsqrt((a11-a22)**2+4.d0*a12**2)  ! smaller one
+         !major and minor axes of transformed ellipse
+         b2p=1.d0/dsqrt(lambda1)                                        ! length of minor axes
+         a2p=1.d0/dsqrt(lambda2)                                        ! length of major axes
+     
+         deltap=a2p**2/b2p**2-1.d0
+         If(dabs(k1k2) == 1.d0) then                                   ! if k1//k2, or k1//(-k2)
+             if(a11>a22)then                                           ! if minor axes k+ is along k1  
+                 kpmp=1.d0/dsqrt(1.d0-e1*k1d**2)*b1/a1*k1d                
+                 kpmps=1.d0/dsqrt(1.d0-e1*k1d**2)*(sn3*cs1-cs3*sn1)
+             else                                                      ! if major axes is k- along k1
+                 kpmp=(sn3*cs1-cs3*sn1)/dsqrt(1.d0-e1*k1d**2)
+                 kpmps=1.d0/dsqrt(1.d0-e1*k1d**2)*b1/a1*k1d
+             end if
+         Else                                                         ! if k1 is not parallel to k2
+                 kpmp=(a12/dsqrt(1.d0+k1k2)*(b1/a1*k1d+k2d+(b1/a1-1.d0)
+     +            *k1d*k1k2)+(lambda1-a11)/dsqrt(1.d0-k1k2)*(b1/a1*k1d-
+     +             k2d-(b1/a1-1.d0)*k1d*k1k2))/dsqrt(2.d0*(a12**2+
+     +             (lambda1-a11)**2)*(1.d0-e1*k1d**2))
+                 kpmps=(-(lambda1-a11)/dsqrt(1.d0+k1k2)*(b1/a1*k1d+k2d+
+     +            (b1/a1-1.d0)*k1d*k1k2)+a12/dsqrt(1.d0-k1k2)*(b1/a1*
+     +            k1d-k2d-(b1/a1-1.d0)*k1d*k1k2))/dsqrt(2.d0*(a12**2+
+     +            (lambda1-a11)**2)*(1.d0-e1*k1d**2))
+
+         End If
+         IF(kpmp==0.d0 .or. deltap==0.0d0) Then                       !if the major axes k- is along d' or they are both circles
+             Rc=a2p+1.d0
+         ELSE
+         !coefficients of quartic for q
+             t=1.d0/kpmp**2-1.d0
+             A=-1.d0/b2p**2*(1.d0+t)
+             B=-2.d0/b2p*(1.d0+t+deltap)
+             C=-t-(1.d0+deltap)**2+1.d0/b2p**2*(1.d0+t+deltap*t)
+             D=2.d0/b2p*(1.d0+t)*(1.d0+deltap)
+             E=(1.d0+t+deltap)*(1.d0+deltap)
+             
+             !solution for quartic 
+             alpha=-3.d0/8.d0*(B/A)**2+C/A
+             beta=(B/A)**3.d0/8.d0-(B/A)*(C/A)/2.d0+D/A
+             gamma=-3.d0/256.d0*(B/A)**4+C/A*(B/A)**2/16.d0-(B/A)*
+     +        (D/A)/4.+E/A
+         
+             If(beta==0.d0) Then
+                 qq=-B/4.d0/A+cdsqrt((-alpha+cdsqrt(alpha**2-4.d0*
+     +            gamma*in))/2.)        
+             Else
+                 P=-alpha**2/12.d0-gamma
+                 Q=-alpha**3/108.d0+gamma*alpha/3.d0-beta**2/8.d0
+                 U=ccbrt(-0.5d0*Q+cdsqrt(Q**2/4.d0+P**3/27.d0*in))
+     
+                 if(abs(U)/=0.0d0) then
+                     y=-5.d0/6d0*alpha+U-P/3.d0/U
+                 else
+                     y=-5.d0/6.d0*alpha-ccbrt(Q*in)
+                 end if
+                 
+                 qq=-B/4.d0/A+0.5d0*(cdsqrt(alpha+2.d0*y)+cdsqrt(-
+     +            (3.d0*alpha+2.d0*y+2.d0*beta/cdsqrt(alpha+2.d0*y))))
+                 
+         End If
+     
+         !substitute for R'
+             Rc=cdsqrt((qq**2-1.d0)/deltap*(1.d0+b2p*(1.d0+deltap)/qq)
+     +        **2+(1.d0-(qq**2-1.d0)/deltap)*(1.d0+b2p/qq)**2)
+             
+         END IF
+         
+           ! The distance of closest approach
+     
+         dist=Rc*b1/dsqrt(1.d0-e1*k1d**2)
+         
+      End Subroutine ellipses
+      !*************************************
+      !Calculate the cubic root of a complex number, return the principal value
+      !*************************************
+      Complex*16 function ccbrt(z)
+      Implicit None
+      Complex*16:: z
+      Real*8::arg,theta,r
+      Intrinsic::datan2
+      arg=datan2(dimag(z),dreal(z))
+      theta = arg / 3.0d0
+      r = (dreal(z)**2+dimag(z)**2)**(1.d0/6.d0)
+      ccbrt = dcmplx(r*dcos(theta), r*dsin(theta))
+      End function ccbrt
+      

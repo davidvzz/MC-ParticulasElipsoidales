@@ -644,7 +644,7 @@
                   Y=Y+YC
                END IF
                RR=X*X+Y*Y
-
+               !CHECAR RA3
                if (RR.lt.(RA3+3)*(RA3+3)*SS) then ! checa el rango espacial para formar clusters
                   CLU(I,J)=1.0D0
                else
@@ -1336,7 +1336,7 @@ C     Calcula g(r)
       RETURN
       END
 
-C     ****************************************************************
+C     !****************************************************************
 
 
         FUNCTION RAN2(IDUM)
