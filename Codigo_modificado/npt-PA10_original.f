@@ -1167,7 +1167,7 @@ C     Calcula g(r)
          END IF
          RR=X*X+Y*Y !termina CIM
 
-         IF (RR.GT.RMAX) GOTO 20     ! si la distancia es mayor a la maxima se va 
+         IF (RR.GT.RMAX) GOTO 20     ! si la distancia es mayor a la maxima termina ciclo
 
          R=SQRT(RR) !calcula la norma de r 
          DR1=(SL-S)/XHISTG  

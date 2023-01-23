@@ -8,11 +8,11 @@
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,E1,E2,E3,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
      +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
-      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5,E4,E5
+      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
@@ -44,11 +44,11 @@
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,E1,E2,E3,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
      +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
-      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5,E4,E5
+      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
@@ -57,12 +57,14 @@
       !LOGICAL LRHO
 
       ! ACUMULADORES A CERO
-      DO 3 I=1,NACC
-    3 ACC(I)=0.0D00
+      DO I=1,NACC
+         ACC(I)=0.0D00
+      end do
 
-      DO 4 I=1,NG
-    4 G(I)=0.0D00
-    
+      DO I=1,NG
+        G(I)=0.0D00
+      end do
+
       CLU(:,:)=0.0D0
       ! LEE PARAMETROS DE ENTRADA: N,TEMP E.T.C.
       OPEN (UNIT=1,FILE='npt6.in',STATUS='old')
@@ -76,14 +78,7 @@
       READ(1,*) XLAM4                    !8
       READ(1,*) XLAM5                    !9
       READ(1,*) XLAM6                    !10
-      READ(1,*) E1                       !11
-      READ(1,*) E2                       !12
-      READ(1,*) E3                      !13
-      READ(1,*) E4                      !14
-      READ(1,*) E5                      !15
-      READ(1,*) E6                      !16
-      READ(1,*) EA1  !pozo en 90�, lado con lado
-      READ(1,*) EA2  !pozo en 180�, punta con punta
+
 
       READ(1,*) NRUN,NMOVE,NMOVE2,NSUB  !19 20 21 22
       READ(1,*) DISPL                   !23
@@ -309,20 +304,22 @@
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,E1,E2,E3,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
      +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
-      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5,E4,E5
+      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
+      LOGICAL ALL
       DOUBLE PRECISION XNEW1(N), YNEW1(N), ANEW1(N)
       ! inicializa secuencia al azar
       ISEED=-123456789  ! 
       
-      CALL ENERG(UTOT) ! subrutina energia para calcular la energía inicial
+      ALL=.true.
+      CALL ENERG(UTOT,ALL,X,Y,ANG) ! subrutina energia para calcular la energía de la configuración creada inicialmente
 
       UPERP=UTOT/XN ! energia ...
       ! NTEST=0
@@ -411,39 +408,18 @@
          !FI=0 es tangencia
          !no puntos en com�n es FI positiva y al menos uno de f1, f2 negativos
       
-         if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) 
+         if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) !TRUE si se translapan
      +    GOTO 3
 
          !!!!!!CAMBIAR
-         !!Energia pozos angulares
-
-         if (RR.lt.RA3*RA3*SS )then
-            pppp= X*cos(ANEW*PI/180)+Y*sin(ANEW*PI/180)
-            pppp=pppp/sqrt(RR)
-
-            ANGLE=ACOS(pppp)
-
-
-            pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
-            pppp=pppp/sqrt(RR)
-
-            ANGLE2=ACOS(pppp)
-
-            !Definir A1, A2, A3, A4, a, b, dist
-            dist=0
-            
-            !Angulo entre elipses
-            ANGLE3=datan( Y/X )
-            call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
-
-            UTOT= - A1*cos(2*ANGLE2+2*ANGLE)*( b /
-     +                                  ( sqrt(RR) - A2*dist+A3 ) )**A4
-  
+         ALL=.false.
+         if (RR.lt.RA3*RA3*SS )then !CHECAR condición if
+            call ENERG(UNEW, ALL, X, Y, ANEW)
          end if
       
     2 CONTINUE   !!!GOTO 2
 
-      !!!Revisar como funciona
+
       UOLD=0.0D00
       DO 4 J=1,N
          IF (J.EQ.I) GOTO 4
@@ -463,72 +439,12 @@
          END IF
          RR=X*X+Y*Y
 
-         !!!!CONDICIONES DE TRASLAPE
-         GGG = 2.00 +(AR-(1/AR))**2*(sin((RA(J)-RA(I))*PI/180))**2
-         F1=1.00 + GGG
-         F1=F1-((X*cos(RA(I)*PI/180)+ Y*sin(RA(I)*PI/180))**2)
-     +    /(AR*S/2)**2
-         F1=F1-((Y*cos(RA(I)*PI/180)- X*sin(RA(I)*PI/180))**2)/(SS/4)
-         F2=1.00 +GGG
-         F2=F2-((X*cos(RA(J)*PI/180)+ Y*sin(RA(J)*PI/180))**2)
-     +    /(AR*S/2)**2
-         F2=F2-((Y*cos(RA(J)*PI/180)- X*sin(RA(J)*PI/180))**2)/(SS/4)
-         FI=4*(F1**2-3*F2)*(F2**2-3*F1)-(9-F1*F2)**2
-
-         if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) 
-     +    GOTO 42
-
-
          !!!!!!! CAMBIAR
          !!Energia pozos angulares
-         if (RR.lt.RA3*RA3*SS) then
-            pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180)
-            pppp=pppp/sqrt(RR)
-            ANGLE=ACOS(pppp)
-            ANGLE=ANGLE*180/PI
-            pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180)
-            pppp=pppp/sqrt(RR)
-            ANGLE2=ACOS(pppp)
-            ANGLE2=ANGLE2*180/PI
-
-            if (ANGLE>(90-AAng/2).and.ANGLE<(90+AAng/2)
-     +       .and.RR<RA1*RA1*SS)then
-      
-               if (ANGLE2>(90-AAng/2).and.ANGLE2<(90+AAng/2) )then
-                  UOLD=UOLD+EA1
-               end if
-            end if
-
-            if (ANGLE>(180-AAng/2).or.ANGLE<AAng/2.and.
-     +       RR>RA2*RA2*SS )then
-               if (ANGLE2>(180-AAng/2).or.ANGLE2<AAng/2 )then
-                  UOLD=UOLD+EA2
-               end if
-            end if
+         ALL=.false.
+         if (RR.lt.RA3*RA3*SS )then !CHECAR condición if
+            call ENERG(UOLD, ALL, X, Y, RA(I))
          end if
-       
-      
-         IF (RR.LT.SSLL) THEN
-            UOLD=UOLD+E1+(sqrt(RR)-S)*(E2-E1)/(SL-S)
-         ELSE
-            IF(RR.LT.SQL2) THEN
-               UOLD=UOLD+E2+(sqrt(RR)-SL)*(E3-E2)/(SL2-SL)
-            ELSE
-               IF (RR.LT.SQL3) THEN
-                  UOLD=UOLD+E3
-               ELSE
-                  IF (RR.LT.SQL4) THEN
-                     UOLD=UOLD+E4
-                  ELSE
-                     IF (RR.LT.SQL5) THEN
-                        UOLD=UOLD+E5
-                     ELSE
-                           IF (RR.LT.SQL6) UOLD=UOLD+E6
-                     END IF
-                  END IF
-               END IF
-            END IF
-         END IF
     4 CONTINUE
 
       DENERG=UNEW-UOLD
@@ -540,14 +456,16 @@
       
       ! compara el factor de BOLTZMANN con n#mero al azar
       RND=RAN2(ISEED)
-      IF (RND.GT.EXP(-DENERG/TEMP)) GOTO 3
+      IF (RND.GT.EXP(-DENERG/TEMP)) GOTO 3  !TRUE -> se rechaza la configuración
 
       ! actualiza posicion de la part!cula I
     5 RX(I)=XNEW        !GOTO 5
       RY(I)=YNEW
       RA(I)=ANEW
-      call ENERG(UTOT)
-      NACCPT=NACCPT+1.0D00
+
+      ALL=.true.
+      call ENERG(UTOT,ALL,X,Y,ANG)
+      NACCPT=NACCPT+1
 
       ! acumula promedios
     3 ACC(1)=ACC(1)+1.0D00    !GOTO 3
@@ -593,7 +511,7 @@
 
       ! marca clusters
       !! Revisa vecinos para clusters
-    6 DO I=1,N
+    6 DO I=1,N          !GOTO 6
          DO J=1,N
             IF (J.NE.I) then
                X=RX(I)-RX(J)
@@ -838,12 +756,12 @@
       end do
 
    ! actualiza posicion de la part!cula I
-   11 RX(1:N)=XNEW1(1:N)
+      RX(1:N)=XNEW1(1:N)
       RY(1:N)=YNEW1(1:N)
       RA(1:N)=ANEW1(1:N)
 
-
-      call ENERG(UTOT)
+      ALL=.true.
+      call ENERG(UTOT,ALL,X,Y,ANG)
 
       !! Revisa vecinos para clusters
       DO I=1,N
@@ -880,7 +798,7 @@
       DO while (I.NE.0)
          CALL CLUSTERS(I)
       end do
-      NACCPT=NACCPT+1.0D00 ! acumulador de pasos 
+      NACCPT=NACCPT+1 ! acumulador de pasos 
 
       ! acumula promedios
     9 ACC(1)=ACC(1)+1.0D00   !!!GOTO 9
@@ -944,12 +862,6 @@
 
       RETURN 
 
-
-      ! part!culas traslapadas
- 42   WRITE(6,105) I,J,RR
-      WRITE(6,106) SQRT(RR),S
-      WRITE(6,*) RX(I),RY(I)
-      WRITE(6,*) RX(J),RY(J)
   101 FORMAT(/,1X,'inicio de corrrida',/,1X,'energ!a inicial',G16.8,/)
 C  102 FORMAT(1X,'NCOUNT=',I10,' NACCPT RATIO=',F8.4,' RTEST=',F8.4
 C     + ,' UAV=',F10.4,' VACCPT RATIO=',F8.4,/)
@@ -958,9 +870,7 @@ C     + ,' UAV=',F10.4,' VACCPT RATIO=',F8.4,/)
   103 FORMAT(1X,'Num total de configuraciones desde el inicio',F12.0,/
      +,' N#mero de llamadas a g(r)',F12.0,/)
   104 FORMAT(1X,'Energ!a potencial promedio desde el inicio',F10.4,/)
-  105 FORMAT(1X,'*****part!culas traslapadas*****',' I=',I4,' J=',I4,
-     + ' R**2=',G16.8,/)
-  106 FORMAT(1X,'R=',G16.8,' S=',G16.8,/)
+
   107 FORMAT(1X,' S=',G16.8,/)
  108  FORMAT(1X,' DISPL=',G16.8,/)
  109  FORMAT(1X,' SDISPL=',G16.8,/)
@@ -975,102 +885,128 @@ C     Identifica los clusters en la matriz
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,E1,E2,E3,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
      +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
-      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5,E4,E5
+      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       integer COUNT
-       COUNT=0
-       DO I=1, N
-          DO J=1,N
-             IF (I.NE.J.AND.CLU(I,J).NE.0.0D0) then ! si existe clusters 
-                IF(CLU(J,I)==0.0D0) then
-                    CLU(J,I)=1.0D0 ! cambia el valor 
-                    COUNT=COUNT+1 ! y cuenta las iteraciones
-                END IF
-                DO M=1,N
-        IF (CLU(J,M).NE.0.0D0.AND.CLU(I,M)==0.0D0.AND.M.NE.J) then  ! SOLAMENTE para valores del clu(IM) hacer 1 
-                       CLU(I,M)=1.0D0
-                       COUNT=COUNT+1 ! y contar 
-                    END IF
-                END DO
-             END IF
-           END DO
-       END DO
-       RETURN
-       END
+      COUNT=0
+      DO I=1, N
+         DO J=1,N
+            IF (I.NE.J.AND.CLU(I,J).NE.0.0D0) then ! si existe clusters 
+               IF(CLU(J,I)==0.0D0) then
+                  CLU(J,I)=1.0D0 ! cambia el valor 
+                  COUNT=COUNT+1 ! y cuenta las iteraciones
+               END IF
+               DO M=1,N
+                  IF (CLU(J,M).NE.0.0D0.AND.CLU(I,M)==0.0D0.AND.M.NE.J) 
+     +             then  ! SOLAMENTE para valores del clu(IM) hacer 1 
+                     CLU(I,M)=1.0D0
+                     COUNT=COUNT+1 ! y contar 
+                  END IF
+               END DO
+            END IF
+         END DO
+      END DO
+      RETURN
+      END
 C     ***************************************************************
 C     C lculo de energ!a potencial
 
-      SUBROUTINE ENERG(UTOT)
+      SUBROUTINE ENERG(U,ALL,X,Y,ANG)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,E1,E2,E3,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
      +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
-      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5,E4,E5
+      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-      UTOT=0.0D00
+      LOGICAL ALL !Booleano que controla si queremos calcular la energía de todo el sistema
+                  !o solamente la energía de una partícula respecto a las demás
 
-      !!!!CAMBIAR
-      DO 4 I=1,N-1
-      DO 4 J=I+1,N
-         IF (J.EQ.I) GOTO 4
-         X=RX(J)-RX(I)
-         Y=RY(J)-RY(I)
-         ! Convencion de imagen m!nima
-         IF (X.GT.0.5D00) THEN
-            X=X-1.0D00
-         ELSE IF (X.LT.-0.5D00) THEN
-            X=X+1.0D00
-         END IF
-         IF (Y.GT.Y2) THEN
-            Y=Y-YC
-         ELSE IF (Y.LT.-Y2) THEN
-            Y=Y+YC
-         END IF
+      !Si ALL=TRUE calcula la energía de TODO el sistema
+      If (ALL .eqv. .true.) then
+         U=0
+         DO 4 I=1,N-1
+         DO 4 J=I+1,N
+            IF (J.EQ.I) GOTO 4
+            X=RX(J)-RX(I)
+            Y=RY(J)-RY(I)
+            ! Convencion de imagen m!nima
+            IF (X.GT.0.5D00) THEN
+               X=X-1.0D00
+            ELSE IF (X.LT.-0.5D00) THEN
+               X=X+1.0D00
+            END IF
+            IF (Y.GT.Y2) THEN
+               Y=Y-YC
+            ELSE IF (Y.LT.-Y2) THEN
+               Y=Y+YC
+            END IF
+            RR=X*X+Y*Y
+
+            !!Energia 
+            if (RR.lt.RA3*RA3*SS )then  !!CHECAR condición if
+               pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180)
+               pppp=pppp/sqrt(RR)
+               ANGLE=ACOS(pppp)
+
+
+               pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
+               pppp=pppp/sqrt(RR)
+               ANGLE2=ACOS(pppp)
+
+               !Definir A1, A2, A3, A4, a, b, dist
+               dist=0
+               
+               !Angulo entre elipses
+               ANGLE3=datan( Y/X )
+               call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
+
+               U = U - A1*cos(2*ANGLE2+2*ANGLE)*( b /
+     +                             ( sqrt(RR) - A2*dist+A3 ) )**A4
+            end if
+    4    CONTINUE
+
+      Else !!Calculamos energía a pares, con una partícula fija
          RR=X*X+Y*Y
+         
+         pppp= X*cos(ANG*PI/180)+Y*sin(ANG*PI/180)
+         pppp=pppp/sqrt(RR)
 
-         !!Energia pozos angulares
-         if (RR.lt.RA3*RA3*SS )then
-            pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180)
-            pppp=pppp/sqrt(RR)
-            ANGLE=ACOS(pppp)
+         ANGLE=ACOS(pppp)
 
 
-            pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
-            pppp=pppp/sqrt(RR)
-            ANGLE2=ACOS(pppp)
+         pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
+         pppp=pppp/sqrt(RR)
 
-            !Definir A1, A2, A3, A4, a, b, dist
-            dist=0
-            
-            !Angulo entre elipses
-            ANGLE3=datan( Y/X )
-            call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
+         ANGLE2=ACOS(pppp)
 
-            UTOT= - A1*cos(2*ANGLE2+2*ANGLE)*( b /
-     +                                  ( sqrt(RR) - A2*dist+A3 ) )**A4
+         !Definir A1, A2, A3, A4, a, b
+         dist=0
+         
+         !Angulo entre elipses
+         ANGLE3=datan( Y/X )
+         call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
 
-         end if
+         U = U - A1*cos(2*ANGLE2+2*ANGLE)*( b /
+     +                              ( sqrt(RR) - A2*dist+A3 ) )**A4
+      end if
 
-    4 CONTINUE
       RETURN
       END
-
-
 C     ************************************************************
 C     Calcula g(r)
 
@@ -1082,11 +1018,11 @@ C     Calcula g(r)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,E1,E2,E3,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
      +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
-      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5,E4,E5
+      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
@@ -1111,7 +1047,7 @@ C     Calcula g(r)
          END IF
          RR=X*X+Y*Y !termina CIM
 
-         IF (RR.GT.RMAX) GOTO 20     ! si la distancia es mayor a la maxima se va 
+         IF (RR.GT.RMAX) GOTO 20     ! si la distancia es mayor a la maxima, sigue con el siguiente valor de j
 
          R=SQRT(RR) !calcula la norma de r 
          DR1=(SL-S)/XHISTG  
@@ -1162,11 +1098,11 @@ C     Calcula g(r)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,E1,E2,E3,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
      +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
-      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5,E4,E5
+      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
@@ -1212,11 +1148,11 @@ C     Calcula g(r)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,E1,E2,E3,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
      +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
-      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5,E4,E5
+      COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
@@ -1354,7 +1290,7 @@ C        WRITE(6,*)'INIT.',IDUM
      +    +e2*(1.d0-eta**2*k1k2**2))
          a22=b1**2/b2**2*(1.d0+0.5d0*(1.d0-k1k2)*(eta*(2.d0+eta)-e2*
      +    (1.d0-eta*k1k2)**2))
-       
+   
          !eigenvalues of A'
          lambda1=0.5d0*(a11+a22)+0.5d0*dsqrt((a11-a22)**2+4.d0*a12**2)  ! bigger one
          lambda2=0.5d0*(a11+a22)-0.5d0*dsqrt((a11-a22)**2+4.d0*a12**2)  ! smaller one
