@@ -10,7 +10,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
+     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -46,7 +46,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
+     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -68,6 +68,8 @@
       CLU(:,:)=0.0D0
       ! LEE PARAMETROS DE ENTRADA: N,TEMP E.T.C.
       OPEN (UNIT=1,FILE='npt6.in',STATUS='old')
+
+      !!Definir A1, A2, A3, A4
       READ(1,*) N                        !1
       READ(1,*) RHO                      !2
       READ(1,*) TEMP                     !3
@@ -85,8 +87,7 @@
       READ(1,*) DISPLAng                !24
       READ(1,*) DISPLClu                !25
       READ(1,*) AAng              !Ancho pozoz angulares
-      READ(1,*) RA1      ! pozo angular LL actua de 1 a RA1 sigmas
-      READ(1,*) RA2      !pozo angular PP actua de RA2 a RA3 sigmas
+
       READ(1,*) RA3                     !29
       READ(1,*) IAV                     !30
       READ(1,*) NAC,NCX,NCY             !31 32 33
@@ -306,7 +307,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
+     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -887,7 +888,7 @@ C     Identifica los clusters en la matriz
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
+     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -926,7 +927,7 @@ C     C lculo de energ!a potencial
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
+     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -935,6 +936,9 @@ C     C lculo de energ!a potencial
       LOGICAL LGOFR
       LOGICAL ALL !Booleano que controla si queremos calcular la energía de todo el sistema
                   !o solamente la energía de una partícula respecto a las demás
+
+      a=AR*S/2
+      b=S/2
 
       !Si ALL=TRUE calcula la energía de TODO el sistema
       If (ALL .eqv. .true.) then
@@ -958,51 +962,48 @@ C     C lculo de energ!a potencial
             RR=X*X+Y*Y
 
             !!Energia 
-            if (RR.lt.RA3*RA3*SS )then  !!CHECAR condición if
-               pppp= X*cos(RA(I)*PI/180)+Y*sin(RA(I)*PI/180)
-               pppp=pppp/sqrt(RR)
-               ANGLE=ACOS(pppp)
-
-
-               pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
-               pppp=pppp/sqrt(RR)
-               ANGLE2=ACOS(pppp)
-
-               !Definir A1, A2, A3, A4, a, b, dist
+            if (RR.lt.RA3*RA3*SS ) then  !!CHECAR condición if
                dist=0
                
                !Angulo entre elipses
                ANGLE3=datan( Y/X )
-               call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
+               call ellipses( a, b, a, b, RA(I), RA(J), ANGLE3, dist )  !los ángulos tienen que estar medidos respecto a la horizontal 
+                                                                        !y en dirección antihoraria para que funcione la subrutina
 
-               U = U - A1*cos(2*ANGLE2+2*ANGLE)*( b /
-     +                             ( sqrt(RR) - A2*dist+A3 ) )**A4
+               pppp= X*dcos(RA(I)*PI/180)+Y*dsin(RA(I)*PI/180) !producto punto entre el vector que une los centros y vector unitario de orientación de elipse1
+               pppp=pppp/dsqrt(RR)
+               ANGLE=acos(pppp) !angulo de orientación elipse1 respecto al vector que une los centros 
+
+               pppp= X*dcos(RA(J)*PI/180)+Y*dsin(RA(J)*PI/180)
+               pppp=pppp/dsqrt(RR)
+               ANGLE2=acos(pppp)  !angulo de orientación elipse2 respecto al vector que une los centros
+
+               U = U - A1*dcos(2*ANGLE2+2*ANGLE)*( b /
+     +                             ( dsqrt(RR) - A2*dist+A3 ) )**A4      !el potencial funciona con los ángulos tomados respecto al vector que une los centros
             end if
     4    CONTINUE
 
       Else !!Calculamos energía a pares, con una partícula fija
          RR=X*X+Y*Y
          
-         pppp= X*cos(ANG*PI/180)+Y*sin(ANG*PI/180)
-         pppp=pppp/sqrt(RR)
-
-         ANGLE=ACOS(pppp)
-
-
-         pppp= X*cos(RA(J)*PI/180)+Y*sin(RA(J)*PI/180)
-         pppp=pppp/sqrt(RR)
-
-         ANGLE2=ACOS(pppp)
-
-         !Definir A1, A2, A3, A4, a, b
          dist=0
          
          !Angulo entre elipses
          ANGLE3=datan( Y/X )
-         call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
+         call ellipses( a, b, a, b, ANG, RA(J), ANGLE3, dist )
 
-         U = U - A1*cos(2*ANGLE2+2*ANGLE)*( b /
-     +                              ( sqrt(RR) - A2*dist+A3 ) )**A4
+         pppp= X*dcos(ANG*PI/180)+Y*dsin(ANG*PI/180)
+         pppp=pppp/dsqrt(RR)
+
+         ANGLE=acos(pppp)
+
+         pppp= X*dcos(RA(J)*PI/180)+Y*dsin(RA(J)*PI/180)
+         pppp=pppp/dsqrt(RR)
+
+         ANGLE2=acos(pppp)
+
+         U = U - A1*dcos(2*ANGLE2+2*ANGLE)*( b /
+     +                              ( dsqrt(RR) - A2*dist+A3 ) )**A4
       end if
 
       RETURN
@@ -1020,7 +1021,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
+     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1100,7 +1101,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
+     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1150,7 +1151,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA1,RA2,RA3
+     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1259,6 +1260,14 @@ C        WRITE(6,*)'INIT.',IDUM
       !****************************************************************
       !Calcula la distancia de máximo acercamiento entre elipses
       !codigo obtenido de: http://www.math.kent.edu/~zheng/ellipse.html
+      !INPUT:  a1, b1 (a1>b1): length of semiaxis of first ellipse
+      !        a2, b2 (a2>b1): length of semiaxis of second ellipse
+      !        theta1(0, 2*pi): angle associated with the major axis of first ellipse, meaured from lab frame counterclockwise
+      !        theta2(0, 2*pi): angle associated with the major axis of second ellipse
+      !        theta3(0, 2*pi): angle associated with the vector joining the centers, pointing to the center of the second ellipse
+
+      !OUTPUT: dist: distance between the centers when two ellipses are externally tangent, i.e., distance of closest approach
+
         Subroutine ellipses(a1,b1,a2,b2,theta1,theta2,theta3,dist)
          Implicit None
          Double Complex,parameter::in=(1.d0,0.d0)
