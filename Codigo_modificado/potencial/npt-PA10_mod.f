@@ -1,4 +1,4 @@
-      PROGRAM NPT6 
+      PROGRAM NPT6 s
       !                                 FEBRERO 1999
                                       !Noviembre 2017
       !
@@ -10,7 +10,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
+     +                 XL,YL,Y2,EA1,EA2, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -39,6 +39,10 @@
        !al inicio y pozos.old si es continuacion
        !Genera la configuracion inicial de fcc.
 
+         !!Condición if, distancia de corte
+         !!Subrutinas radial y gofr
+         !!Ángulo de contacto
+
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
@@ -46,7 +50,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
+     +                 XL,YL,Y2,EA1,EA2, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -80,23 +84,19 @@
       READ(1,*) XLAM4                    !8
       READ(1,*) XLAM5                    !9
       READ(1,*) XLAM6                    !10
-
-
-      READ(1,*) NRUN,NMOVE,NMOVE2,NSUB  !19 20 21 22
-      READ(1,*) DISPL                   !23
-      READ(1,*) DISPLAng                !24
-      READ(1,*) DISPLClu                !25
-      READ(1,*) AAng              !Ancho pozoz angulares
-
-      READ(1,*) RA3                     !29
-      READ(1,*) IAV                     !30
-      READ(1,*) NAC,NCX,NCY             !31 32 33
-      READ(1,*) QX, QY                  !34 35
-      READ(1,*) SDISPL                  !36
-      READ(1,*) NGOFR,LGOFR             !37
-      READ(1,*) XHISTG                  !38
-      READ(1,*)(XA(I),YA(I),I=1,NAC)    !39
-      READ(1,*)AR                       !!Aspect ratio
+      READ(1,*) NRUN,NMOVE,NMOVE2,NSUB   !19 20 21 22
+      READ(1,*) DISPL                    !23
+      READ(1,*) DISPLAng                 !24
+      READ(1,*) DISPLClu                 !25
+      READ(1,*) RA3                      !29
+      READ(1,*) IAV                      !30  !Casi no se usa
+      READ(1,*) NAC,NCX,NCY              !31 32 33
+      READ(1,*) QX, QY                   !34 35
+      READ(1,*) SDISPL                   !36
+      READ(1,*) NGOFR,LGOFR              !37
+      READ(1,*) XHISTG                   !38
+      READ(1,*)(XA(I),YA(I),I=1,NAC)     !39
+      READ(1,*)AR                        !!Aspect ratio
       ! LRHO DEFINE SI SE PARTE DE UNA DENSIDAD NUEVA
       !     READ(1,*) LRHO
       ! ESCRIBE PARAMETROS DE ENTRADA
@@ -244,7 +244,7 @@
 
 
       !CONTINUA CONVIRTIENDO A UNIDADES DE PROGRAMA
-      !!!CHECAR que son las variables
+
       SS=S*S
       SL=S*XLAMBDA
       SSLL=SL*SL
@@ -307,7 +307,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
+     +                 XL,YL,Y2,EA1,EA2, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -706,8 +706,7 @@
      +       GOTO 9
          end if
       end do
-      
-      !!!!CHECAR (revisar traslapes con una variable diferente para corroboracion)
+
       do J=1,N
          IF(I.NE.J.AND.CLU(I,J).NE.0.0D0) then
             do M=1,N
@@ -888,7 +887,7 @@ C     Identifica los clusters en la matriz
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
+     +                 XL,YL,Y2,EA1,EA2, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -927,7 +926,7 @@ C     C lculo de energ!a potencial
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
+     +                 XL,YL,Y2,EA1,EA2, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -964,7 +963,7 @@ C     C lculo de energ!a potencial
             !!Energia 
             if (RR.lt.RA3*RA3*SS ) then  !!CHECAR condición if
                dist=0
-               
+
                !Angulo entre elipses
                ANGLE3=datan( Y/X )
                call ellipses( a, b, a, b, RA(I), RA(J), ANGLE3, dist )  !los ángulos tienen que estar medidos respecto a la horizontal 
@@ -1012,7 +1011,6 @@ C     ************************************************************
 C     Calcula g(r)
 
       SUBROUTINE GOFR !!todo bien
-      !!!CHECAR que hace la subrutina
 
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
@@ -1021,7 +1019,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
+     +                 XL,YL,Y2,EA1,EA2, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1048,7 +1046,7 @@ C     Calcula g(r)
          END IF
          RR=X*X+Y*Y !termina CIM
 
-         IF (RR.GT.RMAX) GOTO 20     ! si la distancia es mayor a la maxima, sigue con el siguiente valor de j
+         IF (RR.GT.RMAX) GOTO 20     
 
          R=SQRT(RR) !calcula la norma de r 
          DR1=(SL-S)/XHISTG  
@@ -1101,7 +1099,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
+     +                 XL,YL,Y2,EA1,EA2, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1151,7 +1149,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2,AAng, RA3
+     +                 XL,YL,Y2,EA1,EA2, RA3
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
