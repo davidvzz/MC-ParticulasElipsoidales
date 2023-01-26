@@ -18,7 +18,6 @@
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-
       PI = 4.D0*DATAN(1.D0)
       OPEN(UNIT=6,FILE='npt6.dat',STATUS='unknown')
       OPEN(UNIT=8,FILE='npt6.tau',STATUS='unknown')
@@ -34,7 +33,7 @@
       STOP
       END
       !****************************************************************
-      SUBROUTINE START !CAMBIAR, lectura de variables respecto al potencial
+      SUBROUTINE START 
 
        !Lee variables de sistema y estado (rho,temp) de pozos.in
        !al inicio y pozos.old si es continuacion
@@ -87,8 +86,8 @@
       ! ESCRIBE PARAMETROS DE ENTRADA
       LRHO=0
       WRITE(6,100)
-      WRITE(6,101) N,RHO,TEMP,NRUN,NMOVE,NSUB,DISPL,DISPLAng, DISPLClu,
-     + IAV,NAC,NCX,NCY,NGOFR
+      WRITE(6,101) N,RHO,TEMP,NRUN,NMOVE,NSUB,DISPL,DISPLAng,IAV,NAC,
+     + NCX,NCY,NGOFR
       WRITE(6,*) 'LAMBDA1=',XLAMBDA
       WRITE(6,*) 'LAMBDA2=',XLAM2
       WRITE(6,*) 'LAMBDA3=',XLAM3
@@ -298,6 +297,11 @@
       ISEED=-123456789  ! 
       
       ALL=.true.
+      UTOT=0
+      X=0
+      Y=0
+      ANG=0
+      ANG2=0
       CALL ENERG(UTOT,ALL,X,Y,ANG,ANG2) ! subrutina energia para calcular la energía de la configuración creada inicialmente
 
       UPERP=UTOT/XN ! energia ...
@@ -313,7 +317,7 @@
       WRITE(6,101) UPERP
       !comienza la secuencia de Monte Carlo
 
-      OPEN(UNIT=2,FILE='unpt6.dat',STATUS='NEW')
+      OPEN(UNIT=2,FILE='unpt6.dat',STATUS='unknown')
       !OPEN(UNIT=93,FILE='angulos.dat',STATUS='NEW')
 
       ! escoge particula al azar
@@ -394,6 +398,7 @@
          if (RR.lt.RA3*RA3*SS )then !CHECAR condición if
             ALL=.false.
             call ENERG(UNEW, ALL, X, Y, ANEW, RA(J))
+
          end if
       
     2 CONTINUE   !!!GOTO 2
@@ -424,8 +429,10 @@
          if (RR.lt.RA3*RA3*SS )then !CHECAR condición if
             ALL=.false.
             call ENERG(UOLD, ALL, X, Y, RA(I), RA(J))
+
          end if
     4 CONTINUE
+
 
       DENERG=UNEW-UOLD
       
@@ -1099,7 +1106,7 @@ C     Calcula g(r)
       LOGICAL LGOFR
 
       ! Escribe configuracion final en p2a.new
-      OPEN(UNIT=4,FILE='npt6.new',STATUS='NEW')
+      OPEN(UNIT=4,FILE='npt6.new',STATUS='unknown')
       WRITE(4,*) S
       DO 55 I=1,N
          WRITE(4,*) RX(I),RY(I),S*AR,S,RA(I)
@@ -1158,7 +1165,7 @@ C     Calcula g(r)
       !NEND=INT((0.5D00*XC-S)*XHISTG/(SL-S))
       NEND=INT(5.0D00*XHISTG+((0.5D00*XC)-SL5)/DR6)
 
-      OPEN(UNIT=7,FILE='gdrnpt5.dat',STATUS='NEW')
+      OPEN(UNIT=7,FILE='gdrnpt5.dat',STATUS='unknown')
 
       DO 1 L=1,NEND
          X=FLOAT(L)
