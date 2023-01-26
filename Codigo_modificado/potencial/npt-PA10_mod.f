@@ -1,6 +1,7 @@
-      PROGRAM NPT6 s
+      PROGRAM NPT6 
       !                                 FEBRERO 1999
                                       !Noviembre 2017
+                                      !Enero 2023
       !
       !     SIMULACION MONTE CARLO Elipses
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -8,9 +9,9 @@
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2, RA3
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -18,7 +19,7 @@
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
 
-      PI = 3.141592654D0
+      PI = 4.D0*DATAN(1.D0)
       OPEN(UNIT=6,FILE='npt6.dat',STATUS='unknown')
       OPEN(UNIT=8,FILE='npt6.tau',STATUS='unknown')
       !  UNIDAD 10 NPT5.SIG GUARDA MUESTREO EN SIGMA
@@ -39,7 +40,7 @@
        !al inicio y pozos.old si es continuacion
        !Genera la configuracion inicial de fcc.
 
-         !!Condición if, distancia de corte
+         !!Condición if, distancia de corte (ver línea 400)
          !!Subrutinas radial y gofr
          !!Ángulo de contacto
 
@@ -48,17 +49,24 @@
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2, RA3
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
-      DIMENSION XA(6), YA(6)
+
       LOGICAL LGOFR
       !LOGICAL LRHO
+
+      !Lectura de datos de entrada por medio de una namelist
+      NAMELIST /input/ N,RHO,TEMP,PHI,XLAMBDA,XLAM2,XLAM3,XLAM4,XLAM5,
+     +                 XLAM6,NRUN,NMOVE,NMOVE2,NSUB,DISPL,DISPLAng ,
+     +                 DISPLClu,RA3,IAV,NAC,NCX,NCY,QX,QY,SDISPL,NGOFR,
+     +                 LGOFR,XHISTG,AR, A1, A2, A3, A4
+
 
       ! ACUMULADORES A CERO
       DO I=1,NACC
@@ -74,51 +82,21 @@
       OPEN (UNIT=1,FILE='npt6.in',STATUS='old')
 
       !!Definir A1, A2, A3, A4
-      READ(1,*) N                        !1
-      READ(1,*) RHO                      !2
-      READ(1,*) TEMP                     !3
-      READ(1,*) PHI                      !4
-      READ(1,*) XLAMBDA                  !5
-      READ(1,*) XLAM2                    !6
-      READ(1,*) XLAM3                    !7
-      READ(1,*) XLAM4                    !8
-      READ(1,*) XLAM5                    !9
-      READ(1,*) XLAM6                    !10
-      READ(1,*) NRUN,NMOVE,NMOVE2,NSUB   !19 20 21 22
-      READ(1,*) DISPL                    !23
-      READ(1,*) DISPLAng                 !24
-      READ(1,*) DISPLClu                 !25
-      READ(1,*) RA3                      !29
-      READ(1,*) IAV                      !30  !Casi no se usa
-      READ(1,*) NAC,NCX,NCY              !31 32 33
-      READ(1,*) QX, QY                   !34 35
-      READ(1,*) SDISPL                   !36
-      READ(1,*) NGOFR,LGOFR              !37
-      READ(1,*) XHISTG                   !38
-      READ(1,*)(XA(I),YA(I),I=1,NAC)     !39
-      READ(1,*)AR                        !!Aspect ratio
-      ! LRHO DEFINE SI SE PARTE DE UNA DENSIDAD NUEVA
-      !     READ(1,*) LRHO
-      ! ESCRIBE PARAMETROS DE ENTRADA
+      READ(unit=1, nml=input)
 
+      ! ESCRIBE PARAMETROS DE ENTRADA
       LRHO=0
       WRITE(6,100)
-      WRITE(6,101) N,RHO,TEMP,NRUN,NMOVE,NSUB,DISPL,DISPLAng,IAV,NAC,
-     + NCX,NCY,NGOFR
+      WRITE(6,101) N,RHO,TEMP,NRUN,NMOVE,NSUB,DISPL,DISPLAng, DISPLClu,
+     + IAV,NAC,NCX,NCY,NGOFR
       WRITE(6,*) 'LAMBDA1=',XLAMBDA
       WRITE(6,*) 'LAMBDA2=',XLAM2
       WRITE(6,*) 'LAMBDA3=',XLAM3
       WRITE(6,*) 'LAMBDA4=',XLAM4
       WRITE(6,*) 'LAMBDA5=',XLAM5
       WRITE(6,*) 'LAMBDA6=',XLAM6
-      WRITE(6,*) 'E1=',E1
-      WRITE(6,*) 'E2=',E2
-      WRITE(6,*) 'E3=',E3
-      WRITE(6,*) 'E4=',E4
-      WRITE(6,*) 'E5=',E5
-      WRITE(6,*) 'E6=',E6
       WRITE(6,*) 'PHI=',PHI
-      WRITE(6,*)(XA(I),YA(I),I=1,NAC)
+
       IF (NRUN.EQ.0.0D00) WRITE(6,102)
       IF (NRUN.NE.0.0D00) WRITE(6,103)
       IF (IAV.EQ.0.0D00)  WRITE(6,104)
@@ -305,9 +283,9 @@
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2, RA3
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -320,7 +298,7 @@
       ISEED=-123456789  ! 
       
       ALL=.true.
-      CALL ENERG(UTOT,ALL,X,Y,ANG) ! subrutina energia para calcular la energía de la configuración creada inicialmente
+      CALL ENERG(UTOT,ALL,X,Y,ANG,ANG2) ! subrutina energia para calcular la energía de la configuración creada inicialmente
 
       UPERP=UTOT/XN ! energia ...
       ! NTEST=0
@@ -412,10 +390,10 @@
          if (FI.lt.0.or.(FI.gt.0.and.F1>=0.and.F2>=0).or.RR.lt.SS) !TRUE si se translapan
      +    GOTO 3
 
-         !!!!!!CAMBIAR
-         ALL=.false.
+
          if (RR.lt.RA3*RA3*SS )then !CHECAR condición if
-            call ENERG(UNEW, ALL, X, Y, ANEW)
+            ALL=.false.
+            call ENERG(UNEW, ALL, X, Y, ANEW, RA(J))
          end if
       
     2 CONTINUE   !!!GOTO 2
@@ -442,9 +420,10 @@
 
          !!!!!!! CAMBIAR
          !!Energia pozos angulares
-         ALL=.false.
+
          if (RR.lt.RA3*RA3*SS )then !CHECAR condición if
-            call ENERG(UOLD, ALL, X, Y, RA(I))
+            ALL=.false.
+            call ENERG(UOLD, ALL, X, Y, RA(I), RA(J))
          end if
     4 CONTINUE
 
@@ -465,7 +444,7 @@
       RA(I)=ANEW
 
       ALL=.true.
-      call ENERG(UTOT,ALL,X,Y,ANG)
+      call ENERG(UTOT,ALL,X,Y,ANG,ANG2)
       NACCPT=NACCPT+1
 
       ! acumula promedios
@@ -761,7 +740,7 @@
       RA(1:N)=ANEW1(1:N)
 
       ALL=.true.
-      call ENERG(UTOT,ALL,X,Y,ANG)
+      call ENERG(UTOT,ALL,X,Y,ANG,ANG2)
 
       !! Revisa vecinos para clusters
       DO I=1,N
@@ -885,9 +864,9 @@ C     Identifica los clusters en la matriz
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2, RA3
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -916,25 +895,32 @@ C     Identifica los clusters en la matriz
       RETURN
       END
 C     ***************************************************************
-C     C lculo de energ!a potencial
+C     Calculo de energia potencial
+      !! U(output)   :: aqui se almacena el valor de la energia 
+      !!ALL(input)   :: Booleano que controla si queremos calcular la energía de todo el sistema
+      !                 o solamente la energía de una partícula respecto a las demás
 
-      SUBROUTINE ENERG(U,ALL,X,Y,ANG)
+      !Las siguientes variables solamente se necesitan en caso de calcular la energía de una partícula respecto a las demás
+      !!X(input)     :: Componente en x de la distancia entre centros   
+      !!Y(input)     :: Componente en y de la distancia entre centros
+      !!ANG(input)   :: Orientación 
+
+      SUBROUTINE ENERG(U,ALL,X,Y,ANG,ANG2)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2, RA3
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-      LOGICAL ALL !Booleano que controla si queremos calcular la energía de todo el sistema
-                  !o solamente la energía de una partícula respecto a las demás
+      LOGICAL ALL !
 
       a=AR*S/2
       b=S/2
@@ -963,17 +949,20 @@ C     C lculo de energ!a potencial
             !!Energia 
             if (RR.lt.RA3*RA3*SS ) then  !!CHECAR condición if
                dist=0
+               ANGLE=RA(I)*PI/180 !orientación elipse 1 en radianes, medida respecto a la horizontal
+
+               ANGLE2=RA(J)*PI/180 !orientación elipse 2 en radianes, medida respecto a la horizontal
 
                !Angulo entre elipses
                ANGLE3=datan( Y/X )
-               call ellipses( a, b, a, b, RA(I), RA(J), ANGLE3, dist )  !los ángulos tienen que estar medidos respecto a la horizontal 
-                                                                        !y en dirección antihoraria para que funcione la subrutina
+               call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )  !los ángulos tienen que estar medidos respecto a la horizontal 
+                                                                         !y en dirección antihoraria para que funcione la subrutina
 
-               pppp= X*dcos(RA(I)*PI/180)+Y*dsin(RA(I)*PI/180) !producto punto entre el vector que une los centros y vector unitario de orientación de elipse1
+               pppp= X*dcos(ANGLE)+Y*dsin(ANGLE) !producto punto entre el vector que une los centros y vector unitario de orientación de elipse1
                pppp=pppp/dsqrt(RR)
                ANGLE=acos(pppp) !angulo de orientación elipse1 respecto al vector que une los centros 
 
-               pppp= X*dcos(RA(J)*PI/180)+Y*dsin(RA(J)*PI/180)
+               pppp= X*dcos(ANGLE2)+Y*dsin(ANGLE2)
                pppp=pppp/dsqrt(RR)
                ANGLE2=acos(pppp)  !angulo de orientación elipse2 respecto al vector que une los centros
 
@@ -986,17 +975,19 @@ C     C lculo de energ!a potencial
          RR=X*X+Y*Y
          
          dist=0
-         
+         ANGLE=ANG*PI/180 !orientación elipse 1 en radianes, medida respecto a la horizontal
+
+         ANGLE2=ANG2*PI/180 !orientación elipse 2 en radianes, medida respecto a la horizontal
          !Angulo entre elipses
          ANGLE3=datan( Y/X )
-         call ellipses( a, b, a, b, ANG, RA(J), ANGLE3, dist )
+         call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )
 
-         pppp= X*dcos(ANG*PI/180)+Y*dsin(ANG*PI/180)
+         pppp= X*dcos(ANGLE)+Y*dsin(ANGLE)
          pppp=pppp/dsqrt(RR)
 
          ANGLE=acos(pppp)
 
-         pppp= X*dcos(RA(J)*PI/180)+Y*dsin(RA(J)*PI/180)
+         pppp= X*dcos(ANGLE2)+Y*dsin(ANGLE2)
          pppp=pppp/dsqrt(RR)
 
          ANGLE2=acos(pppp)
@@ -1017,9 +1008,9 @@ C     Calcula g(r)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2, RA3
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1097,9 +1088,9 @@ C     Calcula g(r)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2, RA3
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1147,9 +1138,9 @@ C     Calcula g(r)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
      +                 CLU(NPART,NPART)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
-     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng,XHISTG,
+     +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,EA1,EA2, RA3
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
