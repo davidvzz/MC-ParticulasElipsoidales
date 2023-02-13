@@ -1,0 +1,840 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	8
+<table>
+k2radial	72	4	13/02/23 11:46
+geometry	588	717	512	342	minimized	
+header	x[X]	SS[Y]	ST[Y]	TT[Y]
+ColWidth	100	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0	0
+HiddenColumn	0	0	0	0
+Comments	x	SS	ST	TT	
+WindowLabel	/home/mejia/Pictures/k2radial.csv	2
+<data>
+0	1.9989	-0.0013841		
+1	2.1327	-0.0012137		
+2	2.2129	-0.0011001		
+3	2.3066	-0.0009751		
+4	2.4539	-0.0008161		
+5	2.6687	-0.000657		
+6	2.8567	-0.0005434		
+7	3.011		0.000825	
+8	3.0717	-0.0004354		
+9	3.1194		0.0007172	
+10	3.2817		0.0006037	
+11	3.5248		0.0004846	
+12	3.5694	-0.0002876		
+13	3.8084		0.0003711	
+14	3.9192	-0.0001909		
+15	4.042			-0.0004861
+16	4.1323		0.0002748	
+17	4.2437			-0.0004065
+18	4.4039	-0.0001339		
+19	4.4156		0.0002068	
+20	4.479			-0.0003212
+21	4.6405			-0.0002814
+22	4.6988		0.0001615	
+23	4.8618	-9.96e-05		
+24	4.8828			-0.000233
+25	4.9683		0.0001389	
+26	5.1183			-0.000196
+27	5.211		0.0001106	
+28	5.3337			-0.000159
+29	5.4006	-5.96e-05		
+30	5.4671		8.8e-05	
+31	5.603			-0.0001305
+32	5.8175		7.12e-05	
+33	5.8317	-5.37e-05		
+34	5.9734			-0.0001019
+35	6.1274		6.56e-05	
+36	6.2292			-7.06e-05
+37	6.3565		6e-05	
+38	6.4378	-3.08e-05		
+39	6.4717			-6.76e-05
+40	6.5721		5.45e-05	
+41	6.7878		4.32e-05	
+42	6.8152			-5.33e-05
+43	7.0573		3.77e-05	
+44	7.0712			-5.03e-05
+45	7.0979	-1.34e-05		
+46	7.3271			-3.89e-05
+47	7.3941		3.78e-05	
+48	7.5629			-3.59e-05
+49	7.6369	-1.32e-05		
+50	7.6635		3.79e-05	
+51	7.8727			-2.16e-05
+52	7.8792		3.24e-05	
+53	8.0613			-2.43e-05
+54	8.1891		2.11e-05	
+55	8.2432	-1.29e-05		
+56	8.3712			-1.85e-05
+57	8.5664		1e-05	
+58	8.5935			-1.27e-05
+59	8.8493		1.58e-05	
+60	8.8562			-9.8e-06
+61	9.0112	-1.25e-05		
+62	9.0515		1.02e-05	
+63	9.092			-6.8e-06
+64	9.2941			-6.7e-06
+65	9.3209		1.03e-05	
+66	9.4962			-1.52e-05
+67	9.523		1.04e-05	
+68	9.7521		4.8e-06	
+69	9.7589			-1.22e-05
+70	9.8465	-1.22e-05		
+71	9.9138			-3.6e-06
+</data>
+</table>
+<multiLayer>
+Graph1	1	1	13/02/23 11:48
+geometry	11	8	577	461	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	1045	394
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	1	3	563	402
+<PageGeometry>0.00175747	0.00726392	0.989455	0.973366</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	d/b	E/ɣb<sup>2</sup>			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	4	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	12	75	0	0	0
+ScaleFont0	Sans Serif	9	75	0	0	0
+ScaleFont1	Sans Serif	9	75	0	0	0
+ScaleFont2	Sans Serif	9	75	0	0	0
+ScaleFont3	Sans Serif	9	75	0	0	0
+AxisFont0	Sans Serif	9	50	0	0	0
+AxisFont1	Sans Serif	9	50	0	0	0
+AxisFont2	Sans Serif	9	50	0	0	0
+AxisFont3	Sans Serif	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k2radial_x	k2radial_TT	7	5	#f1c40f	0	2	7	0	#ffff00	#ffff00	0	#000000	14	2	0	0	71	1
+curve	k2radial_x	k2radial_ST	7	5	#ff8000	0	2	7	0	#ff8000	#ff8000	0	#000000	14	2	0	0	71	1
+curve	k2radial_x	k2radial_SS	7	5	#0000ff	0	2	7	0	#0000ff	#0000ff	0	#000000	14	2	0	0	71	1
+scale	0	-0.0015	0.001	0.001	3	4	0	0
+scale	1	-0.0015	0.001	0.001	3	4	0	0
+scale	2	0	10	2	6	1	0	0
+scale	3	0	10	2	6	1	0	0
+LabelsFormat	2	2	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	0	1	0
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.25062656641604</x>
+<y>0.00091638795986622</y>
+<right>2.73182957393484</right>
+<bottom>0.000673913043478261</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>7.9910714285714</x>
+<y>0.00093478260869565</y>
+<right>9.84375</right>
+<bottom>0.000746376811594203</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=2,θ=80
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>0</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<table>
+k2angular	92	5	13/02/23 12:11
+geometry	0	717	569	218	minimized	
+header	x[X]	SS-ST3[Y]	SS-ST5[Y]	TT-ST4[Y]	TT-ST6[Y]
+ColWidth	100	100	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0	0	0
+HiddenColumn	0	0	0	0	0
+Comments	x	SS-ST3	SS-ST5	TT-ST4	TT-ST6	
+WindowLabel	/home/mejia/Pictures/k2angular.csv	2
+<data>
+0	0.00562				-9.23e-05
+1	0.0065		-8.23e-05		
+2	0.01131			-0.0005226	
+3	0.01298	-0.0004764			
+4	0.03227			-0.0005119	
+5	0.03246				-9.43e-05
+6	0.03399		-8.37e-05		
+7	0.03506	-0.0004787			
+8	0.05255			-0.0004889	
+9	0.05667		-8.52e-05		
+10	0.05844				-9.64e-05
+11	0.06364	-0.0004589			
+12	0.07145			-0.0004685	
+13	0.08039		-8.18e-05		
+14	0.08529	-0.0004487			
+15	0.08788				-9.52e-05
+16	0.08967			-0.0004259	
+17	0.10822		-7.33e-05		
+18	0.10867	-0.0004075			
+19	0.11166			-0.0003709	
+20	0.12209				-7.21e-05
+21	0.13118	-0.0003725			
+22	0.13297		-6.98e-05		
+23	0.1364			-0.0003133	
+24	0.1498				-5.86e-05
+25	0.15023	-0.0003376			
+26	0.15221			-0.0002708	
+27	0.15977		-5.64e-05		
+28	0.16972	-0.0002779			
+29	0.17043			-0.0002184	
+30	0.18357				-4.48e-05
+31	0.1883		-3.56e-05		
+32	0.18877	-0.0002275			
+33	0.19586			-0.000151	
+34	0.20825	-0.0001678			
+35	0.21128				-3.13e-05
+36	0.21304		-3.22e-05		
+37	0.21442			-0.0001059	
+38	0.23207	-9.25e-05			
+39	0.23229			-6.09e-05	
+40	0.23882		-1.39e-05		
+41	0.24073				-1.77e-05
+42	0.24809	-3.6e-05			
+43	0.24809			-8.6e-06	
+44	0.26108	2.96e-05			
+45	0.26218		-6e-07		
+46	0.26906			2.67e-05	
+47	0.27147				2.1e-06
+48	0.27883	9.85e-05			
+49	0.2914		1.78e-05		
+50	0.29208			8.67e-05	
+51	0.29615	0.0001736			
+52	0.29658				1.24e-05
+53	0.3152	0.0002612			
+54	0.31751			0.0001345	
+55	0.31855		4.84e-05		
+56	0.32646				2.91e-05
+57	0.33166	0.0003332			
+58	0.33985		7.14e-05		
+59	0.34508	0.0003988			
+60	0.34559			0.0001799	
+61	0.35596				3.97e-05
+62	0.36013		8.7e-05		
+63	0.36067	0.0004646			
+64	0.37322	0.0005209			
+65	0.3816			0.0002322	
+66	0.38419		9.28e-05		
+67	0.38842				5.27e-05
+68	0.39054	0.0005929			
+69	0.40267	0.0006368			
+70	0.40412		0.000106		
+71	0.40424			0.0002624	
+72	0.41392	0.0006806			
+73	0.41624				5.78e-05
+74	0.41993		0.0001164		
+75	0.43038	0.0007247			
+76	0.43264		0.0001219		
+77	0.43343			0.0002889	
+78	0.44164	0.0007593			
+79	0.44979				6.11e-05
+80	0.45326		0.000135		
+81	0.45462	0.0007877			
+82	0.46316			0.0003018	
+83	0.47021	0.0008069			
+84	0.47388		0.0001383		
+85	0.47652				7e-05
+86	0.48277	0.000826			
+87	0.49072		0.000139		
+88	0.49792	0.0008328			
+89	0.49862			0.0003111	
+90	0.50407				7.11e-05
+91	0.50442		0.0001479		
+</data>
+</table>
+<multiLayer>
+Graph2	1	1	13/02/23 12:12
+geometry	645	0	583	461	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	565	398
+<PageGeometry>0.00869565	0.0121065	0.982609	0.96368</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	Φ/π	E/ɣb<sup>2</sup>			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	4	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	9	75	0	0	0
+ScaleFont1	Sans Serif	9	75	0	0	0
+ScaleFont2	Sans Serif	9	75	0	0	0
+ScaleFont3	Sans Serif	9	75	0	0	0
+AxisFont0	Sans Serif	9	50	0	0	0
+AxisFont1	Sans Serif	9	50	0	0	0
+AxisFont2	Sans Serif	9	50	0	0	0
+AxisFont3	Sans Serif	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k2angular_x	k2angular_SS-ST3	7	5	#0000ff	0	2	7	0	#0000ff	#0000ff	0	#000000	14	2	0	0	91	1
+curve	k2angular_x	k2angular_SS-ST5	7	5	#ff8000	0	2	7	0	#00ff00	#00ff00	0	#000000	14	2	0	0	91	1
+curve	k2angular_x	k2angular_TT-ST4	7	5	#f1c40f	0	2	7	0	#ff0000	#ff0000	0	#000000	14	2	0	0	91	1
+curve	k2angular_x	k2angular_TT-ST6	7	5	#800080	0	2	7	0	#000000	#000000	0	#000000	14	2	0	0	91	1
+scale	0	-0.001	0.0015	0.001	4	5	0	0
+scale	1	-0.001	0.0015	0.001	4	5	0	0
+scale	2	0	0.5	0	6	5	0	0
+scale	3	0	0.5	0	6	5	0	0
+LabelsFormat	2	2	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	0	1	0
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.014348785871965</x>
+<y>0.0014193548387097</y>
+<right>0.164459161147903</right>
+<bottom>0.000898826979472141</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1) SS-ST r=3b
+\l(2) SS-ST r=5b
+\l(3) TT-ST r=4b
+\l(4) TT-ST r=6b
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.40176600441501</x>
+<y>0.0014193548387097</y>
+<right>0.493377483443709</right>
+<bottom>0.00122873900293255</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=2,θ=80
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>0</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<table>
+k5radial	70	4	13/02/23 12:42
+geometry	196	717	445	220	minimized	
+header	x[X]	SS[Y]	ST[Y]	TT[Y]
+ColWidth	100	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0	0
+HiddenColumn	0	0	0	0
+Comments	x	SS	ST	TT	
+WindowLabel	/home/mejia/Pictures/k5radial.csv	2
+<data>
+0	2.0101	-0.032344		
+1	2.2899	-0.02684		
+2	2.5817	-0.022093		
+3	2.8613	-0.018309		
+4	3.1651	-0.015007		
+5	3.6995	-0.011156		
+6	4.1245	-0.009162		
+7	4.6951	-0.006687		
+8	5.3264	-0.004969		
+9	5.9818	-0.003802		
+10	6.0203		0.00759	
+11	6.5266		0.006055	
+12	6.7343	-0.002842		
+13	6.8819		0.005122	
+14	7.157		0.004362	
+15	7.4867	-0.002226		
+16	7.6844		0.003384	
+17	8.1299	-0.001747		
+18	8.1697		0.002558	
+19	8.5719		0.002117	
+20	9.0149		0.001678	
+21	9.0401	-0.001338		
+22	9.4194		0.00113	
+23	9.8288	-0.001135		
+24	9.872		0.000964	
+25	10.0257			-0.002696
+26	10.3343		0.000908	
+27	10.7481			-0.002208
+28	10.8142	-0.00077		
+29	10.9892		0.000741	
+30	11.249			-0.001828
+31	11.5175	-0.000686		
+32	11.5382		0.00052	
+33	11.8943			-0.001393
+34	12.0679	-0.000602		
+35	12.0775		0.000463	
+36	12.5396			-0.001342
+37	12.5976		0.000351	
+38	12.8171	-0.000432		
+39	12.9251		0.000241	
+40	13.0116			-0.001071
+41	13.291	-0.000521		
+42	13.3487			-0.001017
+43	13.5059		0.000363	
+44	13.917	-0.000638		
+45	13.9555			-0.000856
+46	14.3553		0.00029	
+47	14.4178	-0.000531		
+48	14.5334			-0.000531
+49	14.865		0.000425	
+50	14.9187	-0.000423		
+51	15.0053			-0.000588
+52	15.2654	-0.000316		
+53	15.4474		0.000216	
+54	15.4677			-0.00059
+55	15.8336			-0.000591
+56	15.8357		0.000146	
+57	15.9589	-0.000319		
+58	16.1804			-0.000484
+59	16.224		7.5e-05	
+60	16.6002		0.000143	
+61	16.6138			-0.000486
+62	16.6523	-0.00054		
+63	16.922			-0.000487
+64	17.2302	-0.000543		
+65	17.2976			-0.000543
+66	17.486		0.000139	
+67	17.9108		0.000206	
+68	17.9237	-0.000546		
+69	17.9333			-0.000546
+</data>
+</table>
+<multiLayer>
+Graph3	1	1	13/02/23 12:43
+geometry	24	426	581	435	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	564	372
+<PageGeometry>0.008726	0.0129199	0.984293	0.96124</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	d/b	E/ɣb<sup>2</sup>			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	10	75	0	0	0
+ScaleFont0	Sans Serif	8	75	0	0	0
+ScaleFont1	Sans Serif	8	75	0	0	0
+ScaleFont2	Sans Serif	8	75	0	0	0
+ScaleFont3	Sans Serif	8	75	0	0	0
+AxisFont0	Sans Serif	8	50	0	0	0
+AxisFont1	Sans Serif	8	50	0	0	0
+AxisFont2	Sans Serif	8	50	0	0	0
+AxisFont3	Sans Serif	8	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k5radial_x	k5radial_TT	7	5	#f1c40f	0	2	7	0	#000000	#000000	0	#000000	14	2	0	0	69	1
+curve	k5radial_x	k5radial_ST	7	5	#ff0000	0	2	7	0	#ff0000	#ff0000	0	#000000	14	2	0	0	69	1
+curve	k5radial_x	k5radial_SS	7	5	#0000ff	0	2	7	0	#00ff00	#00ff00	0	#000000	14	2	0	0	69	1
+scale	0	-0.05	0.02	0	4	5	0	0
+scale	1	-0.05	0.02	0	4	5	0	0
+scale	2	0	20	4	6	5	0	0
+scale	3	0	20	4	6	5	0	0
+LabelsFormat	2	2	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	0	1	0
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.52401746724891</x>
+<y>0.017129337539432</y>
+<right>3.97379912663755</right>
+<bottom>0.00476340694006309</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+</Text>
+<Font>Sans Serif	8	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>16.026200873362</x>
+<y>0.01801261829653</y>
+<right>19.6506550218341</right>
+<bottom>0.0122712933753943</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=5,θ=30
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>0</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<table>
+k5angular	82	5	13/02/23 13:03
+geometry	392	717	445	220	minimized	
+header	x[X]	SS-STr6b[Y]	SS-STr8b[Y]	TT-STr10b[Y]	TT-STr12b[Y]
+ColWidth	100	100	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0	0	0
+HiddenColumn	0	0	0	0	0
+Comments	x	SS-ST r=6b	SS-ST r=8b	TT-ST r=10b	TT-ST r=12b	
+WindowLabel	/home/mejia/Pictures/k5angular.csv	2
+<data>
+0	-0.00069	-0.036948			
+1	0.00022		-0.017827		
+2	0.00146			-0.026614	
+3	0.00244				-0.013012
+4	0.02363		-0.017683		
+5	0.02495			-0.025773	
+6	0.02983				-0.01269
+7	0.03048	-0.037003			
+8	0.04354			-0.023746	
+9	0.04661		-0.016982		
+10	0.05546				-0.011067
+11	0.05776	-0.03565			
+12	0.06649		-0.016832		
+13	0.06739			-0.020552	
+14	0.08373				-0.009819
+15	0.08946		-0.016131		
+16	0.0906	-0.03384			
+17	0.09369			-0.01751	
+18	0.10669		-0.015049		
+19	0.10892				-0.00801
+20	0.12246			-0.013589	
+21	0.124	-0.030163			
+22	0.12481		-0.014154		
+23	0.13454				-0.006573
+24	0.14646		-0.012154		
+25	0.15086			-0.010991	
+26	0.15296	-0.026011			
+27	0.16501		-0.010704		
+28	0.1668				-0.004777
+29	0.17927			-0.007511	
+30	0.18004		-0.009433		
+31	0.18178	-0.020186			
+32	0.19331				-0.003155
+33	0.19683		-0.007054		
+34	0.20663			-0.00447	
+35	0.21007	-0.012452			
+36	0.21451		-0.005232		
+37	0.22114				-0.001351
+38	0.22627			-0.00274	
+39	0.23041	-0.006557			
+40	0.23616		-0.002675		
+41	0.24853				-0.000288
+42	0.24897	-0.000659	-0.000659		
+43	0.26489	0.005243			
+44	0.27284		0.003932		
+45	0.27291			0.002179	
+46	0.28123				0.001693
+47	0.28523	0.013362			
+48	0.30731		0.009246		
+49	0.30911	0.023328			
+50	0.3095				0.002755
+51	0.31149			0.005642	
+52	0.32591	0.0296			
+53	0.33471		0.013831		
+54	0.33955				0.00437
+55	0.34411			0.008379	
+56	0.34537	0.036978			
+57	0.3604	0.043624			
+58	0.36759				0.005395
+59	0.37598		0.020413		
+60	0.38408			0.010956	
+61	0.38516	0.053217			
+62	0.39635				0.006227
+63	0.40104		0.023871		
+64	0.40639	0.060223			
+65	0.42331		0.026634		
+66	0.42336			0.01324	
+67	0.4237				0.00662
+68	0.43379	0.067587			
+69	0.44438				0.007172
+70	0.44446		0.028231		
+71	0.45147	0.070522			
+72	0.45667			0.014211	
+73	0.4645		0.02983		
+74	0.46788				0.007425
+75	0.46915	0.074197			
+76	0.4787		0.030272		
+77	0.48417	0.075653			
+78	0.49743	0.07563			
+79	0.4977			0.015168	
+80	0.49873				0.00737
+81	0.49985		0.031052		
+</data>
+</table>
+<multiLayer>
+Graph4	1	1	13/02/23 13:03
+geometry	657	385	553	461	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	535	398
+<PageGeometry>0.00917431	0.0121065	0.981651	0.96368</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	Φ/π	E/ɣb<sup>2</sup>			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	9	75	0	0	0
+ScaleFont1	Sans Serif	9	75	0	0	0
+ScaleFont2	Sans Serif	9	75	0	0	0
+ScaleFont3	Sans Serif	9	75	0	0	0
+AxisFont0	Sans Serif	9	50	0	0	0
+AxisFont1	Sans Serif	9	50	0	0	0
+AxisFont2	Sans Serif	9	50	0	0	0
+AxisFont3	Sans Serif	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k5angular_x	k5angular_SS-STr6b	7	5	#0000ff	0	2	7	0	#0000ff	#0000ff	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_SS-STr8b	7	5	#ff8000	0	2	7	0	#00ff00	#00ff00	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_TT-STr10b	7	5	#f1c40f	0	2	7	0	#ff0000	#ff0000	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_TT-STr12b	7	5	#800080	0	2	7	0	#000000	#000000	0	#000000	14	2	0	0	81	1
+scale	0	-0.05	0.1	0	4	5	0	0
+scale	1	-0.05	0.1	0	4	5	0	0
+scale	2	0	0.5	0.1	6	5	0	0
+scale	3	0	0.5	0.1	6	5	0	0
+LabelsFormat	2	2	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	0	1	0
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.013002364066194</x>
+<y>0.094721407624633</y>
+<right>0.17612293144208</right>
+<bottom>0.0634897360703812</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+\l(4)%(4)
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.39598108747045</x>
+<y>0.09692082111437</y>
+<right>0.494089834515366</right>
+<bottom>0.0854838709677419</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=5,θ=30
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>0</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

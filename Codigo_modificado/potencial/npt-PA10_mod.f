@@ -4,6 +4,9 @@
                                       !Enero 2023
       !
       !     SIMULACION MONTE CARLO Elipses
+         !Cambiar potencial tomando b como medida de distancia
+         !Cambiar condición de corte 
+      
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
       COMMON /BPOSITN/ RX(NPART),RY(NPART),RA(NPART),ACC(NACC),G(NG),AR,
@@ -27,7 +30,7 @@
       CALL START
       CALL MCARLO
       CALL FINISH
-      CALL RADIAL
+      !CALL RADIAL
 
       CLOSE(UNIT=6)
       STOP
@@ -38,10 +41,6 @@
        !Lee variables de sistema y estado (rho,temp) de pozos.in
        !al inicio y pozos.old si es continuacion
        !Genera la configuracion inicial de fcc.
-
-         !!Condición if, distancia de corte (ver línea 400)
-         !!Subrutinas radial y gofr
-         !!Ángulo de contacto
 
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
@@ -295,7 +294,7 @@
       DOUBLE PRECISION XNEW1(N), YNEW1(N), ANEW1(N)
       ! inicializa secuencia al azar
       ISEED=-123456789  ! 
-      
+
       ALL=.true.
       UTOT=0
       X=0
@@ -852,10 +851,10 @@
 C  102 FORMAT(1X,'NCOUNT=',I10,' NACCPT RATIO=',F8.4,' RTEST=',F8.4
 C     + ,' UAV=',F10.4,' VACCPT RATIO=',F8.4,/)
   102 FORMAT(1X,'NCOUNT=',I10,' NACCPT RATIO=',F8.4,' TAU=',F12.8
-     + ,' UAV=',F10.4,' VACCPT RATIO=',F8.4,' random  RATIO=',F8.4,/)
+     + ,' UAV=',ES10.4,' VACCPT RATIO=',F8.4,' random  RATIO=',F8.4,/)
   103 FORMAT(1X,'Num total de configuraciones desde el inicio',F12.0,/
      +,' N#mero de llamadas a g(r)',F12.0,/)
-  104 FORMAT(1X,'Energ!a potencial promedio desde el inicio',F10.4,/)
+  104 FORMAT(1X,'Energ!a potencial promedio desde el inicio: ',ES10.4,/)
 
   107 FORMAT(1X,' S=',G16.8,/)
  108  FORMAT(1X,' DISPL=',G16.8,/)
@@ -954,7 +953,7 @@ C     Calculo de energia potencial
             RR=X*X+Y*Y
 
             !!Energia 
-            if (RR.lt.RA3*RA3*SS ) then  !!CHECAR condición if
+            if (RR.lt.5*a ) then  !!CHECAR condición if
                dist=0
                ANGLE=RA(I)*PI/180 !orientación elipse 1 en radianes, medida respecto a la horizontal
 
