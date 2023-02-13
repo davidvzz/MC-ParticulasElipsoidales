@@ -1,0 +1,185 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	4
+<table>
+out2	17	2	08/02/23 14:35
+geometry	0	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/out2.dat	2
+<data>
+0	2	-0.00233834252945
+1	2.5	-0.001374717626125
+2	3	-0.0008547615588915
+3	3.5	-0.0005561067776306
+4	4	-0.0003755983395287
+5	4.5	-0.0002617802696458
+6	5	-0.0001874016133379
+7	5.5	-0.0001372865136788
+8	6	-0.0001026140017131
+9	6.5	-7.806406849646e-05
+10	7	-6.032325885843e-05
+11	7.5	-4.726863100938e-05
+12	8	-3.750546160128e-05
+13	8.5	-3.009670227351e-05
+14	9	-2.440000497426e-05
+15	9.5	-1.99669669893e-05
+16	10	-1.647936799317e-05
+</data>
+</table>
+<table>
+outST	17	2	08/02/23 15:46
+geometry	445	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/Desktop/DocumentsDMRHRH/outST.dat	2
+<data>
+2	3	0.001192663704418
+3	3.5	0.0007520230169445
+4	4	0.0004949194443254
+5	4.5	0.0003374957785436
+6	5	0.0002371459431781
+7	5.5	0.0001709568490337
+8	6	0.0001260012118197
+9	6.5	9.468057295001e-05
+10	7	7.236751736603e-05
+11	7.5	5.61553144218e-05
+12	8	4.416753987203e-05
+13	8.5	3.516313390463e-05
+14	9	2.83032612389e-05
+15	9.5	2.300977488316e-05
+16	10	1.887710214812e-05
+</data>
+</table>
+<table>
+outTT	17	2	08/02/23 15:47
+geometry	890	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/Desktop/DocumentsDMRHRH/outTT.dat	2
+<data>
+4	4	-0.0006639760546018
+5	4.5	-0.0004417595695651
+6	5	-0.0003040107945343
+7	5.5	-0.0002152853985161
+8	6	-0.0001562411600261
+9	6.5	-0.0001158288147181
+10	7	-8.748375714881e-05
+11	7.5	-6.717066594241e-05
+12	8	-5.233383811781e-05
+13	8.5	-4.131140621365e-05
+14	9	-3.299705805688e-05
+15	9.5	-2.663866253704e-05
+16	10	-2.171509528395e-05
+</data>
+</table>
+<multiLayer>
+Graph1	1	1	08/02/23 14:35
+geometry	0	220	583	461	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	4	4	565	398
+<PageGeometry>0.00695652	0.00968523	0.982609	0.96368</PageGeometry>
+PlotTitle	k=2, θ=80°	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	r/b	E/γb²		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	9	75	0	0	0
+ScaleFont1	Sans Serif	9	75	0	0	0
+ScaleFont2	Sans Serif	9	75	0	0	0
+ScaleFont3	Sans Serif	9	75	0	0	0
+AxisFont0	Sans Serif	9	50	0	0	0
+AxisFont1	Sans Serif	9	50	0	0	0
+AxisFont2	Sans Serif	9	50	0	0	0
+AxisFont3	Sans Serif	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	out2_1	out2_2	2	1	#000000	0	1	7	1	#000000	#00ffff	0	#000000	14	1	2	0	0	16	1
+curve	outST_1	outST_2	2	1	#ff0000	0	1	7	2	#000000	#ff0000	0	#000000	14	1	2	0	0	16	1
+curve	outTT_1	outTT_2	2	1	#ffff00	0	1	9	3	#000000	#ffff00	0	#000000	14	1	2	0	0	16	1
+scale	0	-0.0025	0.0015	0	9	5	0	0
+scale	1	-0.0025	0.0015	0	9	5	0	0
+scale	2	0	12	0	7	5	0	0
+scale	3	0	12	0	7	5	0	0
+LabelsFormat	3	1	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	0	1	0
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.3125</x>
+<y>0.00039799331103679</y>
+<right>2.57611241217799</right>
+<bottom>0.00068</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1) SS
+\l(2)ST
+\l(3)TT
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
