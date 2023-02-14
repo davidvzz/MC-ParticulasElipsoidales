@@ -1,0 +1,475 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	8
+<table>
+Table1	33	2	08/02/23 16:12
+geometry	0	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	188	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/Desktop/DocumentsDMRHRH/outTT5-30.dat	2
+<data>
+0	2	-0.1268198667123
+1	2.5	-0.07805062568068
+2	3	-0.05072101421519
+3	3.5	-0.03442368126983
+4	4	-0.02420640553981
+5	4.5	-0.01753164356916
+6	5	-0.01301818184818
+7	5.5	-0.009875455069
+8	6	-0.007631319548562
+9	6.5	-0.005993338985544
+10	7	-0.004774573195227
+11	7.5	-0.003852171019645
+12	8	-0.003143404051404
+13	8.5	-0.002591340172449
+14	9	-0.002156030854769
+15	9.5	-0.001808949740006
+16	10	-0.001529401374966
+17	10.5	-0.001302153464411
+18	11	-0.001115846041181
+19	11.5	-0.0009619040495917
+20	12	-0.0008337822079772
+21	12.5	-0.000726432944865
+22	13	-0.0006359264519631
+23	13.5	-0.0005591759755989
+24	14	-0.0004937368953866
+25	14.5	-0.0004376581855716
+26	15	-0.0003893714970223
+27	15.5	-0.0003476075519971
+28	16	-0.0003113325701121
+29	16.5	-0.0002796995255799
+30	17	-0.0002520104842723
+31	17.5	-0.0002276872880664
+32	18	-0.0002062485780199
+</data>
+</table>
+<table>
+Table2	33	2	08/02/23 16:12
+geometry	0	220	445	220	
+header	1[X]	2[Y]
+ColWidth	82	295	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/Desktop/DocumentsDMRHRH/outST5-30.dat	2
+<data>
+0	2	0.06053593098905
+1	2.5	0.04038052920983
+2	3	0.02799447204641
+3	3.5	0.02003556052372
+4	4	0.0147280992338
+5	4.5	0.01107610340091
+6	5	0.008494888663139
+7	5.5	0.006627630214931
+8	6	0.005249142377968
+9	6.5	0.00421310146615
+10	7	0.003421952035824
+11	7.5	0.002809153405232
+12	8	0.002328386267499
+13	8.5	0.001946812487442
+14	9	0.001640763617393
+15	9.5	0.001392922543261
+16	10	0.001190444599068
+17	10.5	0.001023682359879
+18	11	0.0008853058613236
+19	11.5	0.0007696864297821
+20	12	0.0006724591128846
+21	12.5	0.0005902079333274
+22	13	0.0005202367827658
+23	13.5	0.0004604007998085
+24	14	0.0004089809783517
+25	14.5	0.0003645900203925
+26	15	0.0003261010071197
+27	15.5	0.0002925928980819
+28	16	0.0002633085551713
+29	16.5	0.0002376221694441
+30	17	0.0002150138047187
+31	17.5	0.0001950493692806
+32	18	0.0001773647579507
+</data>
+</table>
+<table>
+Table3	33	2	08/02/23 16:12
+geometry	0	440	445	220	
+header	1[X]	2[Y]
+ColWidth	100	153	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/Desktop/DocumentsDMRHRH/outSS5-30.dat	2
+<data>
+0	2	-0.03256056662319
+1	2.5	-0.02300714332654
+2	3	-0.01673083665715
+3	3.5	-0.01246657748007
+4	4	-0.00948525536333
+5	4.5	-0.007348854800502
+6	5	-0.005784694230649
+7	5.5	-0.004617686743771
+8	6	-0.003732320781746
+9	6.5	-0.003050540716216
+10	7	-0.002518463835658
+11	7.5	-0.002098176174898
+12	8	-0.001762536181637
+13	8.5	-0.001491808137085
+14	9	-0.001271435907913
+15	9.5	-0.001090543112077
+16	10	-0.0009409053482556
+17	10.5	-0.0008162348455926
+18	11	-0.0007116753708452
+19	11.5	-0.0006234408381846
+20	12	-0.000548553545143
+21	12.5	-0.0004846523969704
+22	13	-0.0004298509070193
+23	13.5	-0.0003826310062665
+24	14	-0.0003417628916387
+25	14.5	-0.0003062439995758
+26	15	-0.0002752521598408
+27	15.5	-0.0002481093567142
+28	16	-0.0002242534914437
+29	16.5	-0.000203216227858
+30	17	-0.0001846054974476
+31	17.5	-0.0001680915986729
+32	18	-0.0001533960874021
+</data>
+</table>
+<table>
+Table4	33	2	10/02/23 14:20
+geometry	434	5	445	180	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/Desktop/DocumentsDMRHRH/k5t30/radial/outSS5-30.dat	2
+<data>
+0	2	-0.03256056662319
+1	2.5	-0.02300714332654
+2	3	-0.01673083665715
+3	3.5	-0.01246657748007
+4	4	-0.00948525536333
+5	4.5	-0.007348854800502
+6	5	-0.005784694230649
+7	5.5	-0.004617686743771
+8	6	-0.003732320781746
+9	6.5	-0.003050540716216
+10	7	-0.002518463835658
+11	7.5	-0.002098176174898
+12	8	-0.001762536181637
+13	8.5	-0.001491808137085
+14	9	-0.001271435907913
+15	9.5	-0.001090543112077
+16	10	-0.0009409053482556
+17	10.5	-0.0008162348455926
+18	11	-0.0007116753708452
+19	11.5	-0.0006234408381846
+20	12	-0.000548553545143
+21	12.5	-0.0004846523969704
+22	13	-0.0004298509070193
+23	13.5	-0.0003826310062665
+24	14	-0.0003417628916387
+25	14.5	-0.0003062439995758
+26	15	-0.0002752521598408
+27	15.5	-0.0002481093567142
+28	16	-0.0002242534914437
+29	16.5	-0.000203216227858
+30	17	-0.0001846054974476
+31	17.5	-0.0001680915986729
+32	18	-0.0001533960874021
+</data>
+</table>
+<table>
+Table5	33	2	10/02/23 14:20
+geometry	444	221	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/Desktop/DocumentsDMRHRH/k5t30/radial/outST5-30.dat	2
+<data>
+8	6	0.007631319548562
+9	6.5	0.005993338985544
+10	7	0.004774573195227
+11	7.5	0.003852171019645
+12	8	0.003143404051404
+13	8.5	0.002591340172449
+14	9	0.002156030854769
+15	9.5	0.001808949740006
+16	10	0.001529401374966
+17	10.5	0.001302153464411
+18	11	0.001115846041181
+19	11.5	0.0009619040495917
+20	12	0.0008337822079772
+21	12.5	0.000726432944865
+22	13	0.0006359264519631
+23	13.5	0.0005591759755989
+24	14	0.0004937368953866
+25	14.5	0.0004376581855716
+26	15	0.0003893714970223
+27	15.5	0.0003476075519971
+28	16	0.0003113325701121
+29	16.5	0.0002796995255799
+30	17	0.0002520104842723
+31	17.5	0.0002276872880664
+32	18	0.0002062485780199
+</data>
+</table>
+<table>
+Table6	33	2	10/02/23 14:20
+geometry	479	451	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/mejia/Desktop/DocumentsDMRHRH/k5t30/radial/outTT5-30.dat	2
+<data>
+16	10	-0.002666892994459
+17	10.5	-0.002215909524048
+18	11	-0.001856913486801
+19	11.5	-0.001568195800903
+20	12	-0.001333811752409
+21	12.5	-0.001141892977671
+22	13	-0.0009834965197061
+23	13.5	-0.0008518074233147
+24	14	-0.0007415780865974
+25	14.5	-0.0006487286897945
+26	15	-0.000570058825381
+27	15.5	-0.0005030369427353
+28	16	-0.000445644933388
+29	16.5	-0.0003962622499506
+30	17	-0.0003535786808252
+31	17.5	-0.0003165281096028
+32	18	-0.000284237789849
+</data>
+</table>
+<multiLayer>
+Graph1	1	1	08/02/23 16:12
+geometry	0	717	1368	741	minimized	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	-8	12	1343	695
+<PageGeometry>-0.00584795	0.0166436	0.981725	0.963939</PageGeometry>
+PlotTitle	k=5 tetha=30°	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	r/b	E/γB²			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	0	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	19	75	0	0	0
+ScaleFont0	Sans Serif	16	75	0	0	0
+ScaleFont1	Sans Serif	16	75	0	0	0
+ScaleFont2	Sans Serif	16	75	0	0	0
+ScaleFont3	Sans Serif	16	75	0	0	0
+AxisFont0	Sans Serif	16	50	0	0	0
+AxisFont1	Sans Serif	16	50	0	0	0
+AxisFont2	Sans Serif	16	50	0	0	0
+AxisFont3	Sans Serif	16	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Table1_1	Table1_2	1	0	#000000	0	1	7	1	#000000	#ffff00	0	#000000	14	1	2	0	0	32	1
+curve	Table2_1	Table2_2	2	1	#000000	0	1	7	2	#ff0000	#ff0000	0	#000000	14	1	2	0	0	32	1
+curve	Table3_1	Table3_2	2	1	#000000	0	1	7	3	#000000	#00ffff	0	#000000	14	1	2	0	0	32	1
+scale	0	-0.05	0.02	0	4	5	0	0
+scale	1	-0.05	0.02	0	4	5	0	0
+scale	2	0	18	4	6	2	0	0
+scale	3	0	18	4	6	2	0	0
+LabelsFormat	3	1	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	0	1	0
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>10.702702702703</x>
+<y>-0.034548494983278</y>
+<right>4.73684210526316</right>
+<bottom>0.0106666666666667</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(3)SS
+\l(2)ST
+\l(1) TT
+</Text>
+<Font>Sans Serif	16	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<multiLayer>
+Graph2	1	1	10/02/23 14:20
+geometry	717	24	569	461	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	10	5	551	398
+<PageGeometry>0.0178253	0.0121065	0.982175	0.96368</PageGeometry>
+PlotTitle	k=5 tetha=30 REAL	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	r/b	E/γB²		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	9	75	0	0	0
+ScaleFont1	Sans Serif	9	75	0	0	0
+ScaleFont2	Sans Serif	9	75	0	0	0
+ScaleFont3	Sans Serif	9	75	0	0	0
+AxisFont0	Sans Serif	9	50	0	0	0
+AxisFont1	Sans Serif	9	50	0	0	0
+AxisFont2	Sans Serif	9	50	0	0	0
+AxisFont3	Sans Serif	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Table4_1	Table4_2	1	0	#000000	0	1	7	1	#000000	#00ffff	0	#000000	14	1	2	0	0	32	1
+curve	Table5_1	Table5_2	2	1	#ff0000	0	1	7	2	#ff0000	#ff0000	0	#000000	14	1	2	0	0	32	1
+curve	Table6_1	Table6_2	2	1	#ffff00	0	1	7	3	#000000	#ffff00	0	#000000	14	1	2	0	0	32	1
+scale	0	-0.04	0.02	0	4	5	0	0
+scale	1	-0.04	0.02	0	4	5	0	0
+scale	2	0	20	4	6	2	0	0
+scale	3	0	20	4	6	2	0	0
+LabelsFormat	3	1	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	0	1	0
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>8.4037558685446</x>
+<y>0.068769716088328</y>
+<right>12.4882629107981</right>
+<bottom>0.0422712933753943</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>0</visible>
+<Text>
+\l(1)SS
+\l(2)ST
+\l(3)TT
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>1.0798122065728</x>
+<y>0.016971608832808</y>
+<right>4.83568075117371</right>
+<bottom>0.00977917981072555</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)SS
+\l(2)ST
+\l(3)TT
+</Text>
+<Font>Sans Serif	6	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
