@@ -10,11 +10,13 @@
             OPEN(UNIT=2,FILE='ST-5-30.dat',STATUS='unknown')     
             OPEN(UNIT=3,FILE='TT-5-30.dat',STATUS='unknown')     
 
-            WRITE(*,*) 'Configuracion?: 1:SS, 2:ST, 3:TT'
-            READ(*,*) CONF
+            ! 'Configuracion?: 1:SS, 2:ST, 3:TT'
+            
             OPEN(UNIT=101, FILE='outSS5-30.dat', STATUS='unknown')
             OPEN(UNIT=102, FILE='outST5-30.dat', STATUS='unknown')
             OPEN(UNIT=103, FILE='outTT5-30.dat', STATUS='unknown')
+            
+            DO CONF=1,3
             T=CONF+100
             IF (CONF==1) THEN 
             !Para angulos SS
@@ -43,4 +45,5 @@
                 ri=ri+0.5
                 
             end do
+            END DO 
         END PROGRAM
