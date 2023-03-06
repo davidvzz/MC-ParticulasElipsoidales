@@ -14,7 +14,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -49,7 +49,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -63,7 +63,7 @@
       NAMELIST /input/ N,RHO,TEMP,PHI,XLAMBDA,XLAM2,XLAM3,XLAM4,XLAM5,
      +                 XLAM6,NRUN,NMOVE,NMOVE2,NSUB,DISPL,DISPLAng ,
      +                 DISPLClu,RA3,IAV,NAC,NCX,NCY,QX,QY,SDISPL,NGOFR,
-     +                 LGOFR,XHISTG,AR, A1, A2, A3, A4
+     +                 LGOFR,XHISTG,AR, A1, A2, A3, A4,a,b,tension
 
 
       ! ACUMULADORES A CERO
@@ -79,7 +79,7 @@
       ! LEE PARAMETROS DE ENTRADA: N,TEMP E.T.C.
       OPEN (UNIT=1,FILE='npt6.in',STATUS='old')
 
-      !!Definir A1, A2, A3, A4
+      !!Definir A1, A2, A3, A4,a,b,tension
       READ(unit=1, nml=input)
 
       ! ESCRIBE PARAMETROS DE ENTRADA
@@ -283,7 +283,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -294,6 +294,9 @@
       DOUBLE PRECISION XNEW1(N), YNEW1(N), ANEW1(N)
       ! inicializa secuencia al azar
       ISEED=-123456789  ! 
+
+      a=AR*S/2 !semieje mayor en unidad de caja
+      b=S/2    !semieje menor en unidad de caja
 
       ALL=.true.
       UTOT=0
@@ -394,7 +397,7 @@
      +    GOTO 3
 
 
-         if (RR.lt.RA3*RA3*SS )then !CHECAR condición if
+         if (RR.lt.25*a*a )then !CHECAR condición if
             ALL=.false.
             call ENERG(UNEW, ALL, X, Y, ANEW, RA(J))
 
@@ -425,7 +428,7 @@
          !!!!!!! CAMBIAR
          !!Energia pozos angulares
 
-         if (RR.lt.RA3*RA3*SS )then !CHECAR condición if
+         if (RR.lt.25*a*a  )then !CHECAR condición if
             ALL=.false.
             call ENERG(UOLD, ALL, X, Y, RA(I), RA(J))
 
@@ -433,7 +436,7 @@
     4 CONTINUE
 
 
-      DENERG=UNEW-UOLD
+      DENERG=b*b*tension*(UNEW-UOLD)
       
       !Si la energía de la nueva configuración es menor que la energía de laconfiguracioń
       !inicial, entonces aceptamos la nueva configuración
@@ -872,7 +875,7 @@ C     Identifica los clusters en la matriz
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -919,17 +922,15 @@ C     Calculo de energia potencial
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
       COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
-      LOGICAL ALL !
+      LOGICAL ALL 
 
-      a=AR*S/2
-      b=S/2
 
       !Si ALL=TRUE calcula la energía de TODO el sistema
       If (ALL .eqv. .true.) then
@@ -961,7 +962,8 @@ C     Calculo de energia potencial
 
                !Angulo entre elipses
                ANGLE3=datan( Y/X )
-               call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )  !los ángulos tienen que estar medidos respecto a la horizontal 
+               call ellipses( a, b, a, b, ANGLE, ANGLE2, ANGLE3, dist )  !Calcula la distancia de máxima aproximación
+                                                                         !los ángulos tienen que estar medidos respecto a la horizontal 
                                                                          !y en dirección antihoraria para que funcione la subrutina
 
                pppp= X*dcos(ANGLE)+Y*dsin(ANGLE) !producto punto entre el vector que une los centros y vector unitario de orientación de elipse1
@@ -972,10 +974,11 @@ C     Calculo de energia potencial
                pppp=pppp/dsqrt(RR)
                ANGLE2=acos(pppp)  !angulo de orientación elipse2 respecto al vector que une los centros
 
-               U = U - A1*dcos(2*ANGLE2+2*ANGLE)*( b /
-     +                             ( dsqrt(RR) - A2*dist+A3 ) )**A4      !el potencial funciona con los ángulos tomados respecto al vector que une los centros
+               U = U - A1*dcos(2*ANGLE2+2*ANGLE)*( b /                     !Potencial SIN UNIDADES
+     +                             ( dsqrt(RR) - A2*dist+A3*b ) )**A4      !el potencial funciona con los ángulos tomados respecto al vector que une los centros
             end if
     4    CONTINUE
+         U=U*b*b*tension !unidades SI
 
       Else !!Calculamos energía a pares, con una partícula fija
          RR=X*X+Y*Y
@@ -998,8 +1001,8 @@ C     Calculo de energia potencial
 
          ANGLE2=acos(pppp)
 
-         U = U - A1*dcos(2*ANGLE2+2*ANGLE)*( b /
-     +                              ( dsqrt(RR) - A2*dist+A3 ) )**A4
+         U = U - A1*dcos(2*ANGLE2+2*ANGLE)*( b /                           !Potencial SIN UNIDADES
+     +                              ( dsqrt(RR) - A2*dist+A3*b ) )**A4
       end if
 
       RETURN
@@ -1016,7 +1019,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1096,7 +1099,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1146,7 +1149,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1359,8 +1362,8 @@ C        WRITE(6,*)'INIT.',IDUM
          End If
      
          !substitute for R'
-             Rc=cdsqrt((qq**2-1.d0)/deltap*(1.d0+b2p*(1.d0+deltap)/qq)
-     +        **2+(1.d0-(qq**2-1.d0)/deltap)*(1.d0+b2p/qq)**2)
+             Rc=dreal(cdsqrt((qq**2-1.d0)/deltap*(1.d0+b2p*(1.d0+deltap)
+     +        /qq)**2+(1.d0-(qq**2-1.d0)/deltap)*(1.d0+b2p/qq)**2))
              
          END IF
          
@@ -1382,4 +1385,3 @@ C        WRITE(6,*)'INIT.',IDUM
       r = (dreal(z)**2+dimag(z)**2)**(1.d0/6.d0)
       ccbrt = dcmplx(r*dcos(theta), r*dsin(theta))
       End function ccbrt
-      

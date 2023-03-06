@@ -30,6 +30,9 @@ XHISTG   = 50        ,
 AR       = 3.0       ,
 A1       = 4.455     ,
 A2       = 0.350     ,
-A3       = 2.895    ,
-A4       = 4.511         
+A3       = 2.895     ,
+A4       = 4.511     ,
+tension  = 72.75D-3     !tensión superficial entre fluidos, medida en unidades N/m
+                        !datos obtenidos de https://srd.nist.gov/JPCRD/jpcrd231.pdf
 /
+

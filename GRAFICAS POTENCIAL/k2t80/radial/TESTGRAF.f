@@ -16,31 +16,40 @@
             OPEN(UNIT=102, FILE='outST.dat', STATUS='unknown')
             OPEN(UNIT=103, FILE='outTT.dat', STATUS='unknown')
             T=CONF+100
+
+            ri=4.0
+
             IF (CONF==1) THEN 
             !Para angulos SS
                 READ(unit=1,nml=input) 
                 dist=2*b
                 a=k*b  
+                write(T,*) 'k= ',k,'a=',a,'b=',b,'r=',ri
+                write(T,*) 'x   ', 'SS'
             ELSE IF (CONF==2) THEN
             !PARA CONF ST
                 READ(unit=2,nml=input)
                 a=k*b
                 dist=a+b
+                write(T,*) 'k= ',k,'a=',a,'b=',b,'r=',ri
+                write(T,*) 'x   ', 'ST'
             ELSE 
                 !PARA CONF TT
                 READ(UNIT=3,nml=input)
                 a=k*b  
                 dist=2*a
+                write(T,*) 'k= ',k,'a=',a,'b=',b,'r=',ri
+                write(T,*) 'x   ', 'TT'
             END IF
 
-            ri=2.0
 
-            do while (ri.LE.10)
+
+            do while (ri<10)
                 
                U=-A1*cos(2*ANGLE2+2*ANGLE3)*( b /
      +                             ( ri - A2*dist + A3 ))**A4
                 WRITE(T,*) ri,U 
-                ri=ri+0.5
+                ri=ri+0.2
                 
             end do
         END PROGRAM

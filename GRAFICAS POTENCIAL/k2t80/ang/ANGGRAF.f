@@ -1,10 +1,11 @@
         PROGRAM ANGGRAF
             IMPLICIT NONE
-            DOUBLE PRECISION:: a, b, ANGLE, ANGLE2, ANGLE3, dist, U,k,ri
+            DOUBLE PRECISION:: a, b, ANGLE, ANGLE2, ANGLE3, dist, U,k
             DOUBLE PRECISION :: A1,A2,A3,A4
             DOUBLE PRECISION :: f, ANGINC
             DOUBLE PRECISION, PARAMETER :: pi=4.D0*DATAN(1.D0)
-            INTEGER CONF,T
+            INTEGER CONF,T,ri
+            CHARACTER   ::  rstr
             NAMELIST /input/ k,b,ANGLE, ANGLE2, ANGLE3, A1, A2, A3, A4
             OPEN(UNIT=1,FILE='SS-2-80.dat',STATUS='unknown')     
             OPEN(UNIT=3,FILE='TT-2-80.dat',STATUS='unknown')   
@@ -17,30 +18,38 @@
 
             WRITE(*,*) 'Configuracion?: 1:SS, 3:TT'
             READ(*,*) CONF
-            
-            IF (CONF==1) THEN 
-            !PARA SS CON R=3B
-                READ(UNIT=1,nml=input)
-                dist=2*b
-            ELSE IF(CONF.NE.1)THEN
-            !Para TT
-                READ(UNIT=3,nml=input)
-                dist=2*a
-            END IF
-            a=k*b
             WRITE(*,*)'ri? '
             READ(*,*)ri
+
             T=ri+100
             ANGINC=0
             f=0
+
+            write(rstr, '(I1)') ri
+
+            IF (CONF==1) THEN 
+            !PARA SS CON R=3B
+                READ(UNIT=1,nml=input)
+                a=k*b
+                dist=2*b
+                write(T,*) 'k= ',k,'a=',a,'b=',b,'r=',ri
+                WRITE(T,*) 'x   ','SS-'//rstr
+            ELSE IF(CONF.NE.1)THEN
+            !Para TT
+                READ(UNIT=3,nml=input)
+                a=k*b
+                dist=2*a
+                write(T,*) 'k= ',k,'a=',a,'b=',b,'r=',ri
+                WRITE(T,*) 'x   ','TT-'//rstr
+            END IF
             
+    
 
             do while (f.LE.0.5) 
                 call ellipses(a,b,a,b,ANGLE, ANGLE2, ANGLE3,dist)
                 
                 U=-A1*cos(2*ANGLE+2*ANGLE2)*( b /
      +                 ( ri - A2*dist + A3 ))**A4
-                
                 WRITE(T,*) f,U
                 ANGINC=ANGINC+pi/180 !rand 
                 ANGLE2=ANGLE2+pi/180 !radianes
