@@ -338,7 +338,7 @@
       WRITE(6,101) UPERP
       !comienza la secuencia de Monte Carlo
 
-      OPEN(UNIT=2,FILE='unpt6.dat',STATUS='NEW')
+      OPEN(UNIT=2,FILE='unpt6.dat',STATUS='unknown')
       !OPEN(UNIT=93,FILE='angulos.dat',STATUS='NEW')
 
       ! escoge particula al azar

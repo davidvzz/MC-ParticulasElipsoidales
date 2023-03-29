@@ -4,8 +4,9 @@
                                       !Enero 2023
       !
       !     SIMULACION MONTE CARLO Elipses
-         !Cambiar potencial tomando b como medida de distancia
-         !Cambiar condición de corte 
+         !Graficar Energía promedio vs numero de pasos de monte carlo
+         !Ver que se genere archivos de posición finales e iniciales
+
       
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
@@ -14,7 +15,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension,b_sigma
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -22,11 +23,15 @@
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       PI = 4.D0*DATAN(1.D0)
-      OPEN(UNIT=6,FILE='npt6.dat',STATUS='unknown')
-      OPEN(UNIT=8,FILE='npt6.tau',STATUS='unknown')
-      !  UNIDAD 10 NPT5.SIG GUARDA MUESTREO EN SIGMA
-      OPEN(UNIT=10,FILE='npt6.sigma',STATUS='unknown')
+      OPEN(UNIT=15,FILE='graficas/conf_inicial.dat',STATUS='unknown')
+      open(unit=16,file="graficas/conf_final.dat",STATUS="unknown")
+      OPEN(UNIT=6,FILE='datos/npt6.dat',STATUS='unknown')
 
+      OPEN(UNIT=8,FILE='datos/npt6.tau',STATUS='unknown')
+      !  UNIDAD 10 NPT5.SIG GUARDA MUESTREO EN SIGMA
+      OPEN(UNIT=10,FILE='datos/npt6.sigma',STATUS='unknown')
+      open(unit=20,file='graficas/EvsN.dat',status='unknown')
+      
       CALL START
       CALL MCARLO
       CALL FINISH
@@ -49,7 +54,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension,b_sigma
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -78,10 +83,9 @@
       CLU(:,:)=0.0D0
       ! LEE PARAMETROS DE ENTRADA: N,TEMP E.T.C.
       OPEN (UNIT=1,FILE='npt6.in',STATUS='old')
-
-      !!Definir A1, A2, A3, A4,a,b,tension
       READ(unit=1, nml=input)
 
+      TEMP=TEMP+273.15d0
       ! ESCRIBE PARAMETROS DE ENTRADA
       LRHO=0
       WRITE(6,100)
@@ -243,8 +247,8 @@
       WRITE(6,109) XL,YL
       WRITE(6,110) S
 
-      DO 44 I=1,20
-         WRITE(6,115) RX(I),RY(I), RA(I)
+      DO 44 I=1,N
+         WRITE(15,*) RX(I),RY(I),S*AR,S,RA(I)
    44 CONTINUE
 
       ! formatos de escritura de START
@@ -283,7 +287,7 @@
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension,b_sigma
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -292,11 +296,14 @@
       LOGICAL LGOFR
       LOGICAL ALL
       DOUBLE PRECISION XNEW1(N), YNEW1(N), ANEW1(N)
+      DOUBLE PRECISION, PARAMETER:: kb=1.380649D-23
+      
       ! inicializa secuencia al azar
-      ISEED=-123456789  ! 
-
+      ISEED=-123456794  ! 
+         
       a=AR*S/2 !semieje mayor en unidad de caja
       b=S/2    !semieje menor en unidad de caja
+      b_sigma=(1d-6/2d0) !semieje mejor en metros (suponiendo que sigma=1micrometro)
 
       ALL=.true.
       UTOT=0
@@ -304,9 +311,10 @@
       Y=0
       ANG=0
       ANG2=0
+
       CALL ENERG(UTOT,ALL,X,Y,ANG,ANG2) ! subrutina energia para calcular la energía de la configuración creada inicialmente
 
-      UPERP=UTOT/XN ! energia ...
+      UPERP=UTOT/XN ! promedio energia 
       ! NTEST=0
       USUBAV=0.0D00
       NCOUNT=0
@@ -319,7 +327,7 @@
       WRITE(6,101) UPERP
       !comienza la secuencia de Monte Carlo
 
-      OPEN(UNIT=2,FILE='unpt6.dat',STATUS='unknown')
+      OPEN(UNIT=2,FILE='datos/unpt6.dat',STATUS='unknown')
       !OPEN(UNIT=93,FILE='angulos.dat',STATUS='NEW')
 
       ! escoge particula al azar
@@ -428,16 +436,17 @@
          !!!!!!! CAMBIAR
          !!Energia pozos angulares
 
-         if (RR.lt.25*a*a  )then !CHECAR condición if
+         if (RR.lt. 25*a*a  )then !CHECAR condición if
             ALL=.false.
             call ENERG(UOLD, ALL, X, Y, RA(I), RA(J))
 
          end if
     4 CONTINUE
-
-
-      DENERG=b*b*tension*(UNEW-UOLD)
       
+
+      DENERG=tension*(b_sigma*b_sigma)*(UNEW-UOLD)
+      
+
       !Si la energía de la nueva configuración es menor que la energía de laconfiguracioń
       !inicial, entonces aceptamos la nueva configuración
       IF (DENERG.LE.0.0D00) GOTO 5
@@ -445,8 +454,8 @@
       
       ! compara el factor de BOLTZMANN con n#mero al azar
       RND=RAN2(ISEED)
-      IF (RND.GT.EXP(-DENERG/TEMP)) GOTO 3  !TRUE -> se rechaza la configuración
-
+      IF (RND.GT.EXP(-DENERG/(kb*TEMP))) GOTO 3  !TRUE -> se rechaza la configuración
+      
       ! actualiza posicion de la part!cula I
     5 RX(I)=XNEW        !GOTO 5
       RY(I)=YNEW
@@ -461,7 +470,7 @@
       ACC(2)=ACC(2)+UTOT
       USUBAV=USUBAV+UTOT
       XNTEST=DFLOAT(NCOUNT)
-
+      
    !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
    !C        PRUEBA PARA OBTENER BARRA DE ERROR EN DENSIDAD
       IF (NERCONT.EQ.NSET) THEN
@@ -469,18 +478,28 @@
          NERCONT=0
       END IF
    !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+      if ( NCOUNT==NMOVE/2 ) then
+         open(unit=30,file="graficas/conf_intermedia.dat")
+         do i=1,N
+            write(30,*) RX(i),RY(i),S*AR,S,RA(I)
+         end do
+      end if
+
       IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR
       IF (NCOUNT.GE.NMOVE) GOTO 6
 
       IF (NCOUNT.LT.NSUB) GOTO 1
 
       ! escribe resultados
+      
       UAV=USUBAV/(XN*NCOUNT)
       !      WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),RTEST/XNTEST,
       !     + UAV,VACCPT
       WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),TAU,
      + UAV,VACCPT,RTEST/XNTEST
+      write(20,*) NCOUNT, UAV
       WRITE(8,*)TAU
+      
       NSUB=NSUB+NSUB0
       XXMOV = DFLOAT(NMOVE)
       XXX = XNTEST/XXMOV
@@ -500,6 +519,9 @@
 
       ! marca clusters
       !! Revisa vecinos para clusters
+
+
+
     6 DO I=1,N          !GOTO 6
          DO J=1,N
             IF (J.NE.I) then
@@ -530,16 +552,17 @@
          END DO
       END DO
 
+      do i=1,N
+         write(16,*) RX(i),RY(i),S*AR,S,RA(I)
+      end do
+
+
       !!!!!CHECAR
       I=1
       DO while (I.NE.0)
          CALL CLUSTERS(I) 
       end do
 
-      OPEN(UNIT=15,FILE='antes.dat',STATUS='unknown')
-      DO I=1,N
-         WRITE(15,*)RX(I),RY(I),S*AR,S,RA(I)
-      END DO
 
       ! inicia corrida por clusters
     7 I=INT(RAN2(ISEED)*N)+1     !!!!! GOTO 7
@@ -706,12 +729,15 @@
                   IF (X.GT.0.5D00) THEN
                      X=X-1.0D00
                   end if
+                  
                   IF (X.LT.-0.5D00) THEN
                      X=X+1.0D00
                   END IF
+
                   IF (Y.GT.Y2) THEN
                      Y=Y-YC
                   end if
+
                   IF (Y.LT.-Y2) THEN
                      Y=Y+YC
                   END IF
@@ -814,6 +840,7 @@
       !     + UAV,VACCPT
       WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),TAU,
      + UAV,VACCPT,RTEST/XNTEST
+      write(20,*) NCOUNT, UAV
       WRITE(8,*)TAU
       NSUB=NSUB+NSUB0 ! le agrega la parte inicial del contador 
       XXMOV = DFLOAT(NMOVE)  ! movimiento de en x 
@@ -832,7 +859,7 @@
 
    12 UAV=USUBAV/(XN*NCOUNT)   !!!GOTO 12
       UAVRUN=ACC(2)/(XN*ACC(1))
-      OPEN(UNIT=17,FILE='despues.dat',STATUS='unknown')
+      OPEN(UNIT=17,FILE='graficas/despues.dat',STATUS='unknown')
       DO I=1,N
          WRITE(17,*) RX(I),RY(I),S*AR,S,RA(I) ! escribe datos 
       END DO
@@ -841,6 +868,7 @@
       !     + UAV,VACCPT
       WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),TAU,
      + UAV,VACCPT,RTEST/XNTEST
+      write(20,*) NCOUNT, UAV
       WRITE(8,*)TAU
       WRITE(6,107)S
       WRITE(6,108)DISPL/S
@@ -850,14 +878,14 @@
 
       RETURN 
 
-  101 FORMAT(/,1X,'inicio de corrrida',/,1X,'energ!a inicial',G16.8,/)
+  101 FORMAT(/,1X,'inicio de corrrida',/,1X,'energ!a inicial',ES10.4,/)
 C  102 FORMAT(1X,'NCOUNT=',I10,' NACCPT RATIO=',F8.4,' RTEST=',F8.4
 C     + ,' UAV=',F10.4,' VACCPT RATIO=',F8.4,/)
   102 FORMAT(1X,'NCOUNT=',I10,' NACCPT RATIO=',F8.4,' TAU=',F12.8
-     + ,' UAV=',ES10.4,' VACCPT RATIO=',F8.4,' random  RATIO=',F8.4,/)
+     + ,' UAV=',ES12.4,' VACCPT RATIO=',F8.4,' random  RATIO=',F8.4,/)
   103 FORMAT(1X,'Num total de configuraciones desde el inicio',F12.0,/
      +,' N#mero de llamadas a g(r)',F12.0,/)
-  104 FORMAT(1X,'Energ!a potencial promedio desde el inicio: ',ES10.4,/)
+  104 FORMAT(1X,'Energ!a potencial promedio desde el inicio: ',ES12.4,/)
 
   107 FORMAT(1X,' S=',G16.8,/)
  108  FORMAT(1X,' DISPL=',G16.8,/)
@@ -875,7 +903,7 @@ C     Identifica los clusters en la matriz
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension,b_sigma
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -922,7 +950,7 @@ C     Calculo de energia potencial
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension,b_sigma
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -930,8 +958,10 @@ C     Calculo de energia potencial
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       LOGICAL ALL 
+      double Precision, PARAMETER::   kb=1.380649D-23
 
-
+      open(unit=25,file="datos/bool.dat")
+      write(25,*) ALL
       !Si ALL=TRUE calcula la energía de TODO el sistema
       If (ALL .eqv. .true.) then
          U=0
@@ -954,7 +984,7 @@ C     Calculo de energia potencial
             RR=X*X+Y*Y
 
             !!Energia 
-            if (RR.lt.5*a ) then  !!CHECAR condición if
+            if (RR .lt. 25*a*a ) then  !!CHECAR condición if
                dist=0
                ANGLE=RA(I)*PI/180 !orientación elipse 1 en radianes, medida respecto a la horizontal
 
@@ -978,7 +1008,10 @@ C     Calculo de energia potencial
      +                             ( dsqrt(RR) - A2*dist+A3*b ) )**A4      !el potencial funciona con los ángulos tomados respecto al vector que une los centros
             end if
     4    CONTINUE
-         U=U*b*b*tension !unidades SI
+         
+         U=U*b_sigma*b_sigma*tension !unidades SI
+
+         U=U/(kb*TEMP)
 
       Else !!Calculamos energía a pares, con una partícula fija
          RR=X*X+Y*Y
@@ -1019,7 +1052,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension,b_sigma
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1099,7 +1132,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension,b_sigma
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1108,7 +1141,7 @@ C     Calcula g(r)
       LOGICAL LGOFR
 
       ! Escribe configuracion final en p2a.new
-      OPEN(UNIT=4,FILE='npt6.new',STATUS='unknown')
+      OPEN(UNIT=4,FILE='datos/npt6.new',STATUS='unknown')
       WRITE(4,*) S
       DO 55 I=1,N
          WRITE(4,*) RX(I),RY(I),S*AR,S,RA(I)
@@ -1149,7 +1182,7 @@ C     Calcula g(r)
       COMMON /BCONSTR/ PI,ETA,RHO,XLAMBDA,XLAM2,XLAM3,SL2,SQL2,
      +                 SL3,SQL3,XN,TEMP,DISPL,DISPLAng, DISPLClu,XHISTG,
      +                 S,SS,SSLL,SL,XC,YC,YCINV,
-     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension
+     +                 XL,YL,Y2,RA3,A1, A2, A3, A4,a,b,tension,b_sigma
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
@@ -1167,7 +1200,7 @@ C     Calcula g(r)
       !NEND=INT((0.5D00*XC-S)*XHISTG/(SL-S))
       NEND=INT(5.0D00*XHISTG+((0.5D00*XC)-SL5)/DR6)
 
-      OPEN(UNIT=7,FILE='gdrnpt5.dat',STATUS='unknown')
+      OPEN(UNIT=7,FILE='datos/gdrnpt5.dat',STATUS='unknown')
 
       DO 1 L=1,NEND
          X=FLOAT(L)

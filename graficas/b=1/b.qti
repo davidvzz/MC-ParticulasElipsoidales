@@ -1,9 +1,9 @@
 QtiPlot 0.9.8 project file
 <scripting-lang>	muParser
-<windows>	23
+<windows>	25
 <table>
 k2angular	92	5	20/02/23 13:21
-geometry	392	679	-1	-1	minimized	
+geometry	196	655	-1	-1	minimized	
 header	x[X]	SS-ST3[Y]	SS-ST5[Y]	TT-ST4[Y]	TT-ST6[Y]
 ColWidth	100	100	100	100	100	
 <com>
@@ -110,7 +110,7 @@ WindowLabel	/home/mejia/Pictures/k2angular.csv	2
 </table>
 <table>
 k2radial	72	4	20/02/23 13:21
-geometry	196	679	-1	-1	minimized	
+geometry	0	655	-1	-1	minimized	
 header	x[X]	SS[Y]	ST[Y]	TT[Y]
 ColWidth	100	100	100	100	
 <com>
@@ -197,7 +197,7 @@ WindowLabel	/home/mejia/Pictures/k2radial.csv	2
 </table>
 <table>
 k5angular	82	5	20/02/23 13:21
-geometry	588	679	445	220	minimized	
+geometry	980	679	-1	-1	minimized	
 header	x[X]	SS-STr6b[Y]	SS-STr8b[Y]	TT-STr10b[Y]	TT-STr12b[Y]
 ColWidth	100	100	100	100	100	
 <com>
@@ -294,7 +294,7 @@ WindowLabel	/home/mejia/Pictures/k5angular.csv	2
 </table>
 <table>
 k5radial	70	4	20/02/23 13:21
-geometry	0	679	-1	-1	minimized	
+geometry	784	679	-1	-1	minimized	
 header	x[X]	SS[Y]	ST[Y]	TT[Y]
 ColWidth	100	100	100	100	
 <com>
@@ -379,7 +379,7 @@ WindowLabel	/home/mejia/Pictures/k5radial.csv	2
 </table>
 <table>
 r3k2	90	2	21/02/23 11:48
-geometry	0	-230	445	220	hidden
+geometry	0	43	445	220	hidden
 header	x[X]	SS-3b[Y]
 ColWidth	100	100	
 <com>
@@ -484,7 +484,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k2t80/ang/r3k2.dat
 </table>
 <table>
 r4k2	90	2	21/02/23 11:48
-geometry	27	-202	445	220	hidden
+geometry	27	71	445	220	hidden
 header	x[X]	TT-4b[Y]
 ColWidth	100	100	
 <com>
@@ -589,7 +589,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k2t80/ang/r4k2.dat
 </table>
 <table>
 r5k2	90	2	21/02/23 11:48
-geometry	54	-174	445	220	hidden
+geometry	54	99	445	220	hidden
 header	x[X]	SS-5b[Y]
 ColWidth	100	100	
 <com>
@@ -694,7 +694,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k2t80/ang/r5k2.dat
 </table>
 <table>
 r6k2	90	2	21/02/23 11:48
-geometry	81	-146	445	220	hidden
+geometry	81	127	445	220	hidden
 header	x[X]	TT-6b[Y]
 ColWidth	100	100	
 <com>
@@ -799,7 +799,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k2t80/ang/r6k2.dat
 </table>
 <table>
 outSSk2	82	3	21/02/23 11:49
-geometry	0	-230	445	220	
+geometry	0	43	445	220	
 header	x[X]	SS[Y]	1[Y]
 ColWidth	100	100	100	
 <com>
@@ -899,7 +899,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k2t80/rad/outSSk2.
 </table>
 <table>
 outSTk2	72	3	21/02/23 11:49
-geometry	27	-202	445	220	
+geometry	27	71	445	220	
 header	x[X]	ST[Y]	1[Y]
 ColWidth	100	100	100	
 <com>
@@ -989,7 +989,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k2t80/rad/outSTk2.
 </table>
 <table>
 outTTk2	62	2	21/02/23 11:49
-geometry	54	-174	445	220	hidden
+geometry	54	99	445	220	hidden
 header	x[X]	TT[Y]
 ColWidth	100	100	
 <com>
@@ -1066,7 +1066,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k2t80/rad/outTTk2.
 </table>
 <table>
 r10k5	90	3	21/02/23 12:23
-geometry	980	679	445	220	minimized	
+geometry	588	679	-1	-1	minimized	
 header	x[X]	TT-10b[Y]	1[Y]
 ColWidth	100	100	100	
 <com>
@@ -1174,7 +1174,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k5t30/ang/r10k5.da
 </table>
 <table>
 r12k5	90	3	21/02/23 12:23
-geometry	0	655	445	343	minimized	
+geometry	392	679	-1	-1	minimized	
 header	x[X]	TT-12b[Y]	1[Y]
 ColWidth	100	242	100	
 <com>
@@ -1282,7 +1282,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k5t30/ang/r12k5.da
 </table>
 <table>
 r6k5	90	3	21/02/23 12:23
-geometry	784	679	445	220	minimized	
+geometry	196	679	-1	-1	minimized	
 header	x[X]	SS-6[Y]	1[Y]
 ColWidth	100	100	100	
 <com>
@@ -1390,7 +1390,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k5t30/ang/r6k5.dat
 </table>
 <table>
 r8k5	90	3	21/02/23 12:23
-geometry	196	655	445	220	minimized	
+geometry	0	679	-1	-1	minimized	
 header	x[X]	SS-8[Y]	1[Y]
 ColWidth	100	100	100	
 <com>
@@ -1498,7 +1498,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k5t30/ang/r8k5.dat
 </table>
 <table>
 outSSk5	162	2	21/02/23 12:24
-geometry	0	-230	445	220	
+geometry	0	43	445	220	
 header	x[X]	SS[Y]
 ColWidth	100	100	
 <com>
@@ -1675,7 +1675,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k5t30/rad/outSSk5.
 </table>
 <table>
 outSTk5	122	2	21/02/23 12:24
-geometry	35	-202	445	220	
+geometry	35	71	445	220	
 header	x[X]	ST[Y]
 ColWidth	100	100	
 <com>
@@ -1812,7 +1812,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k5t30/rad/outSTk5.
 </table>
 <table>
 outTTk5	82	2	21/02/23 12:24
-geometry	70	-174	445	220	
+geometry	70	99	445	220	
 header	x[X]	TT[Y]
 ColWidth	100	100	
 <com>
@@ -1909,7 +1909,7 @@ WindowLabel	/home/mejia/Documents/CodigoFortran/graficas/pot2/k5t30/rad/outTTk5.
 </table>
 <multiLayer>
 Graph1	1	1	20/02/23 13:10
-geometry	38	-223	622	464	
+geometry	38	50	622	464	
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -1918,9 +1918,9 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	2	1	609	414
-<PageGeometry>0.00325733	0.00240385	0.991857	0.995192</PageGeometry>
-PlotTitle	 	#000000	4228
+ggeometry	1	1	609	414
+<PageGeometry>0.00162866	0.00240385	0.991857	0.995192</PageGeometry>
+PlotTitle		#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
 <ScaleFonts>1</ScaleFonts>
@@ -1931,7 +1931,7 @@ Margin	0
 Border	0	#000000
 grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
 EnabledAxes	1	1	1	1	
-AxesTitles	Φ/π	E/ɣb²		%(?Y)	
+AxesTitles	Φ/π	E/ɣb²			
 AxesTitleColors	#000000	#000000	#000000	#000000	
 AxesTitleAlignment	5124	5124	5124	5124
 AxesTitleDistance	2	2	2	2
@@ -1953,12 +1953,12 @@ curve	k2angular_x	k2angular_SS-ST3	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#000000
 curve	k2angular_x	k2angular_SS-ST5	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	91	1
 curve	k2angular_x	k2angular_TT-ST4	7	5	#ffff00	0	2	7	0	#ffff00	#ffff00	0	#000000	14	2	0	0	91	1
 curve	k2angular_x	k2angular_TT-ST6	7	5	#808000	0	2	7	0	#808000	#808000	0	#000000	14	2	0	0	91	1
-curve	r3k2_x	r3k2_SS-3b	0	1	#000080	0	1	7	0	#000080	#000080	0	#000000	14	1	2	0	0	89	1
-curve	r4k2_x	r4k2_TT-4b	0	1	#800080	0	1	7	0	#800080	#800080	0	#000000	14	1	2	0	0	89	1
-curve	r6k2_x	r6k2_TT-6b	0	1	#800000	0	1	7	0	#800000	#800000	0	#000000	14	1	2	0	0	89	1
-curve	r5k2_x	r5k2_SS-5b	0	1	#008000	0	1	7	0	#008000	#008000	0	#000000	14	1	2	0	0	89	1
-scale	0	-0.001	0.0015	0.001	4	5	0	0
-scale	1	-0.001	0.0015	0.001	4	5	0	0
+curve	r3k2_x	r3k2_SS-3b	0	1	#00ffff	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	89	1
+curve	r5k2_x	r5k2_SS-5b	0	1	#ff00ff	1	2	7	0	#008000	#008000	0	#000000	14	1	2	0	0	89	1
+curve	r4k2_x	r4k2_TT-4b	0	1	#ffff00	1	2	7	0	#800080	#800080	0	#000000	14	1	2	0	0	89	1
+curve	r6k2_x	r6k2_TT-6b	0	1	#808000	1	2	7	0	#800000	#800000	0	#000000	14	1	2	0	0	89	1
+scale	0	-0.001	0.002	0	4	5	0	0
+scale	1	-0.001	0.002	0	4	5	0	0
 scale	2	0	0.5	0	6	5	0	0
 scale	3	0	0.5	0	6	5	0	0
 LabelsFormat	2	0	2	0	0	6	0	6
@@ -1979,24 +1979,20 @@ EnabledTickLabels	1	1	1	1
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>0.012024048096192</x>
-<y>0.0054859813084112</y>
-<right>0.117834394904459</right>
-<bottom>0.00112816455696203</bottom>
+<x>0.017894736842105</x>
+<y>0.0018604651162791</y>
+<right>0.112804878048781</right>
+<bottom>0.00163173652694611</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
 <Text>
-\l(1)%(1)
-\l(2)%(2)
-\l(3)%(3)
-\l(4)%(4)
-\l(5)%(5)
-\l(6)%(6)
-\l(7)%(7)
-\l(8)%(8)
+\l(1) SS-ST, r=3b
+\l(2) SS-ST, r=5b
+\l(3) TT-ST, r=4b
+\l(4) TT-ST, r=6b
 </Text>
-<Font>Sans Serif	8	50	0	0	0</Font>
+<Font>Sans Serif	9	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
 <Background>#ffffff</Background>
 <Alpha>0</Alpha>
@@ -2005,26 +2001,19 @@ EnabledTickLabels	1	1	1	1
 <TeXOutput>0</TeXOutput>
 </Legend>
 <Legend>
-<Frame>1</Frame>
+<Frame>0</Frame>
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>0.018478260869565</x>
-<y>0.0013984375</y>
-<right>0.117834394904459</right>
-<bottom>0.00112816455696203</bottom>
+<x>0.40210526315789</x>
+<y>0.0018779069767442</y>
+<right>0.112804878048781</right>
+<bottom>0.00163173652694611</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
 <Text>
-\l(1)%(1)
-\l(2)%(2)
-\l(3)%(3)
-\l(4)%(4)
-\l(5)%(5)
-\l(6)%(6)
-\l(7)%(7)
-\l(8)%(8)
+k=2,θ=80
 </Text>
 <Font>Sans Serif	9	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
@@ -2040,7 +2029,7 @@ EnabledTickLabels	1	1	1	1
 </multiLayer>
 <multiLayer>
 Graph2	1	1	20/02/23 13:11
-geometry	665	-231	622	465	
+geometry	665	52	622	462	
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -2049,9 +2038,9 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	2	1	609	415
-<PageGeometry>0.00325733	0.00239808	0.991857	0.995204</PageGeometry>
-PlotTitle	 	#000000	4228
+ggeometry	2	1	609	412
+<PageGeometry>0.00325733	0.00241546	0.991857	0.995169</PageGeometry>
+PlotTitle		#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
 <ScaleFonts>1</ScaleFonts>
@@ -2062,7 +2051,7 @@ Margin	0
 Border	0	#000000
 grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
 EnabledAxes	1	1	1	1	
-AxesTitles	d/b	E/ɣb²		%(?Y)	
+AxesTitles	d/b	E/ɣb²			
 AxesTitleColors	#000000	#000000	#000000	#000000	
 AxesTitleAlignment	5124	5124	5124	5124
 AxesTitleDistance	2	2	2	2
@@ -2083,13 +2072,13 @@ CanvasBackground	#ffffff	0
 curve	k2radial_x	k2radial_SS	7	5	#0000ff	0	2	7	0	#0000ff	#0000ff	0	#000000	14	2	0	0	71	1
 curve	k2radial_x	k2radial_ST	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#000000	14	2	0	0	71	1
 curve	k2radial_x	k2radial_TT	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	71	1
-curve	outSSk2_x	outSSk2_SS	0	1	#ffff00	0	1	7	0	#ffff00	#ffff00	0	#000000	14	1	2	0	0	81	1
-curve	outSTk2_x	outSTk2_ST	0	1	#808000	0	1	7	0	#808000	#808000	0	#000000	14	1	2	0	0	71	1
-curve	outTTk2_x	outTTk2_TT	0	1	#000080	0	1	7	0	#000080	#000080	0	#000000	14	1	2	0	0	61	1
+curve	outSSk2_x	outSSk2_SS	0	1	#0000ff	1	2	7	0	#ffff00	#ffff00	0	#000000	14	1	2	0	0	81	1
+curve	outSTk2_x	outSTk2_ST	0	1	#00ffff	1	2	7	0	#808000	#808000	0	#000000	14	1	2	0	0	71	1
+curve	outTTk2_x	outTTk2_TT	0	1	#ff00ff	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	61	1
 scale	0	-0.003	0.002	0	6	5	0	0
 scale	1	-0.003	0.002	0	6	5	0	0
-scale	2	0	12	0	7	5	0	0
-scale	3	0	12	0	7	5	0	0
+scale	2	0	10	0	6	5	0	0
+scale	3	0	10	0	6	5	0	0
 LabelsFormat	2	0	2	0	0	2	0	6
 AxisType	0	0	0	0	
 MajorTicks	1	1	1	1
@@ -2108,10 +2097,10 @@ EnabledTickLabels	1	1	1	1
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>18.38768115942</x>
-<y>-0.00047140221402214</y>
-<right>2.80254777070064</right>
-<bottom>0.00135275080906149</bottom>
+<x>0.27149321266968</x>
+<y>0.0018442367601246</y>
+<right>2.23577235772358</right>
+<bottom>0.00139393939393939</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
@@ -2119,9 +2108,6 @@ EnabledTickLabels	1	1	1	1
 \l(1)%(1)
 \l(2)%(2)
 \l(3)%(3)
-\l(4)%(4)
-\l(5)%(5)
-\l(6)%(6)
 </Text>
 <Font>Sans Serif	9	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
@@ -2132,52 +2118,19 @@ EnabledTickLabels	1	1	1	1
 <TeXOutput>0</TeXOutput>
 </Legend>
 <Legend>
-<Frame>1</Frame>
+<Frame>0</Frame>
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>7.8982300884956</x>
-<y>-0.0058490566037736</y>
-<right>2.80254777070064</right>
-<bottom>0.00135275080906149</bottom>
+<x>8.0493273542601</x>
+<y>0.0019198717948718</y>
+<right>2.23577235772358</right>
+<bottom>0.00139393939393939</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
 <Text>
-\l(1)%(1)
-\l(2)%(2)
-\l(3)%(3)
-\l(4)%(4)
-\l(5)%(5)
-\l(6)%(6)
-</Text>
-<Font>Sans Serif	9	50	0	0	0</Font>
-<TextColor>#000000</TextColor>
-<Background>#ffffff</Background>
-<Alpha>0</Alpha>
-<Angle>0</Angle>
-<AutoUpdate>1</AutoUpdate>
-<TeXOutput>0</TeXOutput>
-</Legend>
-<Legend>
-<Frame>1</Frame>
-<Color>#000000</Color>
-<FrameWidth>1</FrameWidth>
-<LineStyle>0</LineStyle>
-<x>0.27027027027027</x>
-<y>0.0018412698412698</y>
-<right>2.80254777070064</right>
-<bottom>0.00135275080906149</bottom>
-<attachTo>1</attachTo>
-<onTop>1</onTop>
-<visible>1</visible>
-<Text>
-\l(1)%(1)
-\l(2)%(2)
-\l(3)%(3)
-\l(4)%(4)
-\l(5)%(5)
-\l(6)%(6)
+k=2,θ=80
 </Text>
 <Font>Sans Serif	9	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
@@ -2193,7 +2146,7 @@ EnabledTickLabels	1	1	1	1
 </multiLayer>
 <multiLayer>
 Graph3	1	1	20/02/23 13:12
-geometry	35	242	622	461	active
+geometry	36	515	622	461	
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -2204,7 +2157,7 @@ Alignement	0	0
 <graph>
 ggeometry	2	2	609	407
 <PageGeometry>0.00325733	0.00484262	0.991857	0.985472</PageGeometry>
-PlotTitle	 	#000000	4228
+PlotTitle		#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
 <ScaleFonts>1</ScaleFonts>
@@ -2215,7 +2168,7 @@ Margin	0
 Border	0	#000000
 grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
 EnabledAxes	1	1	1	1	
-AxesTitles	Φ/π	E/ɣb²		%(?Y)	
+AxesTitles	Φ/π	E/ɣb²			
 AxesTitleColors	#000000	#000000	#000000	#000000	
 AxesTitleAlignment	5124	5124	5124	5124
 AxesTitleDistance	2	2	2	2
@@ -2237,14 +2190,10 @@ curve	k5angular_x	k5angular_SS-STr6b	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#0000
 curve	k5angular_x	k5angular_SS-STr8b	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	81	1
 curve	k5angular_x	k5angular_TT-STr10b	7	5	#ffff00	0	2	7	0	#ffff00	#ffff00	0	#000000	14	2	0	0	81	1
 curve	k5angular_x	k5angular_TT-STr12b	7	5	#808000	0	2	7	0	#808000	#808000	0	#000000	14	2	0	0	81	1
-curve	r10k5_x	r10k5_TT-10b	0	1	#000080	0	1	7	0	#000080	#000080	0	#000000	14	1	2	0	0	89	1
-curve	r12k5_x	r12k5_TT-12b	0	1	#800080	0	1	7	0	#800080	#800080	0	#000000	14	1	2	0	0	89	1
-curve	r6k5_x	r6k5_SS-6	0	1	#800000	0	1	7	0	#800000	#800000	0	#000000	14	1	2	0	0	89	1
-curve	r8k5_x	r8k5_SS-8	0	1	#008000	0	1	7	0	#008000	#008000	0	#000000	14	1	2	0	0	89	1
-curve	r10k5_x	r10k5_1	0	1	#008080	0	1	7	0	#008080	#008080	0	#000000	14	1	2	0	0	89	1
-curve	r12k5_x	r12k5_1	0	1	#000000	0	1	7	0	#000000	#000000	0	#000000	14	1	2	0	0	89	1
-curve	r6k5_x	r6k5_1	0	1	#000000	0	1	7	0	#000000	#000000	0	#000000	14	1	2	0	0	89	1
-curve	r8k5_x	r8k5_1	0	1	#000000	0	1	7	0	#000000	#000000	0	#000000	14	1	2	0	0	89	1
+curve	r6k5_x	r6k5_SS-6	0	1	#00ffff	1	2	7	0	#800000	#800000	0	#000000	14	1	2	0	0	89	1
+curve	r8k5_x	r8k5_SS-8	0	1	#ff00ff	1	2	7	0	#008000	#008000	0	#000000	14	1	2	0	0	89	1
+curve	r10k5_x	r10k5_TT-10b	0	1	#ffff00	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	89	1
+curve	r12k5_x	r12k5_TT-12b	0	1	#808000	1	2	7	0	#800080	#800080	0	#000000	14	1	2	0	0	89	1
 scale	0	-0.05	0.1	0	4	5	0	0
 scale	1	-0.05	0.1	0	4	5	0	0
 scale	2	0	0.5	0	6	5	0	0
@@ -2267,10 +2216,10 @@ EnabledTickLabels	1	1	1	1
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>0.019823788546256</x>
-<y>0.091290322580645</y>
-<right>0.117834394904459</right>
-<bottom>0.0797029702970297</bottom>
+<x>0.02</x>
+<y>0.091543026706231</y>
+<right>0.112804878048781</right>
+<bottom>0.0811926605504587</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
@@ -2279,16 +2228,31 @@ EnabledTickLabels	1	1	1	1
 \l(2)%(2)
 \l(3)%(3)
 \l(4)%(4)
-\l(5)%(5)
-\l(6)%(6)
-\l(7)%(7)
-\l(8)%(8)
-\l(9)%(9)
-\l(10)%(10)
-\l(11)%(11)
-\l(12)%(12)
 </Text>
-<Font>Sans Serif	7	50	0	0	0</Font>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.40108695652174</x>
+<y>0.095207667731629</y>
+<right>0.112804878048781</right>
+<bottom>0.0811926605504587</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=5,θ=30
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
 <Background>#ffffff</Background>
 <Alpha>0</Alpha>
@@ -2302,7 +2266,7 @@ EnabledTickLabels	1	1	1	1
 </multiLayer>
 <multiLayer>
 Graph4	1	1	20/02/23 13:14
-geometry	663	242	618	454	
+geometry	664	516	626	454	
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -2311,9 +2275,9 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	5	6	600	388
-<PageGeometry>0.00819672	0.0147783	0.983607	0.955665</PageGeometry>
-PlotTitle	 	#000000	4228
+ggeometry	5	6	608	388
+<PageGeometry>0.00809061	0.0147783	0.983819	0.955665</PageGeometry>
+PlotTitle		#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
 <ScaleFonts>1</ScaleFonts>
@@ -2324,7 +2288,7 @@ Margin	0
 Border	0	#000000
 grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
 EnabledAxes	1	1	1	1	
-AxesTitles	d/b	E/ɣb²		%(?Y)	
+AxesTitles	d/b	E/ɣb²			
 AxesTitleColors	#000000	#000000	#000000	#000000	
 AxesTitleAlignment	5124	5124	5124	5124
 AxesTitleDistance	2	2	2	2
@@ -2345,14 +2309,14 @@ CanvasBackground	#ffffff	0
 curve	k5radial_x	k5radial_SS	7	5	#0000ff	0	2	7	0	#0000ff	#0000ff	0	#000000	14	2	0	0	69	1
 curve	k5radial_x	k5radial_ST	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#000000	14	2	0	0	69	1
 curve	k5radial_x	k5radial_TT	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	69	1
-curve	outSSk5_x	outSSk5_SS	0	1	#ffff00	0	1	7	0	#ffff00	#ffff00	0	#000000	14	1	2	0	0	161	1
-curve	outSTk5_x	outSTk5_ST	0	1	#808000	0	1	7	0	#808000	#808000	0	#000000	14	1	2	0	0	121	1
-curve	outTTk5_x	outTTk5_TT	0	1	#000080	0	1	7	0	#000080	#000080	0	#000000	14	1	2	0	0	81	1
+curve	outSSk5_x	outSSk5_SS	0	1	#0000ff	1	2	7	0	#ffff00	#ffff00	0	#000000	14	1	2	0	0	161	1
+curve	outSTk5_x	outSTk5_ST	0	1	#00ffff	1	2	7	0	#808000	#808000	0	#000000	14	1	2	0	0	121	1
+curve	outTTk5_x	outTTk5_TT	0	1	#ff00ff	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	81	1
 scale	0	-0.04	0.02	0	4	5	0	0
 scale	1	-0.04	0.02	0	4	5	0	0
-scale	2	0	20	0	5	5	0	0
-scale	3	0	20	0	5	5	0	0
-LabelsFormat	2	0	0	6	0	6	0	6
+scale	2	0	18	0	5	5	0	0
+scale	3	0	18	0	5	5	0	0
+LabelsFormat	2	0	2	0	0	6	0	6
 AxisType	0	0	0	0	
 MajorTicks	1	1	1	1
 MinorTicks	1	1	1	1
@@ -2370,10 +2334,10 @@ EnabledTickLabels	1	1	1	1
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>14.257425742574</x>
-<y>-0.1009756097561</y>
-<right>4.78448275862069</right>
-<bottom>0.0113380281690141</bottom>
+<x>0.60475161987041</x>
+<y>0.016938775510204</y>
+<right>4.052738336714</right>
+<bottom>0.012012987012987</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
@@ -2381,11 +2345,8 @@ EnabledTickLabels	1	1	1	1
 \l(1)%(1)
 \l(2)%(2)
 \l(3)%(3)
-\l(4)%(4)
-\l(5)%(5)
-\l(6)%(6)
 </Text>
-<Font>Sans Serif	10	50	0	0	0</Font>
+<Font>Sans Serif	9	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
 <Background>#ffffff</Background>
 <Alpha>0</Alpha>
@@ -2394,24 +2355,19 @@ EnabledTickLabels	1	1	1	1
 <TeXOutput>0</TeXOutput>
 </Legend>
 <Legend>
-<Frame>1</Frame>
+<Frame>0</Frame>
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>0.60475161987041</x>
-<y>0.016938775510204</y>
-<right>4.78448275862069</right>
-<bottom>0.0113380281690141</bottom>
+<x>14.696202531646</x>
+<y>0.018490566037736</y>
+<right>4.052738336714</right>
+<bottom>0.012012987012987</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
 <Text>
-\l(1)%(1)
-\l(2)%(2)
-\l(3)%(3)
-\l(4)%(4)
-\l(5)%(5)
-\l(6)%(6)
+k=5,θ=30
 </Text>
 <Font>Sans Serif	9	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
@@ -2427,7 +2383,7 @@ EnabledTickLabels	1	1	1	1
 </multiLayer>
 <multiLayer>
 Graph5	1	1	24/02/23 11:06
-geometry	741	179	569	461	
+geometry	664	518	609	461	
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -2436,9 +2392,9 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	5	5	551	398
-<PageGeometry>0.00891266	0.0121065	0.982175	0.96368</PageGeometry>
-PlotTitle	Title	#000000	4228
+ggeometry	5	5	591	398
+<PageGeometry>0.00831947	0.0121065	0.983361	0.96368</PageGeometry>
+PlotTitle	 	#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
 <ScaleFonts>1</ScaleFonts>
@@ -2449,7 +2405,7 @@ Margin	0
 Border	0	#000000
 grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
 EnabledAxes	1	1	1	1	
-AxesTitles	%(?X)	%(?Y)		%(?Y)	
+AxesTitles	Φ/π	E/ɣb²		%(?Y)	
 AxesTitleColors	#000000	#000000	#000000	#000000	
 AxesTitleAlignment	5124	5124	5124	5124
 AxesTitleDistance	2	2	2	2
@@ -2467,15 +2423,15 @@ AxesColors	#000000	#000000	#000000	#000000
 AxesNumberColors	#000000	#000000	#000000	#000000
 AxesBaseline	0	0	0	0	
 CanvasBackground	#ffffff	0
-curve	r6k5_x	r6k5_SS-6	0	1	#000000	0	1	7	0	#000000	#000000	0	#000000	14	1	2	0	0	89	1
-curve	r10k5_x	r10k5_TT-10b	0	1	#ff0000	0	1	7	0	#ff0000	#ff0000	0	#000000	14	1	2	0	0	89	1
-curve	r12k5_x	r12k5_TT-12b	0	1	#00ff00	0	1	7	0	#00ff00	#00ff00	0	#000000	14	1	2	0	0	89	1
-curve	r8k5_x	r8k5_SS-8	0	1	#0000ff	0	1	7	0	#0000ff	#0000ff	0	#000000	14	1	2	0	0	89	1
+curve	r6k5_x	r6k5_SS-6	0	1	#00ffff	1	2	7	0	#000000	#000000	0	#000000	14	1	2	0	0	89	1
+curve	r8k5_x	r8k5_SS-8	0	1	#ff00ff	1	2	7	0	#0000ff	#0000ff	0	#000000	14	1	2	0	0	89	1
+curve	r10k5_x	r10k5_TT-10b	0	1	#ffff00	1	2	7	0	#ff0000	#ff0000	0	#000000	14	1	2	0	0	89	1
+curve	r12k5_x	r12k5_TT-12b	0	1	#808000	1	2	7	0	#00ff00	#00ff00	0	#000000	14	1	2	0	0	89	1
 scale	0	-0.005	0.01	0	4	5	0	0
 scale	1	-0.005	0.01	0	4	5	0	0
 scale	2	0	0.5	0	6	5	0	0
 scale	3	0	0.5	0	6	5	0	0
-LabelsFormat	2	0	0	6	0	6	0	6
+LabelsFormat	2	0	2	0	0	6	0	6
 AxisType	0	0	0	0	
 MajorTicks	1	1	1	1
 MinorTicks	1	1	1	1
@@ -2493,9 +2449,9 @@ EnabledTickLabels	1	1	1	1
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>0.021303258145363</x>
-<y>0.0074782608695652</y>
-<right>0.1338199513382</right>
+<x>0.02112676056338</x>
+<y>0.008741610738255</y>
+<right>0.121951219512195</right>
 <bottom>0.00794520547945205</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
@@ -2505,6 +2461,733 @@ EnabledTickLabels	1	1	1	1
 \l(2)%(2)
 \l(3)%(3)
 \l(4)%(4)
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.3943661971831</x>
+<y>0.0095973154362416</y>
+<right>0.121951219512195</right>
+<bottom>0.00794520547945205</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=5,θ=30
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<multiLayer>
+Graph6	2	2	08/03/23 11:28
+geometry	51	0	1103	812	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	547	375
+<PageGeometry>0.00456621	0.0065445	0.499543	0.490838</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	d/b	E/ɣb²			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	9	75	0	0	0
+ScaleFont1	Sans Serif	9	75	0	0	0
+ScaleFont2	Sans Serif	9	75	0	0	0
+ScaleFont3	Sans Serif	9	75	0	0	0
+AxisFont0	Sans Serif	9	50	0	0	0
+AxisFont1	Sans Serif	9	50	0	0	0
+AxisFont2	Sans Serif	9	50	0	0	0
+AxisFont3	Sans Serif	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k2radial_x	k2radial_SS	7	5	#0000ff	0	2	7	0	#0000ff	#0000ff	0	#000000	14	2	0	0	71	1
+curve	k2radial_x	k2radial_ST	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#000000	14	2	0	0	71	1
+curve	k2radial_x	k2radial_TT	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	71	1
+curve	outSSk2_x	outSSk2_SS	0	1	#0000ff	1	2	7	0	#ffff00	#ffff00	0	#000000	14	1	2	0	0	81	1
+curve	outSTk2_x	outSTk2_ST	0	1	#00ffff	1	2	7	0	#808000	#808000	0	#000000	14	1	2	0	0	71	1
+curve	outTTk2_x	outTTk2_TT	0	1	#ff00ff	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	61	1
+scale	0	-0.003	0.002	0	6	5	0	0
+scale	1	-0.003	0.002	0	6	5	0	0
+scale	2	0	10	0	6	5	0	0
+scale	3	0	10	0	6	5	0	0
+LabelsFormat	2	0	2	0	0	2	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.27149321266968</x>
+<y>0.0018442367601246</y>
+<right>2.55813953488372</right>
+<bottom>0.00131740614334471</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>7.7694235588972</x>
+<y>0.0019163879598662</y>
+<right>2.55813953488372</right>
+<bottom>0.00131740614334471</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=2,θ=80
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<graph>
+ggeometry	557	5	533	369
+<PageGeometry>0.508676	0.0065445	0.486758	0.482984</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	Φ/π	E/ɣb²			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	8	75	0	0	0
+ScaleFont1	Sans Serif	8	75	0	0	0
+ScaleFont2	Sans Serif	8	75	0	0	0
+ScaleFont3	Sans Serif	8	75	0	0	0
+AxisFont0	Sans Serif	8	50	0	0	0
+AxisFont1	Sans Serif	8	50	0	0	0
+AxisFont2	Sans Serif	8	50	0	0	0
+AxisFont3	Sans Serif	8	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k2angular_x	k2angular_SS-ST3	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#000000	14	2	0	0	91	1
+curve	k2angular_x	k2angular_SS-ST5	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	91	1
+curve	k2angular_x	k2angular_TT-ST4	7	5	#ffff00	0	2	7	0	#ffff00	#ffff00	0	#000000	14	2	0	0	91	1
+curve	k2angular_x	k2angular_TT-ST6	7	5	#808000	0	2	7	0	#808000	#808000	0	#000000	14	2	0	0	91	1
+curve	r3k2_x	r3k2_SS-3b	0	1	#00ffff	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	89	1
+curve	r5k2_x	r5k2_SS-5b	0	1	#ff00ff	1	2	7	0	#008000	#008000	0	#000000	14	1	2	0	0	89	1
+curve	r4k2_x	r4k2_TT-4b	0	1	#ffff00	1	2	7	0	#800080	#800080	0	#000000	14	1	2	0	0	89	1
+curve	r6k2_x	r6k2_TT-6b	0	1	#808000	1	2	7	0	#800000	#800000	0	#000000	14	1	2	0	0	89	1
+scale	0	-0.001	0.002	0	4	5	0	0
+scale	1	-0.001	0.002	0	4	5	0	0
+scale	2	0	0.5	0	6	5	0	0
+scale	3	0	0.5	0	6	5	0	0
+LabelsFormat	2	0	2	0	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.017543859649123</x>
+<y>0.0018595317725753</y>
+<right>0.133413461538462</right>
+<bottom>0.00157439446366782</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1) SS-ST, r=3b
+\l(2) SS-ST, r=5b
+\l(3) TT-ST, r=4b
+\l(4) TT-ST, r=6b
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.37593984962406</x>
+<y>0.0018896321070234</y>
+<right>0.133413461538462</right>
+<bottom>0.00157439446366782</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=2,θ=80
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<graph>
+ggeometry	8	385	539	375
+<PageGeometry>0.00730594	0.503927	0.492237	0.490838</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	d/b	E/ɣb²			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	8	75	0	0	0
+ScaleFont1	Sans Serif	8	75	0	0	0
+ScaleFont2	Sans Serif	8	75	0	0	0
+ScaleFont3	Sans Serif	8	75	0	0	0
+AxisFont0	Sans Serif	8	50	0	0	0
+AxisFont1	Sans Serif	8	50	0	0	0
+AxisFont2	Sans Serif	8	50	0	0	0
+AxisFont3	Sans Serif	8	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k5radial_x	k5radial_SS	7	5	#0000ff	0	2	7	0	#0000ff	#0000ff	0	#000000	14	2	0	0	69	1
+curve	k5radial_x	k5radial_ST	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#000000	14	2	0	0	69	1
+curve	k5radial_x	k5radial_TT	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	69	1
+curve	outSSk5_x	outSSk5_SS	0	1	#0000ff	1	2	7	0	#ffff00	#ffff00	0	#000000	14	1	2	0	0	161	1
+curve	outSTk5_x	outSTk5_ST	0	1	#00ffff	1	2	7	0	#808000	#808000	0	#000000	14	1	2	0	0	121	1
+curve	outTTk5_x	outTTk5_TT	0	1	#ff00ff	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	81	1
+scale	0	-0.04	0.02	0	4	5	0	0
+scale	1	-0.04	0.02	0	4	5	0	0
+scale	2	0	18	0	5	5	0	0
+scale	3	0	18	0	5	5	0	0
+LabelsFormat	2	0	2	0	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.60475161987041</x>
+<y>0.016938775510204</y>
+<right>4.7122641509434</right>
+<bottom>0.0116610169491525</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>13.866666666667</x>
+<y>0.018426229508197</y>
+<right>4.7122641509434</right>
+<bottom>0.0116610169491525</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=5,θ=30
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<graph>
+ggeometry	557	386	533	369
+<PageGeometry>0.508676	0.505236	0.486758	0.482984</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	Φ/π	E/ɣb²			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	8	75	0	0	0
+ScaleFont1	Sans Serif	8	75	0	0	0
+ScaleFont2	Sans Serif	8	75	0	0	0
+ScaleFont3	Sans Serif	8	75	0	0	0
+AxisFont0	Sans Serif	8	50	0	0	0
+AxisFont1	Sans Serif	8	50	0	0	0
+AxisFont2	Sans Serif	8	50	0	0	0
+AxisFont3	Sans Serif	8	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k5angular_x	k5angular_SS-STr6b	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_SS-STr8b	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_TT-STr10b	7	5	#ffff00	0	2	7	0	#ffff00	#ffff00	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_TT-STr12b	7	5	#808000	0	2	7	0	#808000	#808000	0	#000000	14	2	0	0	81	1
+curve	r6k5_x	r6k5_SS-6	0	1	#00ffff	1	2	7	0	#800000	#800000	0	#000000	14	1	2	0	0	89	1
+curve	r8k5_x	r8k5_SS-8	0	1	#ff00ff	1	2	7	0	#008000	#008000	0	#000000	14	1	2	0	0	89	1
+curve	r10k5_x	r10k5_TT-10b	0	1	#ffff00	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	89	1
+curve	r12k5_x	r12k5_TT-12b	0	1	#808000	1	2	7	0	#800080	#800080	0	#000000	14	1	2	0	0	89	1
+scale	0	-0.05	0.1	0	4	5	0	0
+scale	1	-0.05	0.1	0	4	5	0	0
+scale	2	0	0.5	0	6	5	0	0
+scale	3	0	0.5	0	6	5	0	0
+LabelsFormat	2	0	2	0	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.02</x>
+<y>0.091543026706231</y>
+<right>0.133413461538462</right>
+<bottom>0.078719723183391</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+\l(4)%(4)
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.38721804511278</x>
+<y>0.096488294314381</y>
+<right>0.133413461538462</right>
+<bottom>0.078719723183391</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=5,θ=30
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<multiLayer>
+Graph7	2	1	08/03/23 12:13
+geometry	106	21	1112	462	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	532	369
+<PageGeometry>0.00452899	0.0120773	0.481884	0.891304</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	Φ/π	E/ɣb²			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	8	75	0	0	0
+ScaleFont1	Sans Serif	8	75	0	0	0
+ScaleFont2	Sans Serif	8	75	0	0	0
+ScaleFont3	Sans Serif	8	75	0	0	0
+AxisFont0	Sans Serif	8	50	0	0	0
+AxisFont1	Sans Serif	8	50	0	0	0
+AxisFont2	Sans Serif	8	50	0	0	0
+AxisFont3	Sans Serif	8	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	k5angular_x	k5angular_SS-STr6b	7	5	#00ffff	0	2	7	0	#00ffff	#00ffff	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_SS-STr8b	7	5	#ff00ff	0	2	7	0	#ff00ff	#ff00ff	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_TT-STr10b	7	5	#ffff00	0	2	7	0	#ffff00	#ffff00	0	#000000	14	2	0	0	81	1
+curve	k5angular_x	k5angular_TT-STr12b	7	5	#808000	0	2	7	0	#808000	#808000	0	#000000	14	2	0	0	81	1
+curve	r6k5_x	r6k5_SS-6	0	1	#00ffff	1	2	7	0	#800000	#800000	0	#000000	14	1	2	0	0	89	0
+curve	r8k5_x	r8k5_SS-8	0	1	#ff00ff	1	2	7	0	#008000	#008000	0	#000000	14	1	2	0	0	89	0
+curve	r10k5_x	r10k5_TT-10b	0	1	#ffff00	1	2	7	0	#000080	#000080	0	#000000	14	1	2	0	0	89	0
+curve	r12k5_x	r12k5_TT-12b	0	1	#808000	1	2	7	0	#800080	#800080	0	#000000	14	1	2	0	0	89	0
+scale	0	-0.05	0.1	0	4	5	0	0
+scale	1	-0.05	0.1	0	4	5	0	0
+scale	2	0	0.5	0	6	5	0	0
+scale	3	0	0.5	0	6	5	0	0
+LabelsFormat	2	0	2	0	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.020100502512563</x>
+<y>0.091471571906355</y>
+<right>0.193467336683417</right>
+<bottom>0.0558528428093646</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+\l(4)%(4)
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.40108695652174</x>
+<y>0.095207667731629</y>
+<right>0.130695443645084</right>
+<bottom>0.0824324324324324</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=5,θ=30
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<graph>
+ggeometry	542	-20	563	399
+<PageGeometry>0.490942	-0.0483092	0.509964	0.963768</PageGeometry>
+PlotTitle	 	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	Φ/π	E/ɣb²			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Sans Serif	11	75	0	0	0
+ScaleFont0	Sans Serif	9	75	0	0	0
+ScaleFont1	Sans Serif	9	75	0	0	0
+ScaleFont2	Sans Serif	9	75	0	0	0
+ScaleFont3	Sans Serif	9	75	0	0	0
+AxisFont0	Sans Serif	8	50	0	0	0
+AxisFont1	Sans Serif	9	50	0	0	0
+AxisFont2	Sans Serif	9	50	0	0	0
+AxisFont3	Sans Serif	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	r6k5_x	r6k5_SS-6	0	1	#00ffff	1	2	7	0	#000000	#000000	0	#000000	14	1	2	0	0	89	1
+curve	r8k5_x	r8k5_SS-8	0	1	#ff00ff	1	2	7	0	#0000ff	#0000ff	0	#000000	14	1	2	0	0	89	1
+curve	r10k5_x	r10k5_TT-10b	0	1	#ffff00	1	2	7	0	#ff0000	#ff0000	0	#000000	14	1	2	0	0	89	1
+curve	r12k5_x	r12k5_TT-12b	0	1	#808000	1	2	7	0	#00ff00	#00ff00	0	#000000	14	1	2	0	0	89	1
+scale	0	-0.005	0.01	0	4	5	0	0
+scale	1	-0.005	0.01	0	4	5	0	0
+scale	2	0	0.5	0	6	5	0	0
+scale	3	0	0.5	0	6	5	0	0
+LabelsFormat	2	0	2	0	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.20308788598575</x>
+<y>-0.0075585284280936</y>
+<right>0.290973871733967</right>
+<bottom>-0.0088628762541806</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+Our data
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.38456057007126</x>
+<y>0.0095986622073579</y>
+<right>0.502850356294537</right>
+<bottom>0.0082943143812709</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+k=5,θ=30
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>0.008313539192399</x>
+<y>0.009247491638796</y>
+<right>0.176959619952494</right>
+<bottom>0.00568561872909699</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1) SS-ST r=6b
+\l(2) SS-ST r=8b
+\l(3) TT-ST r=10b
+\l(4) TT-ST r=12b
+</Text>
+<Font>Sans Serif	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>-0.44655581947743</x>
+<y>-0.0074581939799331</y>
+<right>-0.355106888361045</right>
+<bottom>-0.00876254180602007</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+Your data
 </Text>
 <Font>Sans Serif	9	50	0	0	0</Font>
 <TextColor>#000000</TextColor>

@@ -21,8 +21,8 @@
             ri(1,:) = (/ 3, 5 /)    !configuración 1, valores de distancia 
             ri(2,:) = (/ 4, 6 /)    !configuración 2, valores de distancia
 
-            do i=1, 2
-                do j=1,2
+            do i=1, 2       !ciclo para configuraciones
+                do j=1,2    !ciclo para posiciones
                     T=ri(i,j)+100
                     ANGINC=0
                     f=0
@@ -40,6 +40,7 @@
 
                         write(T,*) 'k= ',k,'a=',a,'b=',b,'r/b=',ri(i,j)
                         WRITE(T,*) 'x   ','SS-'//rstr//'b'
+                        
                     ELSE IF(i.NE.1)THEN
                     !Para TT
                         if (j==1) THEN 
