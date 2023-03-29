@@ -542,7 +542,7 @@
                END IF
                RR=X*X+Y*Y
 
-               if (RR.lt.(RA3+3)*(RA3+3)*SS) then ! checa el rango espacial para formar clusters
+               if (RR.lt.(5*a)*(5*a)) then ! checa el rango espacial para formar clusters
                   CLU(I,J)=1.0D0
                else
                   CLU(I,J)=0.0D0
@@ -796,7 +796,7 @@
                   Y=Y+YC
                END IF
                RR=X*X+Y*Y
-               if (RR.lt.(RA3+3)*(RA3+3)*SS) then
+               if (RR.lt.(5*a)*(5*a)) then
                   CLU(I,J)=1.0D0
                else
                   CLU(I,J)=0.0D0

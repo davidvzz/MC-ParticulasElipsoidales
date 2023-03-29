@@ -1,6 +1,6 @@
 &input
 N        = 200        ,
-RHO      = 0.05D0     ,
+RHO      = 0.1D0     ,
 TEMP     = 20.0     , !En grados celsius
 PHI      = 0.2D0     ,
 XLAMBDA  = 3.0D0     ,
@@ -10,8 +10,8 @@ XLAM4    = 6.2D0     ,
 XLAM5    = 8.3D0     ,
 XLAM6    = 8.5D0     ,
 NRUN     = 0         ,
-NMOVE    = 50000   ,
-NMOVE2   = 50000      ,
+NMOVE    = 15000   ,
+NMOVE2   = 15000      ,
 NSUB     = 50      ,
 DISPL    = 3.0D0     ,
 DISPLAng = 7.0D0     ,
