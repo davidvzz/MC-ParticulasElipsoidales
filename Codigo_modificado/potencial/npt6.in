@@ -1,6 +1,6 @@
 &input
 N        = 200        ,
-RHO      = 0.1D0     ,
+RHO      = 0.01D0     ,
 TEMP     = 20.0     , !En grados celsius
 PHI      = 0.2D0     ,
 XLAMBDA  = 3.0D0     ,
@@ -10,7 +10,7 @@ XLAM4    = 6.2D0     ,
 XLAM5    = 8.3D0     ,
 XLAM6    = 8.5D0     ,
 NRUN     = 0         ,
-NMOVE    = 15000   ,
+NMOVE    = 20000   ,
 NMOVE2   = 15000      ,
 NSUB     = 50      ,
 DISPL    = 3.0D0     ,
@@ -19,8 +19,8 @@ DISPLClu = 8.0D0     ,
 RA3      = 4.0D0     ,
 IAV      = 1         ,
 NAC      = 2         , !No se usa
-NCX      = 26        ,  !número celdas unitarias x (no se usa)
-NCY      = 15        ,  !número celdas unitarias y (no se usa)
+NCX      = 26        ,  !número celdas unitarias x 
+NCY      = 15        ,  !número celdas unitarias y 
 QX       = 1D0       ,  !dimensiones celda unitaria x 
 QY       = 1.7320508D00    , !dimensiones celda unitaria y 
 SDISPL   = 0.61640227D-04	,

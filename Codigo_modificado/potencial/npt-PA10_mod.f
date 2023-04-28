@@ -85,7 +85,9 @@
       OPEN (UNIT=1,FILE='npt6.in',STATUS='old')
       READ(unit=1, nml=input)
 
+      !conversión a kelvin
       TEMP=TEMP+273.15d0
+      
       ! ESCRIBE PARAMETROS DE ENTRADA
       LRHO=0
       WRITE(6,100)
@@ -239,6 +241,7 @@
       SL6=S*XLAM6
       SQL6=SL6*SL6
       DISPL=DISPL*S
+      DISPLClu=DISPLClu*S
       VOL=YC/(S*S)
 
       !ESCRIBE LAS UNIDADES CONVERTIDAS
@@ -299,8 +302,7 @@
       DOUBLE PRECISION, PARAMETER:: kb=1.380649D-23
       
       ! inicializa secuencia al azar
-      ISEED=-123456794  ! 
-         
+      ISEED=-123456789  ! 
       a=AR*S/2 !semieje mayor en unidad de caja
       b=S/2    !semieje menor en unidad de caja
       b_sigma=(1d-6/2d0) !semieje mejor en metros (suponiendo que sigma=1micrometro)
@@ -520,8 +522,6 @@
       ! marca clusters
       !! Revisa vecinos para clusters
 
-
-
     6 DO I=1,N          !GOTO 6
          DO J=1,N
             IF (J.NE.I) then
@@ -571,15 +571,18 @@
       ! NERCONT ES EL CONTADOR QUE AL LLEGAR A NSET INDICA MUESTREAR SIGMA
       NERCONT=NERCONT+1
       RTEST=RTEST+RAN2(ISEED)
-      ! desplaza la part!cula
+      
+      !copia las posiciones
       XNEW1(1:N)=RX(1:N)
       YNEW1(1:N)=RY(1:N)
       ANEW1(1:N)=RA(1:N)
-      ! centro de masa
+
+      !variables donde se almacena centro de masa
       K=1
       CX= XNEW1(I)
       CY=YNEW1(I)
 
+      !calcula un promedio 
       DO J=1,N
          IF (J.NE.I.AND.CLU(I,J).NE.0.0D0) THEN
             CX= CX+XNEW1(J)
@@ -590,8 +593,9 @@
 
       CX=CX/DFLOAT(K)
       CY=CY/DFLOAT(K)
-      K=0
 
+      !!!!CHECAR esta parte
+      K=0
       IF (ABS(XNEW1(I)-CX)<0.4.AND.ABS(YNEW1(I)-CY)<0.4) then
          K=K+1
       end if
@@ -605,14 +609,20 @@
       END DO
 
       IF (K==0) GOTO 8
+      !!!!!!!
 
       ! giro en angulo
       DA=DISPLAng*(RAN2(ISEED)-0.5D0)
       ANEW1(I)=ANEW1(I)+DA
       X=XNEW1(I)-CX
       Y=YNEW1(I)-CY
+
+      !!!CHECAR estas partes
+      !actualiza la posición de la i-esima particula
       XNEW1(I)=X*COS(DA*PI/180)-Y*SIN(DA*PI/180)+CX
       YNEW1(I)=X*SIN(DA*PI/180)+Y*COS(DA*PI/180)+CY
+
+      !actualiza la posición de las demás partículas
       do J=1,N
          if (J.NE.I.AND.CLU(I,J).NE.0.0D0) then
             ANEW1(J)=ANEW1(J)+DA
@@ -622,13 +632,15 @@
             YNEW1(J)=X*SIN(DA*PI/180)+Y*COS(DA*PI/180)+CY
          end if
       end do
-
+      !!!!
+      
       ! desplazamiento  X, Y
-    8 DX=DISPLClu*(RAN2(ISEED)-0.5D00)
-      DY=DISPLClu*(RAN2(ISEED)-0.5D00)
+    8 DX=DISPLClu*(RAN2(ISEED)-0.5d0) !GOTO 8 
+      DY=DISPLClu*(RAN2(ISEED)-0.5d0)
       XNEW1(I)=XNEW1(I)+DX ! agrega desplazamientos a las componentes
       YNEW1(I)=YNEW1(I)+DY
      
+      !Condiciones de frontera
       IF(XNEW1(I).GT.1.0D00) THEN
          XNEW1(I)=XNEW1(I)-1.0D00 
       ELSE
@@ -636,6 +648,7 @@
              XNEW1(I)=XNEW1(I)+1.0D00   
          END IF
       End if
+
       IF (YNEW1(I).GT.YC) THEN
          YNEW1(I)=YNEW1(I)-YC
       ELSE
@@ -649,6 +662,7 @@
       if(ANEW1(I).lt.0) then
          ANEW1(I)=ANEW1(I)+180
       end if
+
 
       !!!!CHECAR
       do J=1,N
@@ -664,16 +678,16 @@
                XNEW1(J)=XNEW1(J)+1.0D00 ! aumenta el valor si le falta
             END IF
             IF (YNEW1(J).GT.YC) THEN
-            YNEW1(J)=YNEW1(J)-YC 
+               YNEW1(J)=YNEW1(J)-YC 
             END IF
             IF (YNEW1(J).LT.0.0D00) THEN
-            YNEW1(J)=YNEW1(J)+YC
+               YNEW1(J)=YNEW1(J)+YC
             END IF
             if (ANEW1(J).gt.180) then
-            ANEW1(J)=ANEW1(J)-180
+               ANEW1(J)=ANEW1(J)-180
             end if
             if(ANEW1(J).lt.0) then
-            ANEW1(J)=ANEW1(J)+180
+               ANEW1(J)=ANEW1(J)+180
             end if
          end if
       end do
@@ -914,7 +928,7 @@ C     Identifica los clusters en la matriz
       COUNT=0
       DO I=1, N
          DO J=1,N
-            IF (I.NE.J.AND.CLU(I,J).NE.0.0D0) then ! si existe clusters 
+            IF ( I.NE.J .AND. CLU(I,J).NE.0.0D0 ) then ! si existe clusters 
                IF(CLU(J,I)==0.0D0) then
                   CLU(J,I)=1.0D0 ! cambia el valor 
                   COUNT=COUNT+1 ! y cuenta las iteraciones
@@ -1011,7 +1025,7 @@ C     Calculo de energia potencial
          
          U=U*b_sigma*b_sigma*tension !unidades SI
 
-         U=U/(kb*TEMP)
+         U=U/(kb*TEMP) !unidades kT
 
       Else !!Calculamos energía a pares, con una partícula fija
          RR=X*X+Y*Y
