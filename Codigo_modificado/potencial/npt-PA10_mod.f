@@ -19,7 +19,7 @@
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
-      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
+      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NCLU,NMC,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       PI = 4.D0*DATAN(1.D0)
@@ -58,7 +58,7 @@
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
-      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
+      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NCLU,NMC,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
 
       LOGICAL LGOFR
@@ -66,7 +66,7 @@
 
       !Lectura de datos de entrada por medio de una namelist
       NAMELIST /input/ N,RHO,TEMP,PHI,XLAMBDA,XLAM2,XLAM3,XLAM4,XLAM5,
-     +                 XLAM6,NRUN,NMOVE,NMOVE2,NSUB,DISPL,DISPLAng ,
+     +                 XLAM6,NRUN,NMOVE,NCLU,NMC,NSUB,DISPL,DISPLAng ,
      +                 DISPLClu,RA3,IAV,NAC,NCX,NCY,QX,QY,SDISPL,NGOFR,
      +                 LGOFR,XHISTG,AR, A1, A2, A3, A4,a,b,tension
 
@@ -94,7 +94,7 @@
       WRITE(6,101) N,RHO,TEMP,NRUN,NMOVE,NSUB,DISPL,DISPLAng,IAV,NAC,
      + NCX,NCY,NGOFR
       write(6,*) "DISPLClu",DISPLClu
-      write(6,*) "NMOVE_CLUSTERS",NMOVE2
+      write(6,*) "NMOVE_CLUSTERS",NCLU
       WRITE(6,*) 'LAMBDA1=',XLAMBDA
       WRITE(6,*) 'LAMBDA2=',XLAM2
       WRITE(6,*) 'LAMBDA3=',XLAM3
@@ -296,7 +296,7 @@
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
-      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
+      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NCLU,NMC,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       LOGICAL ALL
@@ -315,6 +315,8 @@
       Y=0
       ANG=0
       ANG2=0
+      NCLU0=NCLU
+      NMC0=NMC
 
       CALL ENERG(UTOT,ALL,X,Y,ANG,ANG2) ! subrutina energia para calcular la energía de la configuración creada inicialmente
 
@@ -482,20 +484,39 @@
          NERCONT=0
       END IF
    !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-      if ( NCOUNT==NMOVE/2 ) then
-         open(unit=30,file="graficas/conf_intermedia.dat")
-         do i=1,N
-            write(30,*) RX(i),RY(i),S*AR,S,RA(I)
-         end do
-      end if
+      !if ( NCOUNT==NMOVE/2 ) then
+      !   open(unit=30,file="graficas/conf_intermedia.dat")
+      !   do i=1,N
+      !      write(30,*) RX(i),RY(i),S*AR,S,RA(I)
+      !   end do
+      !end if
 
       IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR
-      
-      IF (NCOUNT.GE.NMOVE) GOTO 6
 
+      !Revisamos si ya terminamos las iteraciones de Monte Carlo, en tal caso terminamos la subrutina
+      IF (NCOUNT .GE. NMOVE) GOTO 12
+
+      !Cuando se cumplan nmc pasos haz NCLU pasos
+      IF (NCLU /= 0) THEN
+         IF ( NCOUNT .EQ. NMC ) THEN
+            write(6,*) NCOUNT, "MC1"
+            NCLU=NCLU0+NCOUNT
+            GOTO 6 
+         END IF
+      END IF
+      
+      !Repite Monte Carlo hasta que se cumpla la condición
       IF (NCOUNT.LT.NSUB) GOTO 1
+      !IF (NCOUNT.GE.NMOVE) GOTO 6
+
+      
 
       ! escribe resultados
+      IF (NCOUNT .EQ. NMC ) THEN
+         write(6,*) NCOUNT, "MC2"
+         NCLU=NCLU0+NCOUNT
+         GOTO 1
+      END IF
       
       UAV=USUBAV/(XN*NCOUNT)
       !      WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),RTEST/XNTEST,
@@ -555,9 +576,7 @@
          END DO
       END DO
 
-      do i=1,N
-         write(16,*) RX(i),RY(i),S*AR,S,RA(I)
-      end do
+      
 
 
       !!!!!CHECAR
@@ -846,10 +865,28 @@
       !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
       IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR 
-      IF (NCOUNT.GE.NMOVE+NMOVE2) GOTO 12
 
+
+      !IF (NCOUNT.GE.NMOVE+NCLU) GOTO 12
+
+      !Cuando se completen NCLU pasos regresa a Monte Carlo
+      IF (NCOUNT .EQ. NCLU ) THEN
+         write(6,*) NCOUNT, "CLUSTERS1"
+         NMC=NMC0+NCOUNT
+         GOTO 1
+      END IF
+
+      !Repite Clusters hasta que se cumpla la condición
       IF (NCOUNT.LT.NSUB) GOTO 7
+
+
+
       ! escribe resultados
+      IF (NCOUNT .EQ. NCLU ) THEN
+         write(6,*) NCOUNT, "CLUSTERS2"
+         NMC=NMC0+NCOUNT
+         GOTO 1
+      END IF
 
       UAV=USUBAV/(XN*NCOUNT) ! aqui calcula el prom (mencionado en linea 891
 
@@ -880,6 +917,10 @@
       DO I=1,N
          WRITE(17,*) RX(I),RY(I),S*AR,S,RA(I) ! escribe datos 
       END DO
+      
+      do i=1,N
+         write(16,*) RX(i),RY(i),S*AR,S,RA(I)
+      end do
 
       !WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),RTEST/XNTEST,
       !     + UAV,VACCPT
@@ -924,7 +965,7 @@ C     Identifica los clusters en la matriz
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
-      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
+      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NCLU,NMC,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       integer COUNT
@@ -971,7 +1012,7 @@ C     Calculo de energia potencial
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
-      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
+      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NCLU,NMC,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       LOGICAL ALL 
@@ -1073,7 +1114,7 @@ C     Calcula g(r)
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
-      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
+      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NCLU,NMC,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       ACC(3)=ACC(3)+1.0D00 ! agrega una unidad al acumulador pero en su posicion 3 (nunca antes utilizada)
@@ -1153,7 +1194,7 @@ C     Calcula g(r)
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
-      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
+      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NCLU,NMC,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
 
@@ -1203,7 +1244,7 @@ C     Calcula g(r)
       COMMON /BCONSTG/ DR1,DR2,DR3,DR4,DR5,PHI,TAU
       COMMON /BCOSTRX/ SL4,SQL4,SL5,SQL5,XLAM4,XLAM5
       COMMON /BCOSTXX/ DR6,SL6,SQL6,XLAM6,E6
-      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NMOVE2,NSUB,NGOFR0,ISEED
+      COMMON /BCONSTI/ N,NGOFR,LGOFR,NMOVE,NCLU,NMC,NSUB,NGOFR0,ISEED
       COMMON /BCONSTV/ PRESS,VOL,SDISPL,NSET,LRHO
       LOGICAL LGOFR
       NHISTG=nint(XHISTG)
