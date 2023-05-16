@@ -490,6 +490,7 @@
       end if
 
       IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR
+      
       IF (NCOUNT.GE.NMOVE) GOTO 6
 
       IF (NCOUNT.LT.NSUB) GOTO 1
