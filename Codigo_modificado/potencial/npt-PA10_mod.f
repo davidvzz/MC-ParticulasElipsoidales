@@ -4,9 +4,6 @@
                                       !Enero 2023
       !
       !     SIMULACION MONTE CARLO Elipses
-         !Graficar Energía promedio vs numero de pasos de monte carlo
-         !Ver que se genere archivos de posición finales e iniciales
-
       
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       PARAMETER (NPART=2000,NACC=20,NG=30000)
@@ -31,6 +28,7 @@
       !  UNIDAD 10 NPT5.SIG GUARDA MUESTREO EN SIGMA
       OPEN(UNIT=10,FILE='datos/npt6.sigma',STATUS='unknown')
       open(unit=20,file='graficas/EvsN.dat',status='unknown')
+      open(unit=30, file="graficas/gif/gif.dat",status="unknown")
       
       CALL START
       CALL MCARLO
@@ -304,7 +302,7 @@
       DOUBLE PRECISION, PARAMETER:: kb=1.380649D-23
       
       ! inicializa secuencia al azar
-      ISEED=-123456789  ! 
+      ISEED=-1234556789  ! 
       a=AR*S/2 !semieje mayor en unidad de caja
       b=S/2    !semieje menor en unidad de caja
       b_sigma=(1d-6/2d0) !semieje mejor en metros (suponiendo que sigma=1micrometro)
@@ -315,8 +313,13 @@
       Y=0
       ANG=0
       ANG2=0
+
       NCLU0=NCLU
       NMC0=NMC
+      NGIF=NMOVE/20
+      NGIF0=NGIF
+      jtest=1
+      
 
       CALL ENERG(UTOT,ALL,X,Y,ANG,ANG2) ! subrutina energia para calcular la energía de la configuración creada inicialmente
 
@@ -491,6 +494,13 @@
       !   end do
       !end if
 
+      if (NCOUNT >= NGIF) then
+         NGIF=NGIF0+NGIF
+         do i =1, N
+            write(30,*) RX(i),RY(i),S*AR,S,RA(I)
+         end do
+      end if
+
       IF (NCOUNT.EQ.NGOFR.AND.LGOFR) CALL GOFR
 
       !Revisamos si ya terminamos las iteraciones de Monte Carlo, en tal caso terminamos la subrutina
@@ -512,12 +522,7 @@
       
 
       ! escribe resultados
-      IF (NCOUNT .EQ. NMC ) THEN
-         write(6,*) NCOUNT, "MC2"
-         NCLU=NCLU0+NCOUNT
-         GOTO 1
-      END IF
-      
+
       UAV=USUBAV/(XN*NCOUNT)
       !      WRITE(6,102) NCOUNT,DFLOAT(NACCPT)/DFLOAT(NCOUNT),RTEST/XNTEST,
       !     + UAV,VACCPT
@@ -538,6 +543,13 @@
 
       WRITE(2,*) XXX,UAV
       !WRITE(23,*) XN, NCOUNT
+
+      IF (NCOUNT .EQ. NMC ) THEN
+         write(6,*) NCOUNT, "MC2"
+         NCLU=NCLU0+NCOUNT
+         GOTO 1
+      END IF
+      
       
       GOTO 1
       ! fin de la corrida por part�cula
@@ -566,7 +578,7 @@
                END IF
                RR=X*X+Y*Y
 
-               if (RR.lt.(5*a)*(5*a)) then ! checa el rango espacial para formar clusters
+               if (RR.lt.(4*a)*(4*a)) then ! checa el rango espacial para formar clusters
                   CLU(I,J)=1.0D0
                else
                   CLU(I,J)=0.0D0
@@ -832,7 +844,7 @@
                   Y=Y+YC
                END IF
                RR=X*X+Y*Y
-               if (RR.lt.(5*a)*(5*a)) then
+               if (RR.lt.(4*a)*(4*a)) then
                   CLU(I,J)=1.0D0
                else
                   CLU(I,J)=0.0D0
@@ -868,6 +880,13 @@
 
 
       !IF (NCOUNT.GE.NMOVE+NCLU) GOTO 12
+      if (NCOUNT >= NGIF) then
+         NGIF=NGIF0+NGIF
+         do i =1, N
+            write(30,*) RX(i),RY(i),S*AR,S,RA(I)
+         end do
+      end if
+
 
       !Cuando se completen NCLU pasos regresa a Monte Carlo
       IF (NCOUNT .EQ. NCLU ) THEN
@@ -882,11 +901,7 @@
 
 
       ! escribe resultados
-      IF (NCOUNT .EQ. NCLU ) THEN
-         write(6,*) NCOUNT, "CLUSTERS2"
-         NMC=NMC0+NCOUNT
-         GOTO 1
-      END IF
+
 
       UAV=USUBAV/(XN*NCOUNT) ! aqui calcula el prom (mencionado en linea 891
 
@@ -906,6 +921,12 @@
       !IF (VACCPT.GT.0.45.AND.LVOL) SDISPL=SDISPL*1.05
       !IF (VACCPT.LT.0.35.AND.LVOL) SDISPL=SDISPL*0.95
       WRITE(2,*)XXX,UAV
+
+      IF (NCOUNT .EQ. NCLU ) THEN
+         write(6,*) NCOUNT, "CLUSTERS2"
+         NMC=NMC0+NCOUNT
+         GOTO 1
+      END IF
       !WRITE(23,*) XN, NCOUNT
       GOTO 7
       !! termina corrida por clusters
@@ -972,7 +993,7 @@ C     Identifica los clusters en la matriz
       COUNT=0
       DO I=1, N
          DO J=1,N
-            IF ( I.NE.J .AND. CLU(I,J).NE.0.0D0 ) then ! si existe clusters 
+            IF ( I.NE.J .AND. CLU(I,J).NE.0.0D0 ) then 
                IF(CLU(J,I)==0.0D0) then
                   CLU(J,I)=1.0D0 ! cambia el valor 
                   COUNT=COUNT+1 ! y cuenta las iteraciones
