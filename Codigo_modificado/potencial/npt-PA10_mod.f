@@ -578,7 +578,7 @@
                END IF
                RR=X*X+Y*Y
 
-               if (RR.lt.(4*a)*(4*a)) then ! checa el rango espacial para formar clusters
+               if (RR.lt.(2*a)*(2*a)) then ! checa el rango espacial para formar clusters
                   CLU(I,J)=1.0D0
                else
                   CLU(I,J)=0.0D0
@@ -844,7 +844,7 @@
                   Y=Y+YC
                END IF
                RR=X*X+Y*Y
-               if (RR.lt.(4*a)*(4*a)) then
+               if (RR.lt.(2*a)*(2*a)) then
                   CLU(I,J)=1.0D0
                else
                   CLU(I,J)=0.0D0
