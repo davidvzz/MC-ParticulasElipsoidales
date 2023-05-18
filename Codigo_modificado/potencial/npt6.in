@@ -1,6 +1,6 @@
 &input
-N        = 100        ,
-RHO      = 0.01D0     ,
+N        = 500        ,
+RHO      = 0.1D0     ,
 TEMP     = 20.0      , !En grados celsius
 PHI      = 0.2D0     ,
 XLAMBDA  = 3.0D0     ,
@@ -10,9 +10,9 @@ XLAM4    = 6.2D0     ,
 XLAM5    = 8.3D0     ,
 XLAM6    = 8.5D0     ,
 NRUN     = 0         ,
-NMOVE    = 10000   ,
+NMOVE    = 100000   ,
 NMC      = 3000        , !numero que realizamos de MC antes de realizar Nclu pasos de clusters 
-NCLU     = 15      ,    !numero de pasos de clusters que realizamos cuando se cumplen NMC pasos de Monte Carlo
+NCLU     = 10      ,    !numero de pasos de clusters que realizamos cuando se cumplen NMC pasos de Monte Carlo
 NSUB     = 50      ,
 DISPL    = 3.0D0     ,
 DISPLAng = 7.0D0     ,
