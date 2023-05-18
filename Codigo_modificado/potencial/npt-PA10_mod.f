@@ -316,7 +316,7 @@
 
       NCLU0=NCLU
       NMC0=NMC
-      NGIF=NMOVE/20
+      NGIF=NMOVE/60
       NGIF0=NGIF
       jtest=1
       
